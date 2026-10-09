@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { ogContentType, ogImage, ogSize } from "@/lib/og";
+import { offerChips, ogContentType, ogImage, ogSize } from "@/lib/og";
 
 export const alt = "Learn the tech that powers the climb.";
 export const size = ogSize;
@@ -9,6 +9,7 @@ export default function OpenGraphImage() {
   return ogImage({
     label: "ACADEMY K · 01 / HOME",
     title: "Learn the tech that powers the climb.",
-    subtitle: site.description,
+    subtitle: "Quantum computing, AI / SI and thermodynamic computing. Learn by building proof, verified by the Uncertain Systems platform.",
+    chips: offerChips,
   });
 }

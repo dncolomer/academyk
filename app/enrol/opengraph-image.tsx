@@ -1,4 +1,4 @@
-import { ogContentType, ogImage, ogSize } from "@/lib/og";
+import { offerChips, ogContentType, ogImage, ogSize } from "@/lib/og";
 import { offer } from "@/content/site";
 
 export const alt = "How Academy K enrolment works";
@@ -9,6 +9,7 @@ export default function EnrolOpenGraphImage() {
   return ogImage({
     label: "ACADEMY K · 04 / ENROL",
     title: "How enrolment works",
-    subtitle: `Waitlist first. Payment link in November. ${offer.weeks} weeks from ${offer.cohortStart}.`,
+    subtitle: "Join the waitlist, free. Payment link by email in November. Course starts in December.",
+    chips: offerChips,
   });
 }

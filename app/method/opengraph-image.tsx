@@ -9,6 +9,7 @@ export default function MethodOpenGraphImage() {
   return ogImage({
     label: "ACADEMY K · 03 / METHOD",
     title: "How it works",
+    chips: ["Proof of work", "Verified by the platform"],
     subtitle: `Self-paced work, checked by the platform. ${offer.liveSessions} optional live sessions.`,
   });
 }

@@ -8,6 +8,7 @@ export default function WaitlistOpenGraphImage() {
   return ogImage({
     label: "ACADEMY K · 07 / WAITLIST",
     title: "Reserve your place",
+    chips: ["Free to join", "Nothing to pay now"],
     subtitle: "Free to join. A payment link by email in November.",
   });
 }
