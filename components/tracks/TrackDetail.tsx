@@ -17,7 +17,7 @@ export function TrackDetail({ track }: { track: Track }) {
   const index = tracks.findIndex((item) => item.slug === track.slug);
   const previous = tracks[(index + tracks.length - 1) % tracks.length];
   const next = tracks[(index + 1) % tracks.length];
-  const waitlist = waitlistHref(`Academy K waitlist: ${track.title}`);
+  const waitlist = waitlistHref(track.slug);
   const moduleCount = track.modules.length;
 
   return (

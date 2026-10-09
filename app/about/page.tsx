@@ -81,7 +81,7 @@ export default function AboutPage() {
           </a>
         </div>
         <div className="mt-6">
-          <LinkButton href={waitlistHref("Academy K waitlist")} solid>
+          <LinkButton href={waitlistHref()} solid>
             Join the waitlist
           </LinkButton>
         </div>

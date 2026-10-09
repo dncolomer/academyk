@@ -8,5 +8,9 @@ export const site = {
   github: "https://github.com/dncolomer/academyk",
 };
 
-export const waitlistHref = (subject: string) =>
+/** Internal waitlist form. Pass a track slug to preselect it. */
+export const waitlistHref = (trackSlug?: string) =>
+  trackSlug ? `/waitlist?track=${encodeURIComponent(trackSlug)}` : "/waitlist";
+
+export const mailtoHref = (subject = "Academy K waitlist") =>
   `mailto:${site.contact}?subject=${encodeURIComponent(subject)}`;

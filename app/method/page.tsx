@@ -136,7 +136,7 @@ export default function MethodPage() {
         </p>
       </SectionBlock>
 
-      <PageCta subject="Academy K waitlist — method" />
+      <PageCta />
     </Container>
   );
 }

@@ -5,13 +5,11 @@ import { waitlistHref } from "@/content/site";
 type PageCtaProps = {
   title?: string;
   body?: string;
-  subject?: string;
 };
 
 export function PageCta({
   title = "Dates are not set yet.",
   body = "Join the waitlist and we will write to you.",
-  subject = "Academy K waitlist",
 }: PageCtaProps) {
   return (
     <Reveal className="mt-20 sm:mt-24">
@@ -23,7 +21,7 @@ export function PageCta({
           <h2 className="ak-serif max-w-xl text-3xl leading-tight text-balance text-ink sm:text-4xl">{title}</h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">{body}</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <LinkButton href={waitlistHref(subject)} solid>
+            <LinkButton href={waitlistHref()} solid>
               Join the waitlist
             </LinkButton>
             <LinkButton href="/tracks">View tracks</LinkButton>

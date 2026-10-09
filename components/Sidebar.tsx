@@ -25,6 +25,12 @@ export function Sidebar() {
           </nav>
         </div>
 
+        <div className="mt-8 px-2">
+          <Link href="/waitlist" className="ak-btn-solid w-full">
+            Join the waitlist
+          </Link>
+        </div>
+
         <div className="mt-auto border-t border-line px-2 pt-6">
           <KMotif compact observatoryHref={site.observatoryUrl} />
           <a

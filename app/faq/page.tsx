@@ -88,7 +88,7 @@ export default function FaqPage() {
               a: (
                 <>
                   Dates are not set yet. Join the waitlist and we will write to you.{" "}
-                  <InlineLink href={waitlistHref("Academy K waitlist")}>Write to {site.contact}</InlineLink>.
+                  <InlineLink href={waitlistHref()}>Write to {site.contact}</InlineLink>.
                 </>
               ),
             },
@@ -121,7 +121,7 @@ export default function FaqPage() {
         </ul>
       </SectionBlock>
 
-      <PageCta subject="Academy K waitlist — FAQ" />
+      <PageCta />
     </Container>
   );
 }

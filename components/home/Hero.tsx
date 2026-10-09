@@ -39,7 +39,7 @@ export function Hero() {
           <LinkButton href="/tracks" solid>
             Explore tracks
           </LinkButton>
-          <LinkButton href={waitlistHref("Academy K waitlist")}>Join the waitlist</LinkButton>
+          <LinkButton href={waitlistHref()}>Join the waitlist</LinkButton>
         </div>
       </Container>
 

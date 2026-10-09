@@ -103,7 +103,10 @@ export function MobileNav() {
                 <TrackNav variant="overlay" onNavigate={() => setOpen(false)} />
               </nav>
             </div>
-            <a href={`mailto:${site.contact}`} className="ak-label mt-12 inline-block px-2 text-muted">
+            <Link href="/waitlist" onClick={() => setOpen(false)} className="ak-btn-solid mt-10 w-full">
+              Join the waitlist
+            </Link>
+            <a href={`mailto:${site.contact}`} className="ak-label mt-8 inline-block px-2 text-muted">
               {site.contact}
             </a>
           </div>

@@ -21,7 +21,7 @@ export function ClosingCta() {
             Join the waitlist and we will write to you. Dates and pricing are TBA.
           </p>
           <div className="mt-8 flex flex-col items-start gap-5">
-            <LinkButton href={waitlistHref("Academy K waitlist")} solid>
+            <LinkButton href={waitlistHref()} solid>
               Join the waitlist
             </LinkButton>
             <a

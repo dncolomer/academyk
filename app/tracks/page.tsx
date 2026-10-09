@@ -81,7 +81,7 @@ export default function TracksPage() {
             Dates are not set yet. Join the waitlist and we will write to you.
           </p>
           <div className="mt-6">
-            <LinkButton solid href={waitlistHref("Academy K waitlist")} className="w-full sm:w-auto">
+            <LinkButton solid href={waitlistHref()} className="w-full sm:w-auto">
               Join the waitlist
             </LinkButton>
           </div>
