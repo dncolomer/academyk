@@ -52,7 +52,7 @@ Edit a module or add one to the `modules` array and every page, the catalog tabl
 
 ## Site URL
 
-`metadataBase` defaults to `https://academyk.com`. Override it with the `NEXT_PUBLIC_SITE_URL` environment variable at build time (for example a Vercel preview URL). No other environment variables are used.
+`metadataBase` defaults to `https://academy-k.com`. Override it with the `NEXT_PUBLIC_SITE_URL` environment variable at build time (for example a Vercel preview URL). No other environment variables are used.
 
 ## Deploy on Vercel
 
@@ -65,7 +65,7 @@ Edit a module or add one to the `modules` array and every page, the catalog tabl
 - Cohort dates, pricing and instructors (currently TBA, no names).
 - The `K = 0.73` figure is illustrative. See Observatory-K for live values.
 - Waitlist `mailto:` to `daniel@uncertain.systems` can be swapped for a form service.
-- `academyk.com` is used as the canonical host but is not purchased or configured here.
+- `academy-k.com` is the canonical host. DNS and the Vercel domain are configured separately, outside this repo.
 
 ## License
 

@@ -213,7 +213,7 @@ export function OgCard({ label, title, subtitle }: OgCardProps) {
               color: MUTED,
             }}
           >
-            academyk.com
+            academy-k.com
           </div>
         </div>
       </div>
