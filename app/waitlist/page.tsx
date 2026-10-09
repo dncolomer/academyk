@@ -32,9 +32,10 @@ export default function WaitlistPage() {
           <p className="ak-label text-ink">Privacy note</p>
           <p className="mt-3">
             We collect the name, email, track and message you enter. We use your email to send the November payment
-            link and cohort updates. Submissions are forwarded by email through the FormSubmit email-forwarding
-            service to the Academy K team. They are not stored in a database on this site. This site has no
-            analytics. FormSubmit, as a third-party service, handles them in transit under its own terms.
+            link and cohort updates. When you submit, your details are sent from your browser to the FormSubmit
+            email-forwarding service, which emails them to the Academy K team. Nothing is stored on this site itself,
+            and the site has no analytics. FormSubmit, as a third-party service, handles the data in transit under its
+            own terms.
           </p>
           <p className="mt-3">
             To remove your details, write to{" "}

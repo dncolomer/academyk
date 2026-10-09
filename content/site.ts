@@ -33,3 +33,10 @@ export const priceLine = `${offer.foundingPrice} founding, ${offer.laterPrice} l
 
 export const enrolHref = (trackSlug?: string) =>
   trackSlug ? `/enrol?track=${encodeURIComponent(trackSlug)}` : "/enrol";
+
+/**
+ * Browser-side waitlist endpoint (FormSubmit email forwarding, token form so the address is hidden).
+ * Override with NEXT_PUBLIC_WAITLIST_ENDPOINT at build time.
+ */
+export const waitlistEndpoint =
+  process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT ?? "https://formsubmit.co/ajax/c73c4c6c8aab34ff12d0d5f8abd1f026";

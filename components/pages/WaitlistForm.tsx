@@ -3,10 +3,13 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 import { Lamp } from "@/components/Lamp";
-import { site, mailtoHref } from "@/content/site";
+import { site, mailtoHref, waitlistEndpoint } from "@/content/site";
 import { EMAIL_RE, LIMITS, WAITLIST_TRACKS, trackSlugToLabel } from "@/lib/waitlist";
 
 type Status = "idle" | "sending" | "success" | "error";
+
+const COOLDOWN_MS = 30_000;
+const COOLDOWN_KEY = "ak-waitlist-last";
 
 const field =
   "mt-2 block w-full border border-line bg-black/40 px-3 py-3 text-sm text-ink placeholder:text-muted/60 transition-colors focus:border-ink focus:outline-none";
@@ -46,28 +49,50 @@ export function WaitlistForm() {
       return;
     }
 
+    try {
+      const last = Number(window.localStorage.getItem(COOLDOWN_KEY) ?? 0);
+      const wait = Math.ceil((COOLDOWN_MS - (Date.now() - last)) / 1000);
+      if (last && wait > 0) {
+        setError(`Please wait ${wait} seconds before sending again.`);
+        setStatus("error");
+        return;
+      }
+    } catch {
+      // localStorage can be unavailable; skip the cooldown.
+    }
+
     setStatus("sending");
     setError("");
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch(waitlistEndpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: payload.name,
+          email: payload.email,
+          track: payload.track,
+          message: payload.message,
+          _subject: `Academy K waitlist: ${payload.track}`,
+          _replyto: payload.email,
+          _captcha: "false",
+          _honey: payload.website,
+          _template: "table",
+        }),
       });
-      const body = (await res.json().catch(() => ({}))) as {
-        ok?: boolean;
-        error?: string;
-        fields?: Record<string, string>;
-      };
-      if (res.ok && body.ok) {
+      const body = (await res.json().catch(() => ({}))) as { success?: unknown };
+      if (res.ok && (body.success === true || body.success === "true")) {
+        try {
+          window.localStorage.setItem(COOLDOWN_KEY, String(Date.now()));
+        } catch {
+          // ignore
+        }
         setStatus("success");
         return;
       }
-      if (body.fields) setFieldErrors(body.fields);
-      setError(body.error ?? "Something went wrong. Please try again.");
+      setError("We could not save your request just now. Please try again.");
       setStatus("error");
     } catch {
-      setError("We could not reach the server. Please try again, or email us instead.");
+      setError("We could not reach the server. Please try again.");
       setStatus("error");
     }
   }
