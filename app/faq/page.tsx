@@ -66,6 +66,10 @@ export default function FaqPage() {
               a: `${offer.foundingPrice} per course for the first cohort (founding price). ${offer.laterPrice} per course for later cohorts. Prices are in USD. Two tracks together are 10% off (${offer.twoTrackFounding} in the first cohort, ${offer.twoTrackLater} later) and all three are 15% off (${offer.threeTrackFounding} and ${offer.threeTrackLater}). Nothing is paid on this site.`,
             },
             {
+              q: "Where do the proceeds go?",
+              a: "50% of proceeds go to Kardashev Research and related initiatives.",
+            },
+            {
               q: "How does enrolment work?",
               a: (
                 <>

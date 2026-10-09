@@ -99,6 +99,9 @@ export default function EnrolPage() {
             </tbody>
           </table>
         </div>
+        <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink">
+          50% of proceeds go to Kardashev Research and related initiatives.
+        </p>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
           Choose your tracks on the waitlist form. Your seat in each one is confirmed through the November payment link.
         </p>

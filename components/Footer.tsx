@@ -49,6 +49,7 @@ export function Footer() {
           </div>
         </div>
         <p className="ak-label mt-12">Courses run on the Uncertain Systems platform</p>
+        <p className="ak-label mt-3">50% of proceeds go to Kardashev Research and related initiatives</p>
       </Container>
     </footer>
   );
