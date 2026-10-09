@@ -120,8 +120,12 @@ export async function POST(request: Request) {
     headers = {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "Accept-Language": "en-US,en;q=0.9",
       Origin: "https://academy-k.com",
       Referer: "https://academy-k.com/",
+      // FormSubmit sits behind bot filtering that can reject default server-side user agents.
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
     };
     payload = {
       name,
@@ -163,7 +167,14 @@ export async function POST(request: Request) {
     if (isFormSubmit) {
       let body: { success?: unknown; message?: unknown } = {};
       try {
-        body = await res.json();
+        const text = await res.text();
+        try {
+          body = JSON.parse(text);
+        } catch {
+          // Non-JSON (for example an HTML block page): surface only a short, safe title if there is one.
+          const title = /<title>([^<]{1,120})<\/title>/i.exec(text)?.[1];
+          body = { message: title };
+        }
       } catch {
         body = {};
       }

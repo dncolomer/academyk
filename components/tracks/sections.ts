@@ -13,7 +13,7 @@ export type TrackSectionId = (typeof trackToc)[number]["id"];
 /**
  * The section that owns the reading line near the top of the viewport.
  * While every heading is still below that line (page load), the first section stays current.
- * After that, the last heading that has crossed the line is current — the one nearest the top.
+ * After that, the last heading that has crossed the line is current: the one nearest the top.
  */
 export function activeSectionId(
   sections: { id: TrackSectionId; top: number }[],

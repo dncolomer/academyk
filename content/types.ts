@@ -1,4 +1,6 @@
 export type Module = {
+  /** Which of the four weekly blocks this module belongs to (1 to 4). */
+  week: 1 | 2 | 3 | 4;
   title: string;
   summary: string;
   /** The proof-of-work deliverable a learner submits for verification. */
@@ -22,5 +24,4 @@ export type Track = {
   modules: Module[];
   outcomes: string[];
   faq: Faq[];
-  status: string; // e.g. "Sample syllabus — draft"
 };

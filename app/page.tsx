@@ -9,7 +9,7 @@ import { site } from "@/content/site";
 
 const title = "Learn the frontier tech that climbs the Kardashev scale";
 const description = site.description;
-const socialTitle = `${title} — ${site.name}`;
+const socialTitle = `${title}: ${site.name}`;
 
 export const metadata: Metadata = {
   title,

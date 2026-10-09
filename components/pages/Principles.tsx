@@ -1,18 +1,18 @@
 const principles = [
   {
     index: "01",
-    title: "Proof over passing",
-    body: "A module is complete when the artefact is verified, not when a test is passed.",
+    title: "Checked work",
+    body: "A module is complete when the platform has checked the artefact.",
   },
   {
     index: "02",
-    title: "Frontier first",
-    body: "The tracks are quantum computing, AI / SI and thermodynamic computing: the tech behind the climb up the Kardashev scale.",
+    title: "Three tracks only",
+    body: "Quantum computing, AI / SI and thermodynamic computing. We keep the list short so each course can be done properly.",
   },
   {
     index: "03",
-    title: "Build to understand",
-    body: "You learn by producing the thing in a workspace: code, a derivation, a model, or a written analysis.",
+    title: "Build the thing",
+    body: "You learn by producing the work in a workspace: code, a derivation, a model, or a written analysis.",
   },
 ] as const;
 

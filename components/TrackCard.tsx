@@ -35,6 +35,8 @@ export function TrackCard({ track, className }: TrackCardProps) {
           </span>
           <span aria-hidden>·</span>
           <span>{track.timeCommitment.duration}</span>
+          <span aria-hidden>·</span>
+          <span>{track.timeCommitment.weekly}</span>
         </p>
       </div>
       <span

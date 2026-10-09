@@ -6,7 +6,7 @@ type LogoProps = {
   title?: string;
 };
 
-/** Stepped square-ladder mark — a climb, readable at 24px. */
+/** Stepped square-ladder mark: a climb, readable at 24px. */
 export function Logo({ size = 24, className, title }: LogoProps) {
   return (
     <svg

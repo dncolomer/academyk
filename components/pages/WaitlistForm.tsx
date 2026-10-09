@@ -80,8 +80,7 @@ export function WaitlistForm() {
         </p>
         <h2 className="ak-serif mt-4 text-3xl leading-tight text-ink sm:text-4xl">You are on the list.</h2>
         <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
-          Thank you. We will write to you when there is news about the first cohort. Dates and pricing are
-          still TBA.
+          We will email you in November with a link to confirm your seat. Nothing to pay now.
         </p>
       </div>
     );
@@ -97,7 +96,7 @@ export function WaitlistForm() {
   return (
     <form onSubmit={onSubmit} noValidate className="border border-line">
       <div className="border-b border-line px-5 py-3 sm:px-6">
-        <p className="ak-label">Waitlist · sample programme — draft</p>
+        <p className="ak-label">Waitlist</p>
       </div>
       <div className="grid gap-6 px-5 py-6 sm:px-8 sm:py-8">
         <label className="block">
@@ -182,8 +181,9 @@ export function WaitlistForm() {
 
         <div className="flex flex-wrap items-center gap-4">
           <button type="submit" disabled={status === "sending"} className="ak-btn-solid disabled:opacity-60">
-            {status === "sending" ? "Sending…" : "Join the waitlist"}
+            {status === "sending" ? "Sending…" : "Reserve your place"}
           </button>
+          <p className="text-sm text-muted">Free to join. Nothing to pay now.</p>
           <p className="text-sm text-muted">
             Or write to{" "}
             <a className="text-ink underline underline-offset-4" href={mailtoHref()}>

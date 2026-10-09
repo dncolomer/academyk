@@ -35,7 +35,9 @@ export function KMotif({ compact = false, observatoryHref, className }: KMotifPr
           <span className="ak-label">Type I</span>
         </div>
       </div>
-      <figcaption className={cn("ak-label", compact ? "mt-2" : "mt-3")}>Illustrative</figcaption>
+      <figcaption className={cn("ak-label", compact ? "mt-2" : "mt-3")}>
+        {observatoryHref ? "K now (estimate), tracked live at" : "Estimate · Observatory-K"}
+      </figcaption>
       {observatoryHref ? (
         <a
           href={observatoryHref}

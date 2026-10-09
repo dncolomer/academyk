@@ -1,8 +1,9 @@
 import { LinkButton } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Lamp } from "@/components/Lamp";
+import { ReserveButton } from "@/components/ReserveButton";
 import { Reveal } from "@/components/Reveal";
-import { site, waitlistHref } from "@/content/site";
+import { offer, site } from "@/content/site";
 
 export function ClosingCta() {
   return (
@@ -12,25 +13,25 @@ export function ClosingCta() {
         <Reveal>
           <p className="ak-label flex flex-wrap items-center gap-x-2.5 gap-y-1">
             <Lamp />
-            <span>Waitlist</span>
+            <span>First cohort</span>
           </p>
           <h2 className="ak-serif mt-5 max-w-[14ch] text-4xl leading-[1.02] text-ink sm:text-6xl">
-            Dates are not set yet.
+            The first cohort is in {offer.cohortStart}.
           </h2>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-muted">
-            Join the waitlist and we will write to you. Dates and pricing are TBA.
+            {offer.weeks} weeks, self-paced, limited to {offer.seats} people per course.
           </p>
-          <div className="mt-8 flex flex-col items-start gap-5">
-            <LinkButton href={waitlistHref()} solid>
-              Join the waitlist
-            </LinkButton>
-            <a
-              href={`mailto:${site.contact}`}
-              className="ak-label max-w-full break-all text-ink hover:underline"
-            >
-              {site.contact}
-            </a>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <ReserveButton />
+            <LinkButton href="/tracks">Explore tracks</LinkButton>
           </div>
+          <p className="mt-4 text-sm text-muted">Free to join. Payment link by email in November.</p>
+          <a
+            href={`mailto:${site.contact}`}
+            className="ak-label mt-5 inline-block max-w-full break-all text-ink hover:underline"
+          >
+            {site.contact}
+          </a>
         </Reveal>
       </Container>
     </section>

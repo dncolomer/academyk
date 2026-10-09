@@ -1,15 +1,14 @@
 import { KMotif } from "@/components/KMotif";
-import { LinkButton } from "@/components/Button";
 import { Container } from "@/components/Container";
-import { site, waitlistHref } from "@/content/site";
+import { ReserveButton } from "@/components/ReserveButton";
+import { offer, site } from "@/content/site";
 import { InlineLink } from "@/components/pages/InlineLink";
 import { Principles } from "@/components/pages/Principles";
 import { SectionBlock } from "@/components/pages/SectionBlock";
-import { StatusNote } from "@/components/pages/StatusNote";
 import { pageMetadata } from "@/components/pages/metadata";
 
 const description =
-  "Academy K teaches the frontier tech that climbs the Kardashev scale. Sibling of Observatory-K. Runs on the Uncertain Systems platform. Static prototype: syllabi are drafts; dates, pricing and instructors are TBA.";
+  "Academy K teaches the frontier tech that climbs the Kardashev scale. Sibling of Observatory-K. Courses run on the Uncertain Systems platform.";
 
 export const metadata = pageMetadata({
   title: "About",
@@ -22,7 +21,7 @@ export default function AboutPage() {
     <Container className="py-16 lg:py-24">
       <SectionBlock
         as="h1"
-        index="04"
+        index="05"
         label="About"
         title="Academy K"
         lede={site.description}
@@ -31,15 +30,15 @@ export default function AboutPage() {
       <SectionBlock
         index="01"
         label="Sibling"
-        title="K is Kardashev"
+        title="Why the K"
         lede="Academy K is the sibling of Observatory-K. Observatory-K tracks the climb. Academy K teaches the tech."
       >
         <div className="grid gap-10 sm:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] sm:items-end">
           <KMotif observatoryHref={site.observatoryUrl} />
           <p className="max-w-md text-sm leading-relaxed text-muted">
-            The scale is marked illustrative.{" "}
-            <InlineLink href={site.observatoryUrl}>Observatory-K</InlineLink> follows the climb. The academy teaches
-            the three tracks: quantum computing, AI / SI and thermodynamic computing.
+            K = 0.73 is an estimate, as of August 2026.{" "}
+            <InlineLink href={site.observatoryUrl}>Observatory-K</InlineLink> tracks the live figure. Academy K
+            teaches three courses: quantum computing, AI / SI and thermodynamic computing.
           </p>
         </div>
       </SectionBlock>
@@ -53,15 +52,11 @@ export default function AboutPage() {
         <InlineLink href={site.platformUrl}>{site.platformUrl}</InlineLink>
       </SectionBlock>
 
-      <SectionBlock index="03" label="Status" title="A prototype, stated plainly">
-        <StatusNote />
-      </SectionBlock>
-
       <SectionBlock
-        index="04"
+        index="03"
         label="Contact"
         title="Write, or read the source"
-        lede="Dates are not set yet. Join the waitlist and we will write to you."
+        lede={`The first cohort starts in ${offer.cohortStart}. To hold a seat, join the waitlist. Questions go to the email below.`}
       >
         <div className="grid gap-px border border-line bg-line sm:grid-cols-2">
           <a href={`mailto:${site.contact}`} className="min-w-0 bg-bg p-5 transition-colors hover:bg-white/[0.03] sm:p-6">
@@ -81,17 +76,16 @@ export default function AboutPage() {
           </a>
         </div>
         <div className="mt-6">
-          <LinkButton href={waitlistHref()} solid>
-            Join the waitlist
-          </LinkButton>
+          <ReserveButton />
+          <p className="mt-3 text-sm text-muted">Free to join. Nothing to pay now.</p>
         </div>
       </SectionBlock>
 
       <SectionBlock
-        index="05"
+        index="04"
         label="Principles"
-        title="Three rules for the work"
-        lede="How a module is finished, what the syllabus is for, and how you learn it."
+        title="How we work"
+        lede="Three habits that shape every course."
       >
         <Principles />
       </SectionBlock>

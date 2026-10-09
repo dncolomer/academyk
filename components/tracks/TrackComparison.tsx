@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import type { Track } from "@/content/types";
 
-const columns = ["Track", "Modules", "Duration", "Weekly", "Best for"] as const;
+const columns = ["Track", "Modules", "Duration", "Pace", "Best for"] as const;
 
 export function TrackComparison({ tracks }: { tracks: Track[] }) {
   return (
@@ -19,7 +19,7 @@ export function TrackComparison({ tracks }: { tracks: Track[] }) {
             <dl className="mt-4 grid gap-4">
               <Fact label="Modules">{track.modules.length}</Fact>
               <Fact label="Duration">{track.timeCommitment.duration}</Fact>
-              <Fact label="Weekly">{track.timeCommitment.weekly}</Fact>
+              <Fact label="Pace">{track.timeCommitment.weekly}</Fact>
               <Fact label="Best for">
                 <AudienceList audience={track.audience} />
               </Fact>
@@ -32,7 +32,7 @@ export function TrackComparison({ tracks }: { tracks: Track[] }) {
         <div className="max-w-full overflow-x-auto" tabIndex={0} role="region" aria-label="Track comparison">
           <table className="w-full min-w-[44rem] table-fixed border-collapse text-left">
             <caption className="sr-only">
-              Draft comparison of module count, duration, weekly time, and audience
+              Module count, duration, pace, and audience for each track
             </caption>
             <thead>
               <tr className="border-b border-line">

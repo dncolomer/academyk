@@ -2,14 +2,14 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { LinkButton } from "@/components/Button";
 import { KMotif } from "@/components/KMotif";
-import { Lamp } from "@/components/Lamp";
+import { ReserveButton } from "@/components/ReserveButton";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TrackGlyph } from "@/components/TrackGlyph";
 import { SectionIndex } from "@/components/tracks/SectionIndex";
 import { SyllabusTimeline } from "@/components/tracks/SyllabusTimeline";
 import { TrackFaq } from "@/components/tracks/TrackFaq";
-import { site, waitlistHref } from "@/content/site";
+import { offer, priceLine, site } from "@/content/site";
 import { tracks } from "@/content/tracks";
 import type { Track } from "@/content/types";
 
@@ -17,7 +17,6 @@ export function TrackDetail({ track }: { track: Track }) {
   const index = tracks.findIndex((item) => item.slug === track.slug);
   const previous = tracks[(index + tracks.length - 1) % tracks.length];
   const next = tracks[(index + 1) % tracks.length];
-  const waitlist = waitlistHref(track.slug);
   const moduleCount = track.modules.length;
 
   return (
@@ -54,27 +53,23 @@ export function TrackDetail({ track }: { track: Track }) {
                 {track.tagline}
               </p>
 
-              <p className="ak-label relative z-10 mt-6 inline-flex max-w-full items-center gap-2 break-words text-ink">
-                <Lamp />
-                <span>{track.status}</span>
-              </p>
-
-              <dl className="relative z-10 mt-8 grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-4 [&>*]:bg-bg">
+              <dl className="relative z-10 mt-8 grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-3 [&>*]:bg-bg">
                 <Fact label="Duration">{track.timeCommitment.duration}</Fact>
-                <Fact label="Weekly">{track.timeCommitment.weekly}</Fact>
+                <Fact label="Pace">{track.timeCommitment.weekly}</Fact>
                 <Fact label="Modules">{moduleCount}</Fact>
-                <Fact label="Format">{track.format.map((item) => item.label).join(" · ")}</Fact>
+                <Fact label="Live sessions">{offer.liveSessions}, optional</Fact>
+                <Fact label="Price">{priceLine}</Fact>
+                <Fact label="Seats">Limited to {offer.seats}</Fact>
               </dl>
               <p className="relative z-10 mt-3 max-w-[40rem] text-sm leading-relaxed text-muted">{track.timeCommitment.note}</p>
 
               <div className="relative z-10 mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <LinkButton solid href={waitlist} className="w-full sm:w-auto">
-                  Join the waitlist
-                </LinkButton>
+                <ReserveButton slug={track.slug} className="w-full sm:w-auto" />
                 <LinkButton href="#syllabus" className="w-full sm:w-auto">
                   See syllabus
                 </LinkButton>
               </div>
+              <p className="relative z-10 mt-3 text-sm text-muted">Free to join. Nothing to pay now.</p>
             </header>
           </Reveal>
 
@@ -114,7 +109,7 @@ export function TrackDetail({ track }: { track: Track }) {
               </ul>
               <dl className="mt-6 grid gap-px border border-line bg-line sm:grid-cols-3">
                 <Fact label="Duration">{track.timeCommitment.duration}</Fact>
-                <Fact label="Weekly">{track.timeCommitment.weekly}</Fact>
+                <Fact label="Pace">{track.timeCommitment.weekly}</Fact>
                 <Fact label="Note">{track.timeCommitment.note}</Fact>
               </dl>
             </section>
@@ -125,13 +120,9 @@ export function TrackDetail({ track }: { track: Track }) {
               <SectionHeader
                 index="04"
                 label="Syllabus"
-                title="Syllabus"
-                lede={`${moduleCount} modules. Each module ends with a proof-of-work deliverable.`}
+                title="Four weekly blocks"
+                lede={`${moduleCount} modules, grouped into four weeks. Each module ends with a proof-of-work deliverable.`}
               />
-              <p className="ak-label mt-6 inline-flex max-w-full items-center gap-2 break-words text-ink">
-                <Lamp />
-                <span>{track.status}</span>
-              </p>
               <SyllabusTimeline modules={track.modules} />
             </section>
           </Reveal>
@@ -178,11 +169,16 @@ export function TrackDetail({ track }: { track: Track }) {
                 {track.index} / {track.short}
               </p>
               <h2 id="enrol-heading" className="ak-serif mt-4 break-words text-3xl leading-tight text-ink sm:text-4xl">
-                Enrolment opens soon — dates and pricing TBA
+                Reserve your place
               </h2>
-              <div className="mt-6">
-                <LinkButton solid href={waitlist} className="w-full sm:w-auto">
-                  Join the waitlist
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
+                Free to join. Nothing to pay now. Founding price {offer.foundingPrice} per course. Later cohorts
+                are {offer.laterPrice}.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <ReserveButton slug={track.slug} className="w-full sm:w-auto" />
+                <LinkButton href="#syllabus" className="w-full sm:w-auto">
+                  See syllabus
                 </LinkButton>
               </div>
             </section>

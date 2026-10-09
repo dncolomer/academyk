@@ -12,8 +12,8 @@ export function TracksSection() {
         <SectionHeader
           index="01"
           label="Tracks"
-          title="Three tracks."
-          lede="Quantum computing, AI / SI and thermodynamic computing. Each syllabus is a sample — draft."
+          title="Three tracks"
+          lede="Quantum computing, AI / SI and thermodynamic computing. Four weeks each, self-paced."
         />
       </Reveal>
       <ul className="mt-12 grid gap-4">

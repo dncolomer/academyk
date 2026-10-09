@@ -40,7 +40,7 @@ body {
   line-height: 1.6;
 }
 
-/* Slow atmospheric drift — sits behind the grid and content. */
+/* Slow atmospheric drift. Sits behind the grid and content. */
 body::before {
   content: "";
   position: fixed;
@@ -53,7 +53,7 @@ body::before {
   animation: ak-drift 32s ease-in-out infinite alternate;
 }
 
-/* Scanline overlay — above paint, never intercepts input. */
+/* Scanline overlay. Above paint, never intercepts input. */
 body::after {
   content: "";
   position: fixed;

@@ -6,8 +6,8 @@ export const contentType = ogContentType;
 
 export default function FaqOpenGraphImage() {
   return ogImage({
-    label: "ACADEMY K · 05 / FAQ",
+    label: "ACADEMY K · 06 / FAQ",
     title: "Questions",
-    subtitle: "Proof of work, cohorts, pricing and certificates. Where it is unset, the answer is TBA.",
+    subtitle: "Cohorts, price, proof of work and how enrolment works.",
   });
 }

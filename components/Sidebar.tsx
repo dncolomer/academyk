@@ -4,6 +4,7 @@ import { KMotif } from "@/components/KMotif";
 import { Lamp } from "@/components/Lamp";
 import { Wordmark } from "@/components/Logo";
 import { PrimaryNav, TrackNav } from "@/components/Nav";
+import { ReserveButton } from "@/components/ReserveButton";
 
 export function Sidebar() {
   return (
@@ -26,9 +27,7 @@ export function Sidebar() {
         </div>
 
         <div className="mt-8 px-2">
-          <Link href="/waitlist" className="ak-btn-solid w-full">
-            Join the waitlist
-          </Link>
+          <ReserveButton className="w-full" />
         </div>
 
         <div className="mt-auto border-t border-line px-2 pt-6">

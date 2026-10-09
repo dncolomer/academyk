@@ -1,6 +1,6 @@
 import { LinkButton } from "@/components/Button";
+import { ReserveButton } from "@/components/ReserveButton";
 import { Reveal } from "@/components/Reveal";
-import { waitlistHref } from "@/content/site";
 
 type PageCtaProps = {
   title?: string;
@@ -8,8 +8,8 @@ type PageCtaProps = {
 };
 
 export function PageCta({
-  title = "Dates are not set yet.",
-  body = "Join the waitlist and we will write to you.",
+  title = "Reserve your place.",
+  body = "Free to join. Nothing to pay now.",
 }: PageCtaProps) {
   return (
     <Reveal className="mt-20 sm:mt-24">
@@ -21,9 +21,7 @@ export function PageCta({
           <h2 className="ak-serif max-w-xl text-3xl leading-tight text-balance text-ink sm:text-4xl">{title}</h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">{body}</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <LinkButton href={waitlistHref()} solid>
-              Join the waitlist
-            </LinkButton>
+            <ReserveButton />
             <LinkButton href="/tracks">View tracks</LinkButton>
           </div>
         </div>

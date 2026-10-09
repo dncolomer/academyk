@@ -33,7 +33,7 @@ export function SectionIndex() {
 
     // A band through the upper half of the viewport. Any section that enters,
     // leaves, or crosses a threshold remeasures every heading and keeps the
-    // one nearest the top — not the one with the largest intersection ratio.
+    // one nearest the top, not the one with the largest intersection ratio.
     const observer = new IntersectionObserver(apply, {
       root: null,
       rootMargin: "-8% 0px -45% 0px",

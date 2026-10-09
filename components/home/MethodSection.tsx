@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { Lamp } from "@/components/Lamp";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
+import { offer } from "@/content/site";
 
 const steps = [
   {
@@ -10,16 +11,16 @@ const steps = [
     body: "Readings, worked examples and a guided workspace you can open any time.",
   },
   {
-    title: "Build proof of work",
+    title: "Build the proof",
     body: "Each module ends with a proof-of-work deliverable you build and submit.",
   },
   {
-    title: "Verification instead of tests",
-    body: "The deliverable is checked by the Uncertain Systems platform instead of a multiple-choice test.",
+    title: "The platform checks it",
+    body: "The Uncertain Systems platform checks the deliverable against the module's criteria. There is no multiple-choice test.",
   },
   {
-    title: "Live cohort sessions",
-    body: "A weekly live session to work through the hardest ideas, review proofs and ask questions.",
+    title: "Optional live sessions",
+    body: `${offer.liveSessions} sessions with a human expert in the field: a kickoff and seven more. Come to all of them, some, or none.`,
   },
 ];
 
@@ -30,7 +31,7 @@ export function MethodSection() {
         <SectionHeader
           index="02"
           label="How learning works"
-          title="Build, then verify."
+          title="How it works"
           lede="Learn by building proof, verified by the Uncertain Systems platform."
         />
       </Reveal>

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { site } from "@/content/site";
 import { Wordmark } from "@/components/Logo";
 import { PrimaryNav, TrackNav } from "@/components/Nav";
+import { ReserveButton } from "@/components/ReserveButton";
 import { cn } from "@/lib/cn";
 
 export function MobileNav() {
@@ -103,9 +104,7 @@ export function MobileNav() {
                 <TrackNav variant="overlay" onNavigate={() => setOpen(false)} />
               </nav>
             </div>
-            <Link href="/waitlist" onClick={() => setOpen(false)} className="ak-btn-solid mt-10 w-full">
-              Join the waitlist
-            </Link>
+            <ReserveButton className="mt-10 w-full" onClick={() => setOpen(false)} />
             <a href={`mailto:${site.contact}`} className="ak-label mt-8 inline-block px-2 text-muted">
               {site.contact}
             </a>

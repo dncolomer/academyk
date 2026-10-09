@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { TrackGlyph } from "@/components/TrackGlyph";
-import { site, waitlistHref } from "@/content/site";
+import { offer, site } from "@/content/site";
 import { tracks } from "@/content/tracks";
 import { FaqList } from "@/components/pages/FaqList";
 import { InlineLink } from "@/components/pages/InlineLink";
@@ -10,7 +10,7 @@ import { SectionBlock } from "@/components/pages/SectionBlock";
 import { pageMetadata } from "@/components/pages/metadata";
 
 const description =
-  "Questions about Academy K: what it is, whether a cohort is live, proof of work, prerequisites, pricing, certificates and the waitlist.";
+  "Questions about Academy K: the courses, proof of work, the December cohort, price and how enrolment works.";
 
 export const metadata = pageMetadata({
   title: "FAQ",
@@ -23,10 +23,10 @@ export default function FaqPage() {
     <Container className="py-16 lg:py-24">
       <SectionBlock
         as="h1"
-        index="05"
+        index="06"
         label="FAQ"
         title="Questions"
-        lede="Short answers. Where a date, a price or a credential is not set, the answer is TBA."
+        lede="Short answers about the courses, the cohort and enrolment."
       >
         <FaqList
           items={[
@@ -36,14 +36,71 @@ export default function FaqPage() {
                 <>
                   {site.description} It is the sibling of{" "}
                   <InlineLink href={site.observatoryUrl}>Observatory-K</InlineLink>. K stands for Kardashev.
-                  Observatory-K tracks the climb. Academy K teaches the tech. Read more on the{" "}
+                  Observatory-K tracks the climb. Academy K teaches the tech. More on the{" "}
                   <InlineLink href="/about">about</InlineLink> page.
                 </>
               ),
             },
             {
               q: "Is it live?",
-              a: "No. Static prototype: syllabi are drafts; dates, pricing and instructors are TBA.",
+              a: `The site is open and you can join the waitlist. The first cohort starts in ${offer.cohortStart}. An exact calendar date is not set yet.`,
+            },
+            {
+              q: "What does self-paced with optional live sessions mean?",
+              a: `The course is ${offer.weeks} weeks of readings, examples and a workspace you do on your own time. There are also ${offer.liveSessions} live sessions with a human expert in the field: a kickoff and seven more. The sessions are optional.`,
+            },
+            {
+              q: "Who are the tutors?",
+              a: "A human expert in the field runs the live sessions. We have not announced names yet.",
+            },
+            {
+              q: "How many people are in a cohort?",
+              a: `Each course is limited to ${offer.seats} people.`,
+            },
+            {
+              q: "When does it start?",
+              a: `The first cohort starts in ${offer.cohortStart} and runs into ${offer.cohortEnd}, ${offer.holidayNote}.`,
+            },
+            {
+              q: "What does it cost?",
+              a: `${offer.foundingPrice} per course for the first cohort (founding price). ${offer.laterPrice} per course for later cohorts. Prices are in USD. Nothing is paid on this site.`,
+            },
+            {
+              q: "How does enrolment work?",
+              a: (
+                <>
+                  Join the waitlist. That is free. In November we email a payment link so you can confirm your seat.
+                  The steps are on the <InlineLink href="/enrol">enrolment</InlineLink> page.
+                </>
+              ),
+            },
+            {
+              q: "Is joining the waitlist a commitment?",
+              a: "No. Joining is free and carries no commitment. You decide when the payment link arrives.",
+            },
+            {
+              q: "Do I need prior experience?",
+              a: (
+                <>
+                  Each track lists its own prerequisites. Quantum Computing does not require prior quantum mechanics.
+                  Thermodynamic Computing teaches statistical mechanics from the start. Read the track page before
+                  you reserve a place.
+                </>
+              ),
+            },
+            {
+              q: "What is proof of work?",
+              a: (
+                <>
+                  You produce an artefact in a workspace: code, a derivation, a model, or a written analysis. The
+                  Uncertain Systems platform checks it against that module&apos;s criteria. The{" "}
+                  <InlineLink href="/method">method</InlineLink> page describes the check.
+                </>
+              ),
+            },
+            {
+              q: "Is there a certificate?",
+              a: "No certificate is promised. You leave with the work the platform has checked.",
             },
             {
               q: "Who runs it?",
@@ -52,43 +109,6 @@ export default function FaqPage() {
                   The contact is <InlineLink href={`mailto:${site.contact}`}>{site.contact}</InlineLink>. Academy K
                   runs on the <InlineLink href={site.platformUrl}>Uncertain Systems</InlineLink> platform, which
                   checks each proof. The source is on <InlineLink href={site.github}>GitHub</InlineLink>.
-                </>
-              ),
-            },
-            {
-              q: "What is proof of work?",
-              a: (
-                <>
-                  You do not pass a test. You produce an artefact — code, a derivation, a model, or a written
-                  analysis — in a workspace. The Uncertain Systems platform checks that proof against the module&apos;s
-                  criteria. The <InlineLink href="/method">method</InlineLink> page walks through it.
-                </>
-              ),
-            },
-            {
-              q: "Do I need prior experience?",
-              a: (
-                <>
-                  Each track lists its own prerequisites. Quantum Computing does not require prior quantum mechanics.
-                  On Thermodynamic Computing, statistical mechanics is taught from the start. Read the track before
-                  you write to the waitlist.
-                </>
-              ),
-            },
-            {
-              q: "What does it cost?",
-              a: "Pricing is TBA.",
-            },
-            {
-              q: "Is there a certificate?",
-              a: "Certificates are TBA. This site does not promise a credential.",
-            },
-            {
-              q: "How do I join the waitlist?",
-              a: (
-                <>
-                  Dates are not set yet. Join the waitlist and we will write to you.{" "}
-                  <InlineLink href={waitlistHref()}>Write to {site.contact}</InlineLink>.
                 </>
               ),
             },

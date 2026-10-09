@@ -48,7 +48,7 @@ export function WorkedExample() {
         <TrackGlyph slug={track.slug} size={56} className="mt-0.5 hidden shrink-0 sm:block" />
         <div className="min-w-0">
           <p className="ak-label break-words">
-            {track.index} / {track.short} · {track.status}
+            {track.index} / {track.short} · Week {mod.week}
           </p>
           <p className="mt-3 text-sm leading-relaxed text-muted">
             Module 01 of{" "}

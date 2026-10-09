@@ -1,3 +1,4 @@
+import { offer } from "@/content/site";
 import { ogContentType, ogImage, ogSize } from "@/lib/og";
 
 export const alt = "How Academy K works";
@@ -8,6 +9,6 @@ export default function MethodOpenGraphImage() {
   return ogImage({
     label: "ACADEMY K · 03 / METHOD",
     title: "How it works",
-    subtitle: "An artefact in a workspace, checked against the module. A portfolio of verified proofs.",
+    subtitle: `Self-paced work, checked by the platform. ${offer.liveSessions} optional live sessions.`,
   });
 }

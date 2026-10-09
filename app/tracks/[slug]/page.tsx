@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: TrackPageProps): Promise<Meta
   if (!track) {
     return pageMetadata({
       title: "Track",
-      description: "Sample syllabus — draft.",
+      description: "Academy K track.",
       canonical: "/tracks",
     });
   }

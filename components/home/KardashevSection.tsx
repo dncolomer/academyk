@@ -13,7 +13,7 @@ export function KardashevSection() {
         <SectionHeader
           index="03"
           label="The Kardashev connection"
-          title="Energy and the climb."
+          title="Why the K"
         />
       </Reveal>
       <Reveal delayMs={80}>
@@ -21,7 +21,7 @@ export function KardashevSection() {
           <div className="min-w-0 border-b border-line p-6 sm:p-8 lg:border-r lg:border-b-0">
             <p className="text-[0.975rem] leading-relaxed text-muted">
               The Kardashev scale describes a civilisation by the energy it can use. From Type 0
-              to Type I, that is a climb in energy — and in the computation that energy can
+              to Type I, that is a climb in energy, and in the computation that energy can
               sustain. Observatory-K tracks the climb. Academy K teaches the technology that
               powers it.
             </p>

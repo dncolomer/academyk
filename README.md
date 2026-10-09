@@ -2,9 +2,9 @@
 
 Learn the frontier tech that climbs the Kardashev scale.
 
-Academy K is the sibling of [Observatory-K](https://observatoryk.vercel.app), which tracks humanity's climb up the Kardashev scale (the **K** is for Kardashev). Academy K is where you learn the technology that powers the climb. Behind the scenes, courses run on the Uncertain Systems platform: learn by building proof, verified by the platform instead of by tests.
+Academy K is the sibling of [Observatory-K](https://observatoryk.vercel.app), which tracks humanity's climb up the Kardashev scale (the **K** is for Kardashev). Academy K is where you learn the technology that powers the climb. Courses run on the Uncertain Systems platform: you build a proof, and the platform checks it.
 
-> **Prototype.** This is a design and content prototype. Every page is statically generated; the only server code is one small serverless route, `POST /api/waitlist`, that forwards waitlist signups to a webhook. There is no database and no payment flow. Syllabi are **drafts**; dates, pricing and instructors are **TBA**.
+The Academy K site is static pages plus one waitlist route. `POST /api/waitlist` forwards signups to a webhook. There is no database on this site, and no payment on this site. Joining the waitlist is free. Around November, people on the list get a separate payment link by email to confirm a seat.
 
 ## Tracks
 
@@ -24,9 +24,10 @@ Exactly three:
 | `/tracks/ai-si` | Track page |
 | `/tracks/thermodynamic-computing` | Track page |
 | `/method` | Proof of work, verification, cohorts |
+| `/enrol` | How enrolment works: waitlist, November payment link, December cohort |
 | `/about` | About, links to Observatory-K and the platform |
 | `/faq` | General FAQ |
-| `/waitlist` | Waitlist form (`?track=<slug>` preselects a track) |
+| `/waitlist` | Waitlist form (`?track=<slug>` preselects a track). Free, no payment |
 | `POST /api/waitlist` | The one serverless route (Node runtime) |
 
 Each route has its own metadata and a 1200x630 Open Graph image generated at build time.
@@ -47,10 +48,20 @@ Requires Node 20+. Stack: Next.js 16 (App Router), React 19, TypeScript, Tailwin
 All course content is typed data in [`content/`](content):
 
 - `content/tracks.ts`: the three tracks (hook, audience, prerequisites, time, format, modules, outcomes, FAQ).
-- `content/types.ts`: the `Track` and `Module` types. Each module has a `title`, a one-line `summary` and a `proof` (the proof-of-work deliverable).
-- `content/site.ts`: site name, URL, contact address, outbound links.
+- `content/types.ts`: the `Track` and `Module` types. Each module has a `week` (1 to 4), a `title`, a one-line `summary` and a `proof` (the proof-of-work deliverable).
+- `content/site.ts`: site name, URL, contact address, outbound links, and `offer` (weeks, live sessions, seats, founding and later prices, cohort window). Pages read commercial facts from `offer`.
 
-Edit a module or add one to the `modules` array and every page, the catalog table and the module counts update. Keep modules between 6 and 10 per track. Pages never hard-code course text.
+Edit a module or add one to the `modules` array and every page, the catalog table and the module counts update. The current tracks have eight modules each, two per week. Pages never hard-code course text.
+
+## Enrolment
+
+There is no payment and no Stripe on this site. `/enrol` explains the flow:
+
+1. Join `/waitlist` (free, no commitment). A track slug in the query string preselects the course.
+2. Around November, about four weeks before the December start, everyone on the waitlist gets an email with a payment link. That link is not generated here.
+3. First cohort: $24.99 per course (founding price), limited to 25 people per course, self-paced over four weeks from December into the first week of January, with a holiday break, plus eight optional live sessions. Later cohorts are $49.99 per course. Seats are confirmed in the order payments come in.
+
+Those figures live in `content/site.ts` as `offer`. Change them there.
 
 ## Waitlist route
 
@@ -100,12 +111,16 @@ curl -X POST localhost:3000/api/waitlist -H 'content-type: application/json' \
 2. Optionally set `NEXT_PUBLIC_SITE_URL` to the production URL.
 3. Deploy. The site is static pages plus the single waitlist route; set the two env vars to enable the form.
 
-## Placeholders to replace before launch
+## Not set yet
 
-- Cohort dates, pricing and instructors (currently TBA, no names).
-- The `K = 0.73` figure is illustrative. See Observatory-K for live values.
-- The privacy note on `/waitlist` is a short prototype note, not a legal policy.
-- `academy-k.com` is the canonical host. DNS and the Vercel domain are configured separately, outside this repo.
+- Exact cohort dates inside December and the first week of January. The window is set. The calendar days are not.
+- Instructor names.
+
+The `K = 0.73` figure is an estimate as of August 2026. Observatory-K shows the live value.
+
+The privacy note on `/waitlist` is a short note, not a legal policy.
+
+`academy-k.com` is the canonical host. DNS and the Vercel domain are configured separately, outside this repo.
 
 ## License
 

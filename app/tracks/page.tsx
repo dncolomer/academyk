@@ -1,18 +1,16 @@
-import { LinkButton } from "@/components/Button";
 import { Container } from "@/components/Container";
-import { Lamp } from "@/components/Lamp";
+import { ReserveButton } from "@/components/ReserveButton";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Ticker } from "@/components/Ticker";
 import { CatalogRow } from "@/components/tracks/CatalogRow";
 import { pageMetadata } from "@/components/tracks/page-meta";
 import { TrackComparison } from "@/components/tracks/TrackComparison";
-import { waitlistHref } from "@/content/site";
+import { offer, priceLine } from "@/content/site";
 import { tracks } from "@/content/tracks";
 
 const title = "Tracks";
-const description =
-  "Quantum computing, AI / SI, and thermodynamic computing. Sample syllabi — drafts. Dates and pricing TBA.";
+const description = `Quantum computing, AI / SI, and thermodynamic computing. ${offer.weeks} weeks, self-paced. Founding price ${offer.foundingPrice} per course.`;
 
 export const metadata = pageMetadata({
   title,
@@ -26,6 +24,7 @@ export default function TracksPage() {
     `${track.modules.length} modules`,
     track.timeCommitment.duration,
     track.timeCommitment.weekly,
+    priceLine,
   ]);
 
   return (
@@ -36,13 +35,9 @@ export default function TracksPage() {
             as="h1"
             index="02"
             label="Tracks"
-            title="Three tracks. One climb."
-            lede="Quantum computing, AI / SI, and thermodynamic computing. Read the sample syllabi — dates and pricing are TBA."
+            title="Three tracks"
+            lede="Quantum computing, AI / SI, and thermodynamic computing. Each course is four weeks and self-paced."
           />
-          <p className="ak-label mt-6 inline-flex max-w-full items-center gap-2 break-words text-ink">
-            <Lamp />
-            <span>Sample syllabi — drafts</span>
-          </p>
         </Reveal>
       </Container>
 
@@ -63,10 +58,10 @@ export default function TracksPage() {
 
         <section className="mt-20 min-w-0" aria-labelledby="compare-heading">
           <h2 id="compare-heading" className="ak-serif text-3xl leading-tight text-ink sm:text-4xl">
-            Side by side.
+            Side by side
           </h2>
           <p className="mt-3 max-w-[36rem] text-sm leading-relaxed text-muted">
-            Modules, duration, weekly time, and who each track is for. Draft figures from the sample syllabi.
+            Modules, duration, pace, and who each track is for.
           </p>
           <div className="mt-8">
             <TrackComparison tracks={tracks} />
@@ -75,15 +70,13 @@ export default function TracksPage() {
 
         <section className="mt-16 border border-line p-6 sm:p-8" aria-labelledby="start-heading">
           <h2 id="start-heading" className="ak-serif break-words text-3xl leading-tight text-ink">
-            Not sure where to start?
+            Reserve a place
           </h2>
           <p className="mt-4 max-w-[36rem] text-sm leading-relaxed text-muted">
-            Dates are not set yet. Join the waitlist and we will write to you.
+            Free to join. Nothing to pay now. Name a track on the form, or say you are not sure.
           </p>
           <div className="mt-6">
-            <LinkButton solid href={waitlistHref()} className="w-full sm:w-auto">
-              Join the waitlist
-            </LinkButton>
+            <ReserveButton className="w-full sm:w-auto" />
           </div>
         </section>
       </Container>

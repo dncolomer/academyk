@@ -6,13 +6,13 @@ import { Sidebar } from "@/components/Sidebar";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const defaultTitle = "Academy K — learn the frontier tech that climbs the Kardashev scale";
+const defaultTitle = "Academy K: learn the frontier tech that climbs the Kardashev scale";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: defaultTitle,
-    template: "%s — Academy K",
+    template: "%s · Academy K",
   },
   description: site.description,
   applicationName: site.name,

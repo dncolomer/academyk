@@ -103,7 +103,7 @@ function KBar() {
           textTransform: "uppercase",
         }}
       >
-        Illustrative
+        Estimate
       </div>
     </div>
   );

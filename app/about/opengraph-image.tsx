@@ -6,7 +6,7 @@ export const contentType = ogContentType;
 
 export default function AboutOpenGraphImage() {
   return ogImage({
-    label: "ACADEMY K · 04 / ABOUT",
+    label: "ACADEMY K · 05 / ABOUT",
     title: "Sibling of Observatory-K",
     subtitle: "K is Kardashev. Observatory-K tracks the climb. Academy K teaches the tech.",
   });
