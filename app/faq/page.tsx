@@ -1,3 +1,4 @@
+import { KardashevResearchLink } from "@/components/KardashevResearchLink";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { TrackGlyph } from "@/components/TrackGlyph";
@@ -67,7 +68,11 @@ export default function FaqPage() {
             },
             {
               q: "Where do the proceeds go?",
-              a: "50% of proceeds go to Kardashev Research and related initiatives.",
+              a: (
+                <>
+                  50% of proceeds go to <KardashevResearchLink /> and related initiatives.
+                </>
+              ),
             },
             {
               q: "How does enrolment work?",

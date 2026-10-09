@@ -1,3 +1,4 @@
+import { KardashevResearchLink } from "@/components/KardashevResearchLink";
 import { Lamp } from "@/components/Lamp";
 import { cn } from "@/lib/cn";
 
@@ -22,7 +23,7 @@ export function ProceedsBadge({ className, label = true }: ProceedsBadgeProps) {
         </span>
       ) : null}
       <span className="min-w-0 text-sm leading-snug text-pretty text-ink">
-        50% of proceeds go to Kardashev Research and related initiatives.
+        50% of proceeds go to <KardashevResearchLink /> and related initiatives.
       </span>
     </div>
   );
