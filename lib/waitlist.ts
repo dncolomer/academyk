@@ -2,7 +2,7 @@ export const WAITLIST_TRACKS = [
   "Quantum Computing",
   "AI / SI",
   "Thermodynamic Computing",
-  "Not sure",
+  "Not sure yet",
 ] as const;
 
 export type WaitlistTrack = (typeof WAITLIST_TRACKS)[number];

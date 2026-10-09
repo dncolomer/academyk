@@ -24,7 +24,7 @@ const cells = [
   {
     label: "Price",
     value: priceLine,
-    detail: "USD, per course. The founding price is the first cohort. Nothing to pay on this site.",
+    detail: "USD, per course. The founding price is the first cohort. Two tracks are 10% off, three are 15% off. Nothing to pay on this site.",
     long: true,
   },
 ];

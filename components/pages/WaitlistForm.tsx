@@ -16,14 +16,14 @@ const field =
 
 export function WaitlistForm() {
   const params = useSearchParams();
-  const [track, setTrack] = useState<string>("");
+  const [tracks, setTracks] = useState<string[]>([]);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const t = trackSlugToLabel[params.get("track") ?? ""];
-    if (t) setTrack(t);
+    if (t) setTracks((prev) => (prev.length ? prev : [t]));
   }, [params]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -33,7 +33,7 @@ export function WaitlistForm() {
     const payload = {
       name: String(fd.get("name") ?? "").trim(),
       email: String(fd.get("email") ?? "").trim(),
-      track,
+      tracks: tracks.join(", "),
       message: String(fd.get("message") ?? "").trim(),
       website: String(fd.get("website") ?? ""),
     };
@@ -41,7 +41,7 @@ export function WaitlistForm() {
     const fe: Record<string, string> = {};
     if (!payload.name) fe.name = "Please enter your name.";
     if (!EMAIL_RE.test(payload.email)) fe.email = "Please enter a valid email address.";
-    if (!payload.track) fe.track = "Please choose a track.";
+    if (!tracks.length) fe.track = "Please choose at least one track, or Not sure yet.";
     setFieldErrors(fe);
     if (Object.keys(fe).length) {
       setStatus("idle");
@@ -70,9 +70,9 @@ export function WaitlistForm() {
         body: JSON.stringify({
           name: payload.name,
           email: payload.email,
-          track: payload.track,
+          tracks: payload.tracks,
           message: payload.message,
-          _subject: `Academy K waitlist: ${payload.track}`,
+          _subject: `Academy K waitlist: ${payload.tracks}`,
           _replyto: payload.email,
           _captcha: "false",
           _honey: payload.website,
@@ -154,26 +154,42 @@ export function WaitlistForm() {
           {err("email")}
         </label>
 
-        <label className="block">
-          <span className="ak-label">03 / Track of interest</span>
-          <select
-            name="track"
-            required
-            value={track}
-            onChange={(e) => setTrack(e.target.value)}
-            aria-invalid={!!fieldErrors.track}
-            aria-describedby={fieldErrors.track ? "err-track" : undefined}
-            className={field}
-          >
-            <option value="">Select a track</option>
-            {WAITLIST_TRACKS.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
+        <fieldset aria-describedby={fieldErrors.track ? "err-track" : undefined}>
+          <legend className="ak-label">03 / How many tracks are you interested in?</legend>
+          <p className="mt-2 text-xs leading-relaxed text-muted">
+            Pick one, two or all three. Your seat in each is confirmed through the November payment link.
+          </p>
+          <div className="mt-3 grid gap-2">
+            {WAITLIST_TRACKS.map((t) => {
+              const checked = tracks.includes(t);
+              return (
+                <label
+                  key={t}
+                  className={`flex cursor-pointer items-center gap-3 border px-3 py-3 text-sm transition-colors ${
+                    checked ? "border-ink text-ink" : "border-line text-muted hover:border-ink/50"
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    name="tracks"
+                    value={t}
+                    checked={checked}
+                    onChange={() =>
+                      setTracks((prev) => {
+                        if (prev.includes(t)) return prev.filter((x) => x !== t);
+                        if (t === "Not sure yet") return [t];
+                        return [...prev.filter((x) => x !== "Not sure yet"), t];
+                      })
+                    }
+                    className="size-4 accent-white"
+                  />
+                  {t}
+                </label>
+              );
+            })}
+          </div>
           {err("track")}
-        </label>
+        </fieldset>
 
         <label className="block">
           <span className="ak-label">04 / Message (optional)</span>

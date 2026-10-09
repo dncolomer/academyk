@@ -25,11 +25,18 @@ export const offer = {
   laterPrice: "$49.99",
   cohortStart: "December",
   cohortEnd: "the first week of January",
+  /** Bundles: two tracks 10% off the combined price, three tracks 15% off. */
+  twoTrackFounding: "$44.98",
+  twoTrackLater: "$89.98",
+  threeTrackFounding: "$63.72",
+  threeTrackLater: "$127.47",
   holidayNote: "with a break over the holidays and the end of the year",
 };
 
 /** Short price line for facts and strips. Edit `offer` and this follows. */
 export const priceLine = `${offer.foundingPrice} founding, ${offer.laterPrice} later`;
+
+export const bundleNote = `Two tracks together are 10% off and three tracks are 15% off. In the first cohort that is ${offer.twoTrackFounding} for two and ${offer.threeTrackFounding} for three.`;
 
 export const enrolHref = (trackSlug?: string) =>
   trackSlug ? `/enrol?track=${encodeURIComponent(trackSlug)}` : "/enrol";

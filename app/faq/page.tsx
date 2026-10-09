@@ -63,7 +63,7 @@ export default function FaqPage() {
             },
             {
               q: "What does it cost?",
-              a: `${offer.foundingPrice} per course for the first cohort (founding price). ${offer.laterPrice} per course for later cohorts. Prices are in USD. Nothing is paid on this site.`,
+              a: `${offer.foundingPrice} per course for the first cohort (founding price). ${offer.laterPrice} per course for later cohorts. Prices are in USD. Two tracks together are 10% off (${offer.twoTrackFounding} in the first cohort, ${offer.twoTrackLater} later) and all three are 15% off (${offer.threeTrackFounding} and ${offer.threeTrackLater}). Nothing is paid on this site.`,
             },
             {
               q: "How does enrolment work?",

@@ -48,7 +48,7 @@ All course content is typed data in [`content/`](content):
 
 - `content/tracks.ts`: the three tracks (hook, audience, prerequisites, time, format, modules, outcomes, FAQ).
 - `content/types.ts`: the `Track` and `Module` types. Each module has a `week` (1 to 4), a `title`, a one-line `summary` and a `proof` (the proof-of-work deliverable).
-- `content/site.ts`: site name, URL, contact address, outbound links, and `offer` (weeks, live sessions, seats, founding and later prices, cohort window). Pages read commercial facts from `offer`.
+- `content/site.ts`: site name, URL, contact address, outbound links, and `offer` (weeks, live sessions, seats, founding and later prices, two- and three-track bundle prices, cohort window). Pages read commercial facts from `offer`.
 
 Edit a module or add one to the `modules` array and every page, the catalog table and the module counts update. The current tracks have eight modules each, two per week. Pages never hard-code course text.
 

@@ -19,12 +19,12 @@ const steps = [
   {
     index: "01",
     title: "Join the waitlist",
-    body: "Free. No payment, and no commitment. Tell us which course you want, or say you are not sure.",
+    body: "Free. No payment, and no commitment. Tell us which tracks you are interested in: one, two or all three, or say you are not sure yet.",
   },
   {
     index: "02",
     title: "Confirm your seat in November",
-    body: `In November you get an email with a payment link. The first cohort is ${offer.foundingPrice} per course (founding price). Later cohorts are ${offer.laterPrice} per course. Prices are in USD. Seats are confirmed in the order payments come in. Nothing is paid on this site.`,
+    body: `In November you get an email with a payment link. The first cohort is ${offer.foundingPrice} per course (founding price). Later cohorts are ${offer.laterPrice} per course. Prices are in USD. The payment link covers the tracks you chose on the waitlist form. Seats are confirmed in the order payments come in. Nothing is paid on this site.`,
   },
   {
     index: "03",
@@ -70,6 +70,38 @@ export default function EnrolPage() {
             <p className="mt-3 text-sm leading-relaxed text-muted">Per course, USD, after the first cohort.</p>
           </div>
         </div>
+        <div className="mt-6 overflow-x-auto">
+          <table className="w-full min-w-[22rem] border border-line text-left text-sm">
+            <caption className="ak-label border border-b-0 border-line px-4 py-3 text-left">Price by number of tracks, USD</caption>
+            <thead>
+              <tr className="border-b border-line">
+                <th className="ak-label px-4 py-3 font-normal">Tracks</th>
+                <th className="ak-label px-4 py-3 font-normal">First cohort</th>
+                <th className="ak-label px-4 py-3 font-normal">Later cohorts</th>
+              </tr>
+            </thead>
+            <tbody className="text-ink">
+              <tr className="border-b border-line">
+                <td className="px-4 py-3">One track</td>
+                <td className="px-4 py-3">{offer.foundingPrice}</td>
+                <td className="px-4 py-3">{offer.laterPrice}</td>
+              </tr>
+              <tr className="border-b border-line">
+                <td className="px-4 py-3">Two tracks <span className="text-muted">(10% off)</span></td>
+                <td className="px-4 py-3">{offer.twoTrackFounding}</td>
+                <td className="px-4 py-3">{offer.twoTrackLater}</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-3">Three tracks <span className="text-muted">(15% off)</span></td>
+                <td className="px-4 py-3">{offer.threeTrackFounding}</td>
+                <td className="px-4 py-3">{offer.threeTrackLater}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
+          Choose your tracks on the waitlist form. Your seat in each one is confirmed through the November payment link.
+        </p>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
           Each course is limited to {offer.seats} people. The payment link is sent by email around November, about
           four weeks before the {offer.cohortStart} start.
@@ -80,7 +112,7 @@ export default function EnrolPage() {
         index="02"
         label="Tracks"
         title="Three courses"
-        lede="Same length, same price, different subject. Pick one on the form, or choose Not sure."
+        lede="Same length, same price, different subject. Pick one or more on the waitlist form, or choose Not sure yet."
       >
         <ul className="grid gap-4">
           {tracks.map((track) => (
