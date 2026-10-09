@@ -1,20 +1,44 @@
-import { Container } from "@/components/Container";
-import { KMotif } from "@/components/KMotif";
-import { TrackCard } from "@/components/TrackCard";
+import type { Metadata } from "next";
+import { ClosingCta } from "@/components/home/ClosingCta";
+import { FormatSection } from "@/components/home/FormatSection";
+import { Hero } from "@/components/home/Hero";
+import { KardashevSection } from "@/components/home/KardashevSection";
+import { MethodSection } from "@/components/home/MethodSection";
+import { TracksSection } from "@/components/home/TracksSection";
 import { site } from "@/content/site";
-import { tracks } from "@/content/tracks";
+
+const title = "Learn the frontier tech that climbs the Kardashev scale";
+const description = site.description;
+const socialTitle = `${title} — ${site.name}`;
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: site.name,
+    title: socialTitle,
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: socialTitle,
+    description,
+  },
+};
 
 export default function HomePage() {
   return (
-    <Container className="py-16 lg:py-24">
-      <KMotif observatoryHref={site.observatoryUrl} />
-      <ul className="mt-16 grid gap-4">
-        {tracks.map((track) => (
-          <li key={track.slug}>
-            <TrackCard track={track} />
-          </li>
-        ))}
-      </ul>
-    </Container>
+    <div className="overflow-x-clip">
+      <Hero />
+      <TracksSection />
+      <MethodSection />
+      <KardashevSection />
+      <FormatSection />
+      <ClosingCta />
+    </div>
   );
 }
