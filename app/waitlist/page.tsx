@@ -33,8 +33,9 @@ export default function WaitlistPage() {
           <p className="ak-label text-ink">Privacy note · prototype</p>
           <p className="mt-3">
             This is a prototype. We collect the name, email, track and message you enter, only to contact you about
-            Academy K cohorts. They are sent to a private webhook run by the Academy K team, who record them and
-            pass them to Daniel. They are not stored in a database on this site, and this site loads no analytics.
+            Academy K cohorts. They are forwarded by email through the FormSubmit email-forwarding service to the
+            Academy K team. They are not stored in a database on this site, and this site loads no analytics.
+            FormSubmit, as a third-party service, handles them in transit under its own terms.
           </p>
           <p className="mt-3">
             To ask for your details to be removed, write to{" "}

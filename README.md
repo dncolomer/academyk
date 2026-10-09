@@ -59,7 +59,7 @@ Edit a module or add one to the `modules` array and every page, the catalog tabl
 1. Rate-limits per IP, best effort (5 requests per 10 minutes, in memory, per server instance, resets on cold start).
 2. Silently returns 200 for honeypot hits (hidden `website` field) and forwards nothing.
 3. Validates and sanitises: name (max 100), email (format, max 254, lower-cased), track (one of Quantum Computing, AI / SI, Thermodynamic Computing, Not sure), optional message (max 1000).
-4. POSTs JSON to `WAITLIST_WEBHOOK_URL`:
+4. Forwards the submission to `WAITLIST_WEBHOOK_URL`. If that URL's host is `formsubmit.co`, it uses the FormSubmit AJAX format (below). For any other host it POSTs generic JSON:
 
 ```json
 { "name": "...", "email": "...", "track": "AI / SI", "message": "...", "source": "academy-k.com/waitlist", "submitted_at": "2026-01-01T00:00:00.000Z" }
@@ -67,10 +67,14 @@ Edit a module or add one to the `modules` array and every page, the catalog tabl
 
 If `WAITLIST_WEBHOOK_KEY` is set it is sent as both `Authorization: Bearer <key>` and `X-Webhook-Key: <key>`. The URL and key are never logged or returned to the client.
 
+**FormSubmit mode.** When the host is `formsubmit.co` (for example `https://formsubmit.co/ajax/<address>`), submissions are sent through the [FormSubmit](https://formsubmit.co) email-forwarding service, which emails each signup to the configured address. The route sends `Accept: application/json`, `Origin: https://academy-k.com`, `Referer: https://academy-k.com/` and a body of `name`, `email`, `track`, `message` plus `_subject` ("Academy K waitlist: <track>"), `_replyto`, `_captcha: "false"`, `_honey: ""` and `_template: "table"`. It counts as success only on an HTTP 2xx whose JSON has `success` equal to `true` or `"true"`. The key is not used in this mode. FormSubmit may require a one-time email activation of the address before it delivers.
+
+On a failed forward the 502 response includes a non-secret `debug` object (`urlValidHttps`, `urlHost`, `keySet`, `upstreamStatus`) and, for FormSubmit, a short `upstreamMessage` if it contains no URL, email address or token.
+
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `WAITLIST_WEBHOOK_URL` | for the form to work | Where signups are forwarded. If unset the route returns 503 and the UI shows the `mailto:` fallback. |
-| `WAITLIST_WEBHOOK_KEY` | optional | Shared secret sent as the two headers above. |
+| `WAITLIST_WEBHOOK_KEY` | optional | Shared secret sent as the two headers above (generic mode only). |
 
 Set them in Vercel (Project Settings, Environment Variables) or in a local, git-ignored `.env.local`. Responses: 200 ok, 400 invalid, 413 too large, 429 rate limited, 502 webhook failed, 503 not configured.
 

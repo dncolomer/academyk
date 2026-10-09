@@ -81,12 +81,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const headers: Record<string, string> = { "Content-Type": "application/json" };
   const key = process.env.WAITLIST_WEBHOOK_KEY;
-  if (key) {
-    headers.Authorization = `Bearer ${key}`;
-    headers["X-Webhook-Key"] = key;
-  }
 
   // Non-secret diagnostics only: never the path, query, key or response body.
   let parsed: URL | null = null;
@@ -100,12 +95,13 @@ export async function POST(request: Request) {
     urlHost: parsed?.hostname ?? null,
     keySet: Boolean(key),
   };
-  const fail = (upstreamStatus: number | string) =>
+  const fail = (upstreamStatus: number | string, upstreamMessage?: string) =>
     json(
       {
         ok: false,
         error: "We could not save your request just now. Please try again, or email daniel@uncertain.systems.",
         debug: { ...debug, upstreamStatus },
+        ...(upstreamMessage ? { upstreamMessage } : {}),
       },
       502,
     );
@@ -115,23 +111,68 @@ export async function POST(request: Request) {
     return fail("invalid_url");
   }
 
+  const isFormSubmit = parsed.hostname === "formsubmit.co" || parsed.hostname === "www.formsubmit.co";
+  let headers: Record<string, string>;
+  let payload: Record<string, string>;
+
+  if (isFormSubmit) {
+    // FormSubmit AJAX format: unknown keys become fields in the emailed table.
+    headers = {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Origin: "https://academy-k.com",
+      Referer: "https://academy-k.com/",
+    };
+    payload = {
+      name,
+      email,
+      track,
+      message,
+      _subject: `Academy K waitlist: ${track}`,
+      _replyto: email,
+      _captcha: "false",
+      _honey: "",
+      _template: "table",
+    };
+  } else {
+    headers = { "Content-Type": "application/json" };
+    if (key) {
+      headers.Authorization = `Bearer ${key}`;
+      headers["X-Webhook-Key"] = key;
+    }
+    payload = {
+      name,
+      email,
+      track,
+      message,
+      source: "academy-k.com/waitlist",
+      submitted_at: new Date().toISOString(),
+    };
+  }
+
   try {
     const res = await fetch(parsed.toString(), {
       method: "POST",
       headers,
-      body: JSON.stringify({
-        name,
-        email,
-        track,
-        message,
-        source: "academy-k.com/waitlist",
-        submitted_at: new Date().toISOString(),
-      }),
+      body: JSON.stringify(payload),
       signal: AbortSignal.timeout(8000),
       cache: "no-store",
       redirect: "manual",
     });
-    if (!res.ok) {
+
+    if (isFormSubmit) {
+      let body: { success?: unknown; message?: unknown } = {};
+      try {
+        body = await res.json();
+      } catch {
+        body = {};
+      }
+      const ok = res.ok && (body.success === true || body.success === "true");
+      if (!ok) {
+        console.error(`waitlist forward failed: formsubmit ${res.status}`);
+        return fail(res.status, safeMessage(body.message));
+      }
+    } else if (!res.ok) {
       console.error(`waitlist forward failed: upstream ${res.status}`);
       return fail(res.status);
     }
@@ -142,6 +183,14 @@ export async function POST(request: Request) {
   }
 
   return json({ ok: true }, 200);
+}
+
+/** A short upstream message, only if it carries no URL, email address or token-like string. */
+function safeMessage(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const text = value.replace(/\s+/g, " ").trim();
+  if (!text || /https?:|:\/\/|www\.|@|[A-Za-z0-9_-]{24,}/.test(text)) return undefined;
+  return text.slice(0, 160);
 }
 
 export function GET() {
