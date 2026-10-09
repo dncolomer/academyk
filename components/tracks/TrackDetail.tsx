@@ -1,3 +1,4 @@
+import { ProceedsBadge } from "@/components/ProceedsBadge";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { LinkButton } from "@/components/Button";
@@ -70,6 +71,7 @@ export function TrackDetail({ track }: { track: Track }) {
                 </LinkButton>
               </div>
               <p className="relative z-10 mt-3 text-sm text-muted">Free to join. Nothing to pay now.</p>
+              <ProceedsBadge className="mt-4" />
             </header>
           </Reveal>
 
@@ -181,6 +183,7 @@ export function TrackDetail({ track }: { track: Track }) {
                   See syllabus
                 </LinkButton>
               </div>
+              <ProceedsBadge className="mt-5" />
             </section>
           </Reveal>
 

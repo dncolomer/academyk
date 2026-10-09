@@ -1,3 +1,4 @@
+import { ProceedsBadge } from "@/components/ProceedsBadge";
 import { LinkButton } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Lamp } from "@/components/Lamp";
@@ -38,6 +39,7 @@ export function Hero() {
           <LinkButton href="/tracks">Explore tracks</LinkButton>
         </div>
         <p className="mt-4 text-sm text-muted">Free to join. Payment link by email in November.</p>
+        <ProceedsBadge className="mt-5 max-w-xl" />
       </Container>
 
       <div className="relative z-10">

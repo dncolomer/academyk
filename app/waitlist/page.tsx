@@ -1,3 +1,4 @@
+import { ProceedsBadge } from "@/components/ProceedsBadge";
 import { Suspense } from "react";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
@@ -24,6 +25,7 @@ export default function WaitlistPage() {
           lede="Joining is free. There is nothing to pay now, and no commitment. In November we email a link to confirm your seat."
         />
       </Reveal>
+      <ProceedsBadge className="mt-8" />
       <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
         <Suspense fallback={<div className="h-96 border border-line" />}>
           <WaitlistForm />

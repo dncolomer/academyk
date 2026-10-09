@@ -1,3 +1,4 @@
+import { ProceedsBadge } from "@/components/ProceedsBadge";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { ReserveButton } from "@/components/ReserveButton";
@@ -53,6 +54,7 @@ export default function EnrolPage() {
           ))}
         </ol>
         <p className="mt-6 text-sm text-muted">Free to join. Nothing to pay now.</p>
+        <ProceedsBadge className="mt-5" />
       </SectionBlock>
 
       <SectionBlock index="01" label="Price" title="Founding price">
@@ -99,9 +101,7 @@ export default function EnrolPage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink">
-          50% of proceeds go to Kardashev Research and related initiatives.
-        </p>
+        <ProceedsBadge className="mt-6" />
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
           Choose your tracks on the waitlist form. Your seat in each one is confirmed through the November payment link.
         </p>

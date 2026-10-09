@@ -1,3 +1,4 @@
+import { ProceedsBadge } from "@/components/ProceedsBadge";
 import { KMotif } from "@/components/KMotif";
 import { Container } from "@/components/Container";
 import { ReserveButton } from "@/components/ReserveButton";
@@ -77,6 +78,7 @@ export default function AboutPage() {
         <div className="mt-6">
           <ReserveButton />
           <p className="mt-3 text-sm text-muted">Free to join. Nothing to pay now.</p>
+          <ProceedsBadge className="mt-5" />
         </div>
       </SectionBlock>
 

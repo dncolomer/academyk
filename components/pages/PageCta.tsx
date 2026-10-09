@@ -1,3 +1,4 @@
+import { ProceedsBadge } from "@/components/ProceedsBadge";
 import { LinkButton } from "@/components/Button";
 import { ReserveButton } from "@/components/ReserveButton";
 import { Reveal } from "@/components/Reveal";
@@ -24,6 +25,7 @@ export function PageCta({
             <ReserveButton />
             <LinkButton href="/tracks">View tracks</LinkButton>
           </div>
+          <ProceedsBadge className="mt-6" />
         </div>
       </div>
     </Reveal>

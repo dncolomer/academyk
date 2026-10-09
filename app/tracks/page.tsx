@@ -1,3 +1,4 @@
+import { ProceedsBadge } from "@/components/ProceedsBadge";
 import { Container } from "@/components/Container";
 import { ReserveButton } from "@/components/ReserveButton";
 import { Reveal } from "@/components/Reveal";
@@ -78,6 +79,7 @@ export default function TracksPage() {
           <div className="mt-6">
             <ReserveButton className="w-full sm:w-auto" />
           </div>
+          <ProceedsBadge className="mt-5" />
         </section>
       </Container>
     </div>

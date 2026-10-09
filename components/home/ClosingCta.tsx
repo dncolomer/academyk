@@ -1,3 +1,4 @@
+import { ProceedsBadge } from "@/components/ProceedsBadge";
 import { LinkButton } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Lamp } from "@/components/Lamp";
@@ -26,6 +27,7 @@ export function ClosingCta() {
             <LinkButton href="/tracks">Explore tracks</LinkButton>
           </div>
           <p className="mt-4 text-sm text-muted">Free to join. Payment link by email in November.</p>
+          <ProceedsBadge className="mt-5 max-w-xl" />
           <a
             href={`mailto:${site.contact}`}
             className="ak-label mt-5 inline-block max-w-full break-all text-ink hover:underline"
