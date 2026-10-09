@@ -1,104 +1,164 @@
 const STARS: Array<[number, number, number, boolean]> = [
-  [72, 96, 0.45, true],
-  [128, 210, 0.22, false],
-  [196, 64, 0.35, false],
-  [248, 168, 0.18, false],
-  [540, 88, 0.4, true],
-  [612, 156, 0.22, false],
-  [688, 72, 0.5, false],
-  [724, 248, 0.28, true],
-  [96, 520, 0.2, false],
-  [168, 640, 0.32, false],
-  [590, 600, 0.26, true],
-  [670, 690, 0.16, false],
-  [740, 540, 0.38, false],
-  [40, 340, 0.18, false],
-  [760, 400, 0.24, false],
+  [70, 48, 0.4, true],
+  [128, 120, 0.22, false],
+  [186, 64, 0.32, false],
+  [240, 168, 0.16, false],
+  [310, 88, 0.38, true],
+  [390, 42, 0.2, false],
+  [470, 140, 0.28, false],
+  [560, 70, 0.45, true],
+  [640, 180, 0.16, false],
+  [720, 36, 0.3, false],
+  [810, 110, 0.22, true],
+  [890, 58, 0.4, false],
+  [980, 150, 0.18, false],
+  [1060, 40, 0.34, true],
+  [1140, 96, 0.2, false],
+  [1220, 168, 0.28, false],
+  [1320, 52, 0.36, false],
+  [48, 220, 0.16, false],
+  [1010, 210, 0.14, false],
+  [1380, 200, 0.22, true],
 ];
 
+const HORIZON = 508;
+const FLOOR = 900;
+const VANISH_X = 860;
+
+const depthLines = Array.from({ length: 14 }, (_, index) => {
+  const t = (index + 1) / 14;
+  return HORIZON + (FLOOR - HORIZON) * Math.pow(t, 1.62);
+});
+
+const rays = Array.from({ length: 23 }, (_, index) => -80 + index * 74);
+
+const flight = [
+  [120, 860, 250],
+  [250, 800, 390],
+  [390, 742, 530],
+  [530, 688, 680],
+  [680, 640, 840],
+  [840, 596, 1000],
+  [1000, 556, 1160],
+  [1160, 524, 1320],
+] as const;
+
 /**
- * Hero backdrop: slow concentric rings, a counter-rotating arc,
- * drifting radial glows and a few star dots. Decorative only.
+ * Hero backdrop: a perspective floor, an ascending terrace flight,
+ * drifting glows and faint stars. Decorative only.
  */
 export function HeroAtmosphere() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <div className="ak-home-drift absolute -left-24 top-[-18%] h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.07),transparent_68%)] sm:h-[34rem] sm:w-[34rem]" />
-      <div className="ak-home-drift-slow absolute -right-20 bottom-[-28%] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.05),transparent_64%)] sm:h-[40rem] sm:w-[40rem]" />
-      <div className="ak-home-drift absolute top-[38%] left-[42%] h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_70%)]" />
+      <div className="ak-home-drift absolute -left-16 top-[-12%] h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.07),transparent_68%)] sm:h-[34rem] sm:w-[34rem]" />
+      <div className="ak-home-drift-slow absolute right-[-8%] bottom-[-10%] h-[28rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.055),transparent_64%)] sm:h-[40rem] sm:w-[44rem]" />
+      <div className="ak-home-drift absolute top-[42%] left-[46%] h-40 w-56 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.05),transparent_70%)]" />
 
       <svg
-        viewBox="0 0 800 800"
+        viewBox="0 0 1440 900"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute top-[68%] left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 text-ink opacity-35 sm:top-1/2 sm:right-[-46%] sm:left-auto sm:h-[42rem] sm:w-[42rem] sm:translate-x-0 sm:-translate-y-1/2 sm:opacity-60 lg:right-[-18rem] lg:h-[50rem] lg:w-[50rem] lg:opacity-70"
+        preserveAspectRatio="xMidYMax slice"
+        className="absolute inset-0 h-full w-full text-ink opacity-45 sm:opacity-70"
       >
-        <g opacity="0.45">
-          <line x1="400" y1="352" x2="400" y2="448" stroke="currentColor" strokeWidth="1" />
-          <line x1="352" y1="400" x2="448" y2="400" stroke="currentColor" strokeWidth="1" />
-          <circle cx="400" cy="400" r="3" fill="currentColor" />
-        </g>
-
-        <g className="ak-spin" style={{ animationDuration: "110s" }} opacity="0.8">
-          <circle cx="400" cy="400" r="340" stroke="currentColor" strokeOpacity="0.16" />
-          <circle cx="400" cy="400" r="268" stroke="currentColor" strokeOpacity="0.12" />
-          <circle
-            cx="400"
-            cy="400"
-            r="206"
-            stroke="currentColor"
-            strokeOpacity="0.28"
-            strokeDasharray="2 11"
-          />
-          <path
-            d="M400 60 A340 340 0 0 1 718 292"
-            stroke="currentColor"
-            strokeOpacity="0.55"
-          />
-          <circle cx="718" cy="292" r="3.2" fill="currentColor" />
-        </g>
-
-        <g
-          className="ak-spin"
-          style={{ animationDuration: "72s", animationDirection: "reverse" }}
-          opacity="0.7"
-        >
-          <circle cx="400" cy="400" r="132" stroke="currentColor" strokeOpacity="0.35" />
-          <path
-            d="M292 332 A132 132 0 0 1 468 286"
-            stroke="currentColor"
-            strokeOpacity="0.75"
-          />
-          <circle cx="468" cy="286" r="2.4" fill="currentColor" />
-        </g>
-
         {STARS.map(([cx, cy, opacity, pulse]) => (
           <circle
             key={`${cx}-${cy}`}
             cx={cx}
             cy={cy}
-            r={pulse ? 1.7 : 1.15}
+            r={pulse ? 1.6 : 1.05}
             fill="currentColor"
             opacity={opacity}
             className={pulse ? "ak-pulse" : undefined}
           />
         ))}
+
+        <g opacity="0.55">
+          <line x1="0" y1={HORIZON} x2="1440" y2={HORIZON} stroke="currentColor" strokeWidth="1" />
+          <path
+            d={`M0 ${HORIZON + 18} H1440`}
+            stroke="currentColor"
+            strokeWidth="1"
+            strokeOpacity="0.25"
+          />
+        </g>
+
+        <g opacity="0.42">
+          {depthLines.map((y) => (
+            <line
+              key={y}
+              x1="0"
+              y1={y}
+              x2="1440"
+              y2={y}
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeOpacity={y < HORIZON + 80 ? 0.28 : 0.55}
+            />
+          ))}
+          {rays.map((x) => (
+            <line
+              key={x}
+              x1={VANISH_X}
+              y1={HORIZON}
+              x2={x}
+              y2={FLOOR}
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeOpacity="0.4"
+            />
+          ))}
+        </g>
+
+        <g opacity="0.28">
+          {flight.map(([x0, y, x1], index) => (
+            <path
+              key={`ghost-${x0}`}
+              d={`M${x0 + 70} ${y + 36} H${x1 + 70} V${flight[index + 1]?.[1] ?? HORIZON + 28} H${x0 + 70} Z`}
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+          ))}
+        </g>
+
+        <g>
+          {flight.map(([x0, y, x1], index) => {
+            const nextY = flight[index + 1]?.[1] ?? HORIZON;
+            return (
+              <g key={`${x0}-${y}`}>
+                <path
+                  d={`M${x0} ${y + 28} H${x1} V${y} H${x0} Z`}
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeOpacity={0.55 + index * 0.04}
+                />
+                <path
+                  d={`M${x0} ${y} H${x1} V${nextY + 28}`}
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeOpacity="0.35"
+                />
+                <line
+                  x1={x0 + 18}
+                  y1={y + 10}
+                  x2={x1 - 16}
+                  y2={y + 10}
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeOpacity="0.35"
+                  strokeDasharray="2 4"
+                />
+              </g>
+            );
+          })}
+          <circle cx="1320" cy="524" r="2.2" fill="currentColor" />
+          <circle cx="1000" cy="556" r="1.6" fill="currentColor" opacity="0.7" />
+          <circle cx="680" cy="640" r="1.6" fill="currentColor" opacity="0.55" />
+        </g>
       </svg>
 
-      <style>{`
-        .ak-home-drift {
-          animation: ak-drift 30s ease-in-out infinite alternate;
-        }
-        .ak-home-drift-slow {
-          animation: ak-drift 46s ease-in-out infinite alternate-reverse;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .ak-home-drift,
-          .ak-home-drift-slow {
-            animation: none !important;
-          }
-        }
-      `}</style>
+      <div className="absolute inset-0 bg-gradient-to-r from-bg from-0% via-bg/80 via-38% to-transparent to-72% sm:via-bg/55" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-bg to-transparent" />
     </div>
   );
 }

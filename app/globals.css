@@ -143,12 +143,27 @@ body::after {
 .ak-card {
   border: 1px solid var(--ak-line);
   background: rgba(255, 255, 255, 0.018);
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .ak-card:hover {
-  border-color: var(--ak-line-strong);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.ak-link-row {
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.ak-link-row:hover {
+  border-color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .ak-grid-bg {
@@ -195,6 +210,7 @@ body::after {
 }
 
 .ak-ticker {
+  max-width: 100%;
   overflow: hidden;
   border-block: 1px solid var(--ak-line);
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
@@ -235,6 +251,46 @@ body::after {
 
 .ak-wave {
   animation: ak-wave 7s ease-in-out infinite;
+}
+
+.ak-dash {
+  animation: ak-dash 18s linear infinite;
+}
+
+.ak-glyph,
+.ak-glyph * {
+  vector-effect: non-scaling-stroke;
+}
+
+.ak-glyph-float {
+  animation: ak-glyph-float 16s ease-in-out infinite alternate;
+}
+
+.ak-home-drift {
+  animation: ak-drift 30s ease-in-out infinite alternate;
+}
+
+.ak-home-drift-slow {
+  animation: ak-drift 46s ease-in-out infinite alternate-reverse;
+}
+
+.ak-scan {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ak-scan::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.16);
+  animation: ak-scan 9s linear infinite;
 }
 
 .ak-orbit-dot {
@@ -294,7 +350,31 @@ body::after {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes ak-dash {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+@keyframes ak-glyph-float {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes ak-scan {
+  from {
+    top: -2%;
+  }
+  to {
+    top: 104%;
   }
 }
 
@@ -317,8 +397,17 @@ body::after {
   .ak-pulse,
   .ak-wave,
   .ak-orbit-dot,
+  .ak-dash,
+  .ak-glyph-float,
+  .ak-home-drift,
+  .ak-home-drift-slow,
+  .ak-scan::before,
   body::before {
     animation: none !important;
+  }
+
+  .ak-card:hover {
+    transform: none;
   }
 
   .ak-reveal-pending {

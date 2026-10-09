@@ -17,19 +17,20 @@ const tickerItems = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative flex min-h-[88svh] flex-col overflow-hidden">
       <div className="ak-grid-bg pointer-events-none absolute inset-0" aria-hidden />
       <HeroAtmosphere />
+      <div className="ak-scan" aria-hidden />
 
-      <Container className="relative z-10 pt-16 pb-14 sm:pt-24 sm:pb-20 lg:pt-28 lg:pb-24">
+      <Container className="relative z-10 flex flex-1 flex-col justify-center py-16 sm:py-20 lg:py-24">
         <p className="ak-label flex max-w-full flex-wrap items-center gap-x-2.5 gap-y-1">
           <Lamp />
           <span>Academy K · Sample programme — draft</span>
         </p>
-        <h1 className="ak-serif mt-6 max-w-[16ch] text-[2.75rem] leading-[0.96] text-ink sm:text-6xl lg:text-[4.75rem]">
+        <h1 className="ak-serif mt-6 max-w-[14ch] text-[2.75rem] leading-[0.94] text-balance text-ink sm:text-6xl lg:text-[5.75rem] xl:text-[7rem]">
           Learn the tech that powers the climb.
         </h1>
-        <p className="mt-6 max-w-xl text-[0.975rem] leading-relaxed text-muted">
+        <p className="mt-6 max-w-xl text-[0.975rem] leading-relaxed text-pretty text-muted">
           Three tracks in frontier technology — quantum computing, AI / SI and thermodynamic
           computing — as a sample programme. You build the work. The Uncertain Systems platform
           checks it.

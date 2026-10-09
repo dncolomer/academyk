@@ -29,7 +29,7 @@ export default function TracksPage() {
   ]);
 
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)]">
+    <div className="grid grid-cols-[minmax(0,1fr)] overflow-x-clip">
       <Container className="min-w-0 pt-16 sm:pt-20 lg:pt-24">
         <Reveal>
           <SectionHeader

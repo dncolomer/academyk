@@ -15,8 +15,11 @@ export function CatalogRow({ track }: { track: Track }) {
           </h2>
           <p className="mt-3 max-w-[40rem] text-sm leading-relaxed text-muted">{track.tagline}</p>
         </div>
-        <TrackGlyph slug={track.slug} size={64} className="mt-1 shrink-0 sm:hidden" />
-        <TrackGlyph slug={track.slug} size={84} className="mt-1 hidden shrink-0 sm:block" />
+        <TrackGlyph
+          slug={track.slug}
+          size={96}
+          className="mt-1 h-[72px] w-[72px] shrink-0 sm:h-24 sm:w-24"
+        />
       </div>
 
       <p className="ak-label mt-5 flex flex-wrap gap-x-3 gap-y-1">

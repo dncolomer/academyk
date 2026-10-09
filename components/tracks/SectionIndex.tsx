@@ -2,38 +2,62 @@
 
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
-import { trackToc, type TrackSectionId } from "@/components/tracks/sections";
+import { activeSectionId, trackToc, type TrackSectionId } from "@/components/tracks/sections";
+
+/** Reading line, as a fraction of the viewport, kept near the top. */
+const LINE_RATIO = 0.2;
 
 export function SectionIndex() {
   const [active, setActive] = useState<TrackSectionId>(trackToc[0].id);
 
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (trackToc.some((section) => section.id === hash)) {
-      setActive(hash as TrackSectionId);
-    }
-
     const elements = trackToc
       .map((section) => document.getElementById(section.id))
       .filter((element): element is HTMLElement => element !== null);
 
     if (elements.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        const id = visible[0]?.target.id;
-        if (id && trackToc.some((section) => section.id === id)) {
-          setActive(id as TrackSectionId);
-        }
-      },
-      { rootMargin: "-15% 0px -55% 0px", threshold: [0.1, 0.25, 0.5] },
-    );
+    const apply = () => {
+      const line = Math.min(168, Math.max(88, window.innerHeight * LINE_RATIO));
+      const next = activeSectionId(
+        elements.map((element) => ({
+          id: element.id as TrackSectionId,
+          top: element.getBoundingClientRect().top,
+        })),
+        line,
+      );
+      setActive(next);
+    };
 
+    apply();
+
+    // A band through the upper half of the viewport. Any section that enters,
+    // leaves, or crosses a threshold remeasures every heading and keeps the
+    // one nearest the top — not the one with the largest intersection ratio.
+    const observer = new IntersectionObserver(apply, {
+      root: null,
+      rootMargin: "-8% 0px -45% 0px",
+      threshold: [0, 0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1],
+    });
     elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(apply);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", apply);
+    window.addEventListener("hashchange", apply);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", apply);
+      window.removeEventListener("hashchange", apply);
+    };
   }, []);
 
   return (

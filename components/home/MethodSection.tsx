@@ -34,19 +34,21 @@ export function MethodSection() {
           lede="Learn by building proof, verified by the Uncertain Systems platform."
         />
       </Reveal>
-      <ol className="mt-12 border-t border-line">
+      <ol className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, i) => (
-          <li key={step.title} className="min-w-0 border-b border-line py-7 sm:py-8">
-            <Reveal delayMs={i * 60}>
-              <div className="flex items-center gap-4">
-                <span className="ak-serif w-10 shrink-0 text-3xl leading-none text-ink">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="h-px min-w-0 flex-1 bg-line" aria-hidden />
-                <Lamp />
+          <li key={step.title} className="min-w-0 bg-bg">
+            <Reveal delayMs={i * 60} className="h-full">
+              <div className="flex h-full min-w-0 flex-col p-5 sm:p-6">
+                <div className="flex items-center gap-3">
+                  <span className="ak-serif w-10 shrink-0 text-3xl leading-none text-ink">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="h-px min-w-0 flex-1 bg-line" aria-hidden />
+                  <Lamp />
+                </div>
+                <h3 className="mt-5 break-words text-lg text-ink">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-pretty text-muted">{step.body}</p>
               </div>
-              <h3 className="mt-4 text-lg text-ink">{step.title}</h3>
-              <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{step.body}</p>
             </Reveal>
           </li>
         ))}

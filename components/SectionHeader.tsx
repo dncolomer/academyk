@@ -19,14 +19,26 @@ export function SectionHeader({
   as: Heading = "h2",
 }: SectionHeaderProps) {
   return (
-    <header className={cn("max-w-[40rem]", className)}>
-      <p className="ak-label">
+    <header className={cn("min-w-0", className)}>
+      <p className="ak-label max-w-full break-words">
         {index} / {label}
       </p>
-      <Heading className="ak-serif mt-4 text-4xl leading-[1.05] text-ink sm:text-5xl">
-        {title}
-      </Heading>
-      {lede ? <div className="mt-5 text-[0.975rem] leading-relaxed text-muted">{lede}</div> : null}
+      <div
+        className={
+          lede
+            ? "mt-4 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-16"
+            : "mt-4"
+        }
+      >
+        <Heading className="ak-serif min-w-0 break-words text-4xl leading-[1.05] text-ink sm:text-5xl">
+          {title}
+        </Heading>
+        {lede ? (
+          <div className="mt-5 min-w-0 text-[0.975rem] leading-relaxed break-words text-muted lg:mt-2">
+            {lede}
+          </div>
+        ) : null}
+      </div>
     </header>
   );
 }
