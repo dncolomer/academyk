@@ -1,5 +1,5 @@
 import { offer } from "@/content/site";
-import { ogContentType, ogImage, ogSize } from "@/lib/og";
+import { offerChips, ogContentType, ogImage, ogSize } from "@/lib/og";
 
 export const alt = "How Academy K works";
 export const size = ogSize;
@@ -9,7 +9,7 @@ export default function MethodOpenGraphImage() {
   return ogImage({
     label: "ACADEMY K · 03 / METHOD",
     title: "How it works",
-    chips: ["Proof of work", "Verified by the platform"],
-    subtitle: `Self-paced work, checked by the platform. ${offer.liveSessions} optional live sessions.`,
+    chips: offerChips,
+    subtitle: "Self-paced, four weeks, with optional live sessions.",
   });
 }

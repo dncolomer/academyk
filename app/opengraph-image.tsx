@@ -9,7 +9,7 @@ export default function OpenGraphImage() {
   return ogImage({
     label: "ACADEMY K · 01 / HOME",
     title: "Learn the tech that powers the climb.",
-    subtitle: "Quantum computing, AI / SI and thermodynamic computing. Learn by building proof, verified by the Uncertain Systems platform.",
+    subtitle: "Quantum computing, AI / SI and thermodynamic computing.",
     chips: offerChips,
   });
 }

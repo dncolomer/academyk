@@ -121,7 +121,7 @@ export function TrackDetail({ track }: { track: Track }) {
                 index="04"
                 label="Syllabus"
                 title="Four weekly blocks"
-                lede={`${moduleCount} modules, grouped into four weeks. Each module ends with a proof-of-work deliverable.`}
+                lede={`${moduleCount} modules, grouped into four weeks.`}
               />
               <SyllabusTimeline modules={track.modules} />
             </section>

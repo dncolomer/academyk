@@ -1,9 +1,9 @@
 import type { Track } from "./types";
 
 const sharedFormat = () => [
-  { label: "Self-paced", detail: "Four weeks of readings, worked examples and a guided workspace. Work whenever suits you." },
+  { label: "Self-paced", detail: "Four weeks. Work whenever suits you." },
   { label: "Eight optional live sessions", detail: "A kickoff session and seven more with a human expert in the field. You can come to all of them, some, or none." },
-  { label: "Verification", detail: "Every module ends with something you built. The Uncertain Systems platform checks it against the module's criteria. There are no multiple-choice tests." },
+  { label: "Small cohort", detail: "Limited to 25 people per course." },
 ];
 
 export const tracks: Track[] = [
@@ -14,7 +14,7 @@ export const tracks: Track[] = [
     short: "Quantum",
     tagline: "Qubits, circuits, algorithms and error correction. You start with linear algebra and end with working programs.",
     hook:
-      "A classical computer gets more powerful by adding switches, and every switch costs energy. A quantum computer adds qubits, and for some problems each one doubles the size of the state it can work with. That is a different relationship between energy spent and problems solved. You will build a simulator, write the early algorithms, and then look at why keeping qubits alive long enough to use them is the hard part.",
+      "A classical computer gets more powerful by adding switches, and every switch costs energy. A quantum computer adds qubits, and for some problems each one doubles the size of the state it can work with. That is a different relationship between energy spent and problems solved. The hard part is keeping qubits alive long enough to use them.",
     kardashevAngle: "A different cost curve for some problems.",
     audience: [
       "Software engineers who want to learn quantum programming properly, with the maths included.",
@@ -58,7 +58,7 @@ export const tracks: Track[] = [
     short: "AI / SI",
     tagline: "How modern AI is built, trained, evaluated and constrained, from gradient descent to the superintelligence question.",
     hook:
-      "Training a large model turns a very large amount of electricity into something that writes code and answers questions. That conversion is the clearest case of energy becoming computation that we have right now. You will build a small transformer yourself, measure what training it costs, and learn how models are evaluated and where they go wrong. The last modules take superintelligence seriously as a technical question: what would have to be true for it to happen, and what would make it safe.",
+      "Training a large model turns a very large amount of electricity into something that writes code and answers questions. That conversion is the clearest case of energy becoming computation that we have right now. The last part of the course takes superintelligence seriously as a technical question: what would have to be true for it to happen, and what would make it safe.",
     kardashevAngle: "What a joule buys once it is spent on training.",
     audience: [
       "Engineers who use AI tools every day and want to know what is underneath.",
@@ -102,7 +102,7 @@ export const tracks: Track[] = [
     short: "Thermodynamic",
     tagline: "Probabilistic hardware, energy-based models and what a bit costs in joules.",
     hook:
-      "Erasing one bit has a minimum heat cost, set by Landauer's principle. Today's chips dissipate far more than that per operation. Thermodynamic computing starts from the other side: use noise instead of fighting it, and build hardware that draws samples from a probability distribution directly. Boltzmann machines are the standard example of a model built around sampling. You will derive the limits, write the samplers, and work out what the hardware would save on an AI workload.",
+      "Erasing one bit has a minimum heat cost, set by Landauer's principle. Today's chips dissipate far more than that per operation. Thermodynamic computing starts from the other side: use noise instead of fighting it, and build hardware that draws samples from a probability distribution directly. Boltzmann machines are the standard example of a model built around sampling. The course asks what that hardware would save on an AI workload.",
     kardashevAngle: "More computation per joule.",
     audience: [
       "Hardware, physics and systems engineers who want to see computing without deterministic logic.",

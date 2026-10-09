@@ -3,7 +3,6 @@ import { ClosingCta } from "@/components/home/ClosingCta";
 import { FormatSection } from "@/components/home/FormatSection";
 import { Hero } from "@/components/home/Hero";
 import { KardashevSection } from "@/components/home/KardashevSection";
-import { MethodSection } from "@/components/home/MethodSection";
 import { TracksSection } from "@/components/home/TracksSection";
 import { site } from "@/content/site";
 
@@ -35,7 +34,6 @@ export default function HomePage() {
     <div className="overflow-x-clip">
       <Hero />
       <TracksSection />
-      <MethodSection />
       <KardashevSection />
       <FormatSection />
       <ClosingCta />

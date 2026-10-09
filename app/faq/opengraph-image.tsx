@@ -9,6 +9,6 @@ export default function FaqOpenGraphImage() {
     label: "ACADEMY K · 06 / FAQ",
     title: "Questions",
     chips: offerChips,
-    subtitle: "Cohorts, price, proof of work and how enrolment works.",
+    subtitle: "Cohorts, price and how enrolment works.",
   });
 }

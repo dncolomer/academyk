@@ -11,7 +11,7 @@ export function KardashevSection() {
     <Container as="section" className="border-t border-line py-20 lg:py-28">
       <Reveal>
         <SectionHeader
-          index="03"
+          index="02"
           label="The Kardashev connection"
           title="Why the K"
         />

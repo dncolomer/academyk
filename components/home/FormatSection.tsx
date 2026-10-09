@@ -9,17 +9,17 @@ const cells = [
   {
     label: "Self-paced",
     value: `${offer.weeks} weeks`,
-    detail: "Readings, worked examples and a workspace. You do the work on your own time.",
+    detail: "Work whenever suits you.",
   },
   {
     label: "Live sessions",
     value: `${offer.liveSessions}, optional`,
-    detail: "A kickoff and seven more, with a human expert in the field. You can skip them.",
+    detail: "With a human expert in the field. Come to some, all or none.",
   },
   {
-    label: "Verified proof",
-    value: "Checked",
-    detail: "Each module ends with work you submit. The Uncertain Systems platform checks it.",
+    label: "Seats",
+    value: `${offer.seats} per course`,
+    detail: `The first cohort starts in ${offer.cohortStart}.`,
   },
   {
     label: "Price",
@@ -33,7 +33,7 @@ export function FormatSection() {
   return (
     <Container as="section" className="border-t border-line py-20 lg:py-28">
       <Reveal>
-        <SectionHeader index="04" label="Format" title="Format" />
+        <SectionHeader index="03" label="Format" title="Format" />
       </Reveal>
       <Reveal delayMs={70}>
         <ul className="mt-12 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">

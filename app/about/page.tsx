@@ -3,7 +3,6 @@ import { Container } from "@/components/Container";
 import { ReserveButton } from "@/components/ReserveButton";
 import { offer, site } from "@/content/site";
 import { InlineLink } from "@/components/pages/InlineLink";
-import { Principles } from "@/components/pages/Principles";
 import { SectionBlock } from "@/components/pages/SectionBlock";
 import { pageMetadata } from "@/components/pages/metadata";
 
@@ -47,7 +46,7 @@ export default function AboutPage() {
         index="02"
         label="Platform"
         title="Uncertain Systems"
-        lede="Academy K runs on the Uncertain Systems platform. The platform checks each module's proof."
+        lede="Academy K runs on the Uncertain Systems platform."
       >
         <InlineLink href={site.platformUrl}>{site.platformUrl}</InlineLink>
       </SectionBlock>
@@ -81,14 +80,6 @@ export default function AboutPage() {
         </div>
       </SectionBlock>
 
-      <SectionBlock
-        index="04"
-        label="Principles"
-        title="How we work"
-        lede="Three habits that shape every course."
-      >
-        <Principles />
-      </SectionBlock>
     </Container>
   );
 }

@@ -49,9 +49,6 @@ export function Footer() {
           </div>
         </div>
         <p className="ak-label mt-12">Courses run on the Uncertain Systems platform</p>
-        <p className="mt-3 max-w-xl text-sm text-muted">
-          Learn by building proof, verified by the Uncertain Systems platform.
-        </p>
       </Container>
     </footer>
   );

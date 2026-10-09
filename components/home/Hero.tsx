@@ -9,7 +9,6 @@ import { tracks } from "@/content/tracks";
 
 const tickerItems = [
   ...tracks.map((track) => `Track ${track.index} ${track.title}`),
-  "Proof of work, verified",
   `${offer.weeks} weeks, self-paced`,
   `${offer.liveSessions} optional live sessions`,
   `${offer.foundingPrice} founding`,
@@ -32,8 +31,7 @@ export function Hero() {
           Learn the tech that powers the climb.
         </h1>
         <p className="mt-6 max-w-xl text-[0.975rem] leading-relaxed text-pretty text-muted">
-          Three tracks: quantum computing, AI / SI and thermodynamic computing. You build the work.
-          The Uncertain Systems platform checks it.
+          Three tracks: quantum computing, AI / SI and thermodynamic computing.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <ReserveButton />

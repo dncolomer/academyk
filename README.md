@@ -2,7 +2,7 @@
 
 Learn the frontier tech that climbs the Kardashev scale.
 
-Academy K is the sibling of [Observatory-K](https://observatoryk.vercel.app), which tracks humanity's climb up the Kardashev scale (the **K** is for Kardashev). Academy K is where you learn the technology that powers the climb. Courses run on the Uncertain Systems platform: you build a proof, and the platform checks it.
+Academy K is the sibling of [Observatory-K](https://observatoryk.vercel.app), which tracks humanity's climb up the Kardashev scale (the **K** is for Kardashev). Academy K is where you learn the technology that powers the climb. Courses run on the Uncertain Systems platform.
 
 The Academy K site is fully static. There is no backend, database or API route, and no payment on this site. Joining the waitlist is free; the form posts straight from the visitor's browser to the FormSubmit email-forwarding service.
 
@@ -23,7 +23,7 @@ Exactly three:
 | `/tracks/quantum-computing` | Track page |
 | `/tracks/ai-si` | Track page |
 | `/tracks/thermodynamic-computing` | Track page |
-| `/method` | Proof of work, verification, cohorts |
+| `/method` | Short page: length, live sessions, seats, start |
 | `/enrol` | How enrolment works: waitlist, November payment link, December cohort |
 | `/about` | About, links to Observatory-K and the platform |
 | `/faq` | General FAQ |

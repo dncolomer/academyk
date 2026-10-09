@@ -1,15 +1,12 @@
-import { Ticker } from "@/components/Ticker";
-import { Lamp } from "@/components/Lamp";
+import Link from "next/link";
 import { Container } from "@/components/Container";
-import { offer, site } from "@/content/site";
-import { InlineLink } from "@/components/pages/InlineLink";
+import { Lamp } from "@/components/Lamp";
 import { PageCta } from "@/components/pages/PageCta";
 import { SectionBlock } from "@/components/pages/SectionBlock";
-import { WorkedExample } from "@/components/pages/WorkedExample";
 import { pageMetadata } from "@/components/pages/metadata";
-import { sharedFormatDetail } from "@/components/pages/format";
+import { offer } from "@/content/site";
 
-const description = `How Academy K works. You produce an artefact in a workspace. The Uncertain Systems platform checks it against the module's criteria. Courses are self-paced for ${offer.weeks} weeks, with ${offer.liveSessions} optional live sessions.`;
+const description = `Each course is ${offer.weeks} weeks and self-paced, with ${offer.liveSessions} optional live sessions with a human expert. ${offer.seats} seats per course. The first cohort starts in ${offer.cohortStart}.`;
 
 export const metadata = pageMetadata({
   title: "How it works",
@@ -17,10 +14,20 @@ export const metadata = pageMetadata({
   path: "/method",
 });
 
-const artefacts = ["Code", "A derivation", "A model", "A written analysis"];
-
-const selfPaced = sharedFormatDetail("Self-paced");
-const verification = sharedFormatDetail("Verification");
+const facts = [
+  { label: "Length", value: `${offer.weeks} weeks`, detail: "Self-paced." },
+  {
+    label: "Live sessions",
+    value: `${offer.liveSessions}, optional`,
+    detail: "A kickoff and seven more, with a human expert in the field.",
+  },
+  { label: "Seats", value: `${offer.seats} per course`, detail: "In the first cohort." },
+  {
+    label: "Start",
+    value: offer.cohortStart,
+    detail: `Runs into ${offer.cohortEnd}, ${offer.holidayNote}.`,
+  },
+];
 
 export default function MethodPage() {
   return (
@@ -30,107 +37,23 @@ export default function MethodPage() {
         index="03"
         label="Method"
         title="How it works"
-        lede="How a module is finished, how a cohort runs, and what you leave with."
+        lede={`Self-paced, ${offer.weeks} weeks, with optional live sessions.`}
       >
-        <p className="max-w-[40rem] text-sm leading-relaxed text-muted">
-          It runs on the <InlineLink href={site.platformUrl}>Uncertain Systems</InlineLink> platform, an
-          OpenLesson-based human learning harness.
-        </p>
-      </SectionBlock>
-
-      <SectionBlock
-        index="01"
-        label="Proof of work"
-        title="The artefact"
-        lede="You produce an artefact in a workspace: code, a derivation, a model, or a written analysis."
-      >
-        <p className="max-w-[40rem] text-sm leading-relaxed text-muted">
-          Each module names the artefact. That artefact is the work of the module. The syllabus calls it a
-          proof-of-work deliverable.
-        </p>
-        <Ticker items={artefacts} className="mt-8" />
-      </SectionBlock>
-
-      <SectionBlock
-        index="02"
-        label="Verification"
-        title="Checked against the module"
-        lede={
-          verification ??
-          "The Uncertain Systems platform checks the proof against the module's criteria, instead of a multiple-choice test."
-        }
-      >
-        <p className="max-w-[40rem] text-sm leading-relaxed text-muted">
-          There is no exam. The platform takes the work you submitted and checks it against what the module asked for.
-          A module counts as done when the work passes that check.
-        </p>
-        <ol className="mt-8 grid gap-px border border-line bg-line sm:grid-cols-3">
-          {[
-            { index: "01", title: "Artefact", body: "The proof you produced in the workspace." },
-            { index: "02", title: "Criteria", body: "What the module asked the proof to show." },
-            { index: "03", title: "Check", body: "The platform compares the proof with those criteria." },
-          ].map((item) => (
-            <li key={item.index} className="min-w-0 bg-bg p-5">
-              <p className="ak-label flex items-center gap-2">
-                <Lamp />
-                {item.index}
+        <ul className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {facts.map((fact) => (
+            <li key={fact.label} className="min-w-0 bg-bg px-5 py-6 sm:px-6">
+              <p className="ak-label flex items-start gap-2 text-ink">
+                <Lamp className="mt-1" />
+                <span className="min-w-0">{fact.label}</span>
               </p>
-              <h3 className="ak-serif mt-4 text-2xl leading-tight text-ink">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{item.body}</p>
+              <p className="ak-serif mt-6 text-3xl leading-none text-ink">{fact.value}</p>
+              <p className="mt-4 text-sm leading-relaxed text-pretty text-muted">{fact.detail}</p>
             </li>
           ))}
-        </ol>
-      </SectionBlock>
-
-      <SectionBlock
-        index="03"
-        label="Cohorts"
-        title="Self-paced, with optional sessions"
-        lede={`Each course runs for ${offer.weeks} weeks and is self-paced. There are ${offer.liveSessions} optional live sessions with a human expert in the field. Each course is limited to ${offer.seats} people.`}
-      >
-        <ul className="grid gap-px border border-line bg-line sm:grid-cols-2">
-          <li className="min-w-0 bg-bg p-5 sm:p-6">
-            <p className="ak-label">01 / Self-paced</p>
-            <h3 className="ak-serif mt-4 text-2xl leading-tight text-ink">Open the workspace</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              {selfPaced ?? "Readings, worked examples and a guided workspace you can open any time."}
-            </p>
-          </li>
-          <li className="min-w-0 bg-bg p-5 sm:p-6">
-            <p className="ak-label flex flex-wrap items-center gap-2">
-              <span>02 / Live</span>
-              <span className="inline-flex items-center gap-1.5">
-                <Lamp />
-                Optional
-              </span>
-            </p>
-            <h3 className="ak-serif mt-4 text-2xl leading-tight text-ink">{offer.liveSessions} sessions</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              A kickoff and seven more, with a human expert in the field. Come to all of them, some, or none. The
-              first cohort starts in {offer.cohortStart} and runs into {offer.cohortEnd}, {offer.holidayNote}.
-            </p>
-          </li>
         </ul>
-      </SectionBlock>
-
-      <SectionBlock
-        index="04"
-        label="Worked example"
-        title="Module, workspace, proof, check"
-        lede="A single module from the Thermodynamic Computing syllabus, followed from the module to verification."
-      >
-        <WorkedExample />
-      </SectionBlock>
-
-      <SectionBlock
-        index="05"
-        label="Portfolio"
-        title="What you leave with"
-        lede="A portfolio of verified proofs."
-      >
-        <p className="max-w-[40rem] text-sm leading-relaxed text-muted">
-          You leave with the artefacts: code, derivations, models, written analyses. Each one has been checked
-          against its module. That set is the portfolio. No certificate is promised.
+        <p className="mt-6 max-w-[40rem] text-sm leading-relaxed text-muted">
+          Joining the waitlist is free. In November you get an email with a payment link to confirm your seat. The
+          steps and prices are on the <Link className="text-ink underline underline-offset-4" href="/enrol">enrol page</Link>.
         </p>
       </SectionBlock>
 

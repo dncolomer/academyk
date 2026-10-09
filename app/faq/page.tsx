@@ -10,7 +10,7 @@ import { SectionBlock } from "@/components/pages/SectionBlock";
 import { pageMetadata } from "@/components/pages/metadata";
 
 const description =
-  "Questions about Academy K: the courses, proof of work, the December cohort, price and how enrolment works.";
+  "Questions about Academy K: the courses, the December cohort, price and how enrolment works.";
 
 export const metadata = pageMetadata({
   title: "FAQ",
@@ -47,7 +47,7 @@ export default function FaqPage() {
             },
             {
               q: "What does self-paced with optional live sessions mean?",
-              a: `The course is ${offer.weeks} weeks of readings, examples and a workspace you do on your own time. There are also ${offer.liveSessions} live sessions with a human expert in the field: a kickoff and seven more. The sessions are optional.`,
+              a: `You work through the course whenever suits you, over ${offer.weeks} weeks. The ${offer.liveSessions} live sessions (a kickoff and seven more) are optional.`,
             },
             {
               q: "Who are the tutors?",
@@ -89,26 +89,15 @@ export default function FaqPage() {
               ),
             },
             {
-              q: "What is proof of work?",
-              a: (
-                <>
-                  You produce an artefact in a workspace: code, a derivation, a model, or a written analysis. The
-                  Uncertain Systems platform checks it against that module&apos;s criteria. The{" "}
-                  <InlineLink href="/method">method</InlineLink> page describes the check.
-                </>
-              ),
-            },
-            {
               q: "Is there a certificate?",
-              a: "No certificate is promised. You leave with the work the platform has checked.",
+              a: "No certificate is promised.",
             },
             {
               q: "Who runs it?",
               a: (
                 <>
                   The contact is <InlineLink href={`mailto:${site.contact}`}>{site.contact}</InlineLink>. Academy K
-                  runs on the <InlineLink href={site.platformUrl}>Uncertain Systems</InlineLink> platform, which
-                  checks each proof. The source is on <InlineLink href={site.github}>GitHub</InlineLink>.
+                  runs on the <InlineLink href={site.platformUrl}>Uncertain Systems</InlineLink> platform. The source is on <InlineLink href={site.github}>GitHub</InlineLink>.
                 </>
               ),
             },
