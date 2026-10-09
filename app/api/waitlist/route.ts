@@ -88,8 +88,35 @@ export async function POST(request: Request) {
     headers["X-Webhook-Key"] = key;
   }
 
+  // Non-secret diagnostics only: never the path, query, key or response body.
+  let parsed: URL | null = null;
   try {
-    const res = await fetch(url, {
+    parsed = new URL(url.trim());
+  } catch {
+    parsed = null;
+  }
+  const debug: Record<string, unknown> = {
+    urlValidHttps: parsed?.protocol === "https:",
+    urlHost: parsed?.hostname ?? null,
+    keySet: Boolean(key),
+  };
+  const fail = (upstreamStatus: number | string) =>
+    json(
+      {
+        ok: false,
+        error: "We could not save your request just now. Please try again, or email daniel@uncertain.systems.",
+        debug: { ...debug, upstreamStatus },
+      },
+      502,
+    );
+
+  if (!parsed) {
+    console.error("waitlist forward failed: invalid_url");
+    return fail("invalid_url");
+  }
+
+  try {
+    const res = await fetch(parsed.toString(), {
       method: "POST",
       headers,
       body: JSON.stringify({
@@ -102,15 +129,16 @@ export async function POST(request: Request) {
       }),
       signal: AbortSignal.timeout(8000),
       cache: "no-store",
+      redirect: "manual",
     });
-    if (!res.ok) throw new Error(`upstream ${res.status}`);
+    if (!res.ok) {
+      console.error(`waitlist forward failed: upstream ${res.status}`);
+      return fail(res.status);
+    }
   } catch (err) {
-    // Log only a generic reason; never the URL, key or submitted data.
-    console.error("waitlist forward failed:", err instanceof Error ? err.message.replace(/https?:\/\/\S+/g, "[url]") : "unknown");
-    return json(
-      { ok: false, error: "We could not save your request just now. Please try again, or email daniel@uncertain.systems." },
-      502,
-    );
+    const timeout = err instanceof Error && (err.name === "TimeoutError" || err.name === "AbortError");
+    console.error(`waitlist forward failed: ${timeout ? "timeout" : "network"}`);
+    return fail(timeout ? "timeout" : "network");
   }
 
   return json({ ok: true }, 200);
