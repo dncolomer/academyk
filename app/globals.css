@@ -1,0 +1,328 @@
+@import "tailwindcss";
+
+:root {
+  --ak-bg: #050505;
+  --ak-ink: #f4f4f4;
+  --ak-muted: #8a8a8a;
+  --ak-line: rgba(255, 255, 255, 0.16);
+  --ak-line-strong: #ffffff;
+  --ak-serif: "Bodoni MT", Didot, "Bodoni 72", "Times New Roman", serif;
+  --ak-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --ak-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}
+
+@theme inline {
+  --color-bg: var(--ak-bg);
+  --color-ink: var(--ak-ink);
+  --color-muted: var(--ak-muted);
+  --color-line: var(--ak-line);
+  --color-line-strong: var(--ak-line-strong);
+  --font-sans: var(--ak-sans);
+  --font-serif: var(--ak-serif);
+  --font-mono: var(--ak-mono);
+  --spacing-sidebar: 260px;
+}
+
+html {
+  background: var(--ak-bg);
+  color-scheme: dark;
+}
+
+body {
+  position: relative;
+  min-height: 100dvh;
+  background: var(--ak-bg);
+  color: var(--ak-ink);
+  font-family: var(--ak-sans);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Slow atmospheric drift — sits behind the grid and content. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -18%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 46% 38% at 18% 12%, rgba(255, 255, 255, 0.05), transparent 58%),
+    radial-gradient(ellipse 42% 48% at 86% 84%, rgba(255, 255, 255, 0.028), transparent 52%);
+  animation: ak-drift 32s ease-in-out infinite alternate;
+}
+
+/* Scanline overlay — above paint, never intercepts input. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.18;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.04) 0px,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+::selection {
+  background: var(--ak-ink);
+  color: var(--ak-bg);
+}
+
+:focus-visible {
+  outline: 1px solid var(--ak-line-strong);
+  outline-offset: 3px;
+}
+
+.ak-serif {
+  font-family: var(--ak-serif);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-rendering: optimizeLegibility;
+}
+
+.ak-mono {
+  font-family: var(--ak-mono);
+}
+
+.ak-label {
+  font-family: var(--ak-mono);
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ak-muted);
+}
+
+.ak-btn,
+.ak-btn-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid var(--ak-line-strong);
+  font-family: var(--ak-mono);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ak-btn {
+  background: transparent;
+  color: var(--ak-ink);
+}
+
+.ak-btn:hover {
+  background: var(--ak-line-strong);
+  color: var(--ak-bg);
+}
+
+.ak-btn-solid {
+  background: var(--ak-line-strong);
+  color: var(--ak-bg);
+}
+
+.ak-btn-solid:hover {
+  background: transparent;
+  color: var(--ak-ink);
+}
+
+.ak-card {
+  border: 1px solid var(--ak-line);
+  background: rgba(255, 255, 255, 0.018);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.ak-card:hover {
+  border-color: var(--ak-line-strong);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ak-grid-bg {
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.045) 0,
+      rgba(255, 255, 255, 0.045) 1px,
+      transparent 1px,
+      transparent 48px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.045) 0,
+      rgba(255, 255, 255, 0.045) 1px,
+      transparent 1px,
+      transparent 48px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 36%, #000 18%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 36%, #000 18%, transparent 78%);
+}
+
+.ak-rise {
+  animation: ak-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ak-reveal-pending {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.ak-ticker {
+  overflow: hidden;
+  border-block: 1px solid var(--ak-line);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.ak-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ak-marquee 42s linear infinite;
+}
+
+.ak-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.45rem 0.35rem;
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--ak-line);
+  font-family: var(--ak-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ak-muted);
+  white-space: nowrap;
+}
+
+.ak-spin {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: ak-spin 36s linear infinite;
+}
+
+.ak-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ak-pulse 5.5s ease-in-out infinite;
+}
+
+.ak-wave {
+  animation: ak-wave 7s ease-in-out infinite;
+}
+
+.ak-orbit-dot {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: ak-spin 14s linear infinite;
+}
+
+@keyframes ak-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ak-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2.4%, 3.2%, 0) scale(1.07);
+  }
+}
+
+@keyframes ak-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ak-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ak-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes ak-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ak-rise,
+  .ak-ticker-track,
+  .ak-spin,
+  .ak-pulse,
+  .ak-wave,
+  .ak-orbit-dot,
+  body::before {
+    animation: none !important;
+  }
+
+  .ak-reveal-pending {
+    opacity: 1;
+    transform: none;
+  }
+}
