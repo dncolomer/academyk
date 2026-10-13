@@ -2,7 +2,7 @@ export const site = {
   name: "Academy K",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://academy-k.com",
   description:
-    "Learn the frontier tech that climbs the Kardashev scale. Three four-week, self-paced tracks: quantum computing, AI / SI and thermodynamic computing.",
+    "One track, 4 weeks, self paced, with a human expert on 8 optional live sessions. Quantum, ai / si, thermodynamic computing. Free waitlist.",
   contact: "daniel@uncertain.systems",
   observatoryUrl: "https://observatoryk.vercel.app",
   platformUrl: "https://uncertain.systems",
