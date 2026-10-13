@@ -6,7 +6,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const defaultTitle = "Academy K: learn the frontier tech that climbs the Kardashev scale";
+const defaultTitle = "Academy K: 4 week paths into quantum, ai and thermodynamic computing";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
