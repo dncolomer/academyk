@@ -6,12 +6,12 @@ import { KardashevSection } from "@/components/home/KardashevSection";
 import { TracksSection } from "@/components/home/TracksSection";
 import { site } from "@/content/site";
 
-const title = "Learn the frontier tech that climbs the Kardashev scale";
+const title = "Academy K: 4 week paths into quantum, ai and thermodynamic computing";
 const description = site.description;
-const socialTitle = `${title}: ${site.name}`;
+const socialTitle = title;
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: title },
   description,
   alternates: { canonical: "/" },
   openGraph: {
