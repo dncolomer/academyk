@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { CourseOutline } from "@/components/qec/CourseOutline";
-import { InteractiveLab } from "@/components/qec/InteractiveLab";
+import { CrackTheCode } from "@/components/qec/CrackTheCode";
 import { QecHeader } from "@/components/qec/QecHeader";
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function QecPitchPage() {
       </Container>
 
       <Container className="mt-16">
-        <InteractiveLab />
+        <CrackTheCode />
       </Container>
 
       <Container className="mt-24">
