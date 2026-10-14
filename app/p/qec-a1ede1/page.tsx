@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { CourseOutline } from "@/components/qec/CourseOutline";
-import { CrackTheCode } from "@/components/qec/CrackTheCode";
 import { QecHeader } from "@/components/qec/QecHeader";
 
 export const metadata: Metadata = {
-  title: "QEC Engineering Course Proposal",
+  title: "QEC Course Proposal",
   robots: {
     index: false,
     follow: false,
@@ -24,10 +23,6 @@ export default function QecPitchPage() {
       </Container>
 
       <Container className="mt-16">
-        <CrackTheCode />
-      </Container>
-
-      <Container className="mt-24">
         <CourseOutline />
       </Container>
     </div>
