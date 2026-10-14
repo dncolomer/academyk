@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/cn";
+import { NotebookDemo } from "./NotebookDemo";
 
 type UnitPart = {
   name: string;
@@ -214,6 +215,17 @@ function UnitCard({ unit, isExpanded, onToggle }: { unit: Unit; isExpanded: bool
                     <p className="mt-1 text-xs text-muted/70">
                       Music: &quot;Meditation Impromptu 02&quot; by Kevin MacLeod (incompetech.com), CC BY 3.0
                     </p>
+                  </div>
+                )}
+                {part.name === "Prompting notebook" && unit.id === "01" && (
+                  <div className="mt-4">
+                    <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-cyan-400/10 px-3 py-1 text-xs text-cyan-400">
+                      <span>▶</span>
+                      Try it: sample prompting notebook
+                    </p>
+                    <div className="rounded border border-line/50 bg-[#0a0a0f] p-4">
+                      <NotebookDemo />
+                    </div>
                   </div>
                 )}
               </div>

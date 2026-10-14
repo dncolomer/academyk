@@ -14,9 +14,6 @@ export function QecHeader() {
         system from noise models to final performance claims.
       </p>
       <div className="mt-8 flex flex-wrap gap-4">
-        <a href="#demo" className="ak-btn">
-          Interactive Demo
-        </a>
         <a href="#outline" className="ak-btn">
           Full Outline
         </a>
