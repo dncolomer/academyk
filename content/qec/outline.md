@@ -27,26 +27,26 @@ The course should feel like progressing through a **Quantum Error Correction Lab
 
 This course assumes learners have completed:
 
-1. **Quantum 102: Units 3 and 4** (or equivalent), covering:
-   - Qubits, superposition, measurement, basic quantum gates
-   - Quantum circuits and circuit notation
-   - Basic entanglement and Bell states
-   - Introduction to noise and decoherence (conceptual)
+1. **Quantum 102: Units 3 and 4** (or equivalent):
+   - **Unit 3** covers algorithm families (Grover, Hamiltonian simulation with Pauli-string Hamiltonians and Trotterisation, VQE/QAOA, HHL)
+   - **Unit 4** covers benchmarking and evaluating quantum claims (advantage definitions, fair baselines, hidden costs including error-correction overhead, a Sycamore case study, and a capstone auditing IBM's 2023 utility claim)
+   - Neither unit teaches noise/decoherence, stabilisers, CSS codes, surface codes, decoding, or how fault tolerance works—that is what this course provides
 
 2. **General prerequisites:**
+   - Qubits, superposition, measurement, basic quantum gates, and quantum circuits (assumed from earlier Quantum 102 units or equivalent)
    - Python proficiency (comfortable writing functions, using NumPy)
    - Linear algebra: vectors, matrices, tensor products, eigenvalues
    - Basic probability and statistics
 
 ### What This Course Does NOT Cover
 
-The following topics are handled by companion courses:
+The following topics are proposed for companion courses:
 
-| Topic | Covered In |
-|-------|-----------|
-| Fault-tolerant quantum algorithms (Shor, Grover with FT compilation) | Fault-Tolerant Algorithms course (40h) |
-| Resource estimation for specific algorithms | Fault-Tolerant Algorithms course |
-| Quantum algorithm design and analysis | Quantum 102 and Fault-Tolerant Algorithms |
+| Topic | Proposed Course |
+|-------|-----------------|
+| Fault-tolerant quantum algorithms (Shor, Grover with FT compilation) | Fault-Tolerant Algorithms (~40h, proposed) |
+| Resource estimation for specific algorithms | Fault-Tolerant Algorithms (~40h, proposed) |
+| Quantum algorithm design and analysis | Quantum 102 Unit 3 |
 | Hardware implementation details (fabrication, control systems) | Hardware-specific courses |
 
 ### Where This Course Fits
@@ -63,12 +63,12 @@ Quantum 102 (Units 1-4)
 │   below-threshold operation              │
 └───────────────────────────────────────────┘
         ↓
-Fault-Tolerant Algorithms (~40h)
+Fault-Tolerant Algorithms (~40h, proposed)
    Focus: Compiling and running algorithms
    on fault-tolerant hardware
 ```
 
-This course provides the QEC foundation that the Fault-Tolerant Algorithms course builds on. It teaches learners how error correction works at the engineering level; that course teaches how to use a fault-tolerant computer to run algorithms.
+This course provides the QEC foundation that a future Fault-Tolerant Algorithms course would build on. It teaches learners how error correction works at the engineering level; that course would teach how to use a fault-tolerant computer to run algorithms. The boundary between the two courses is proposed, not fixed.
 
 ---
 
@@ -139,11 +139,12 @@ Each unit contributes a component. Learners see a running metric (logical error 
 |---|---|
 | **Length** | 2 hours |
 | **Goal** | Create an immediate reason to care about QEC by watching computation fail |
-| **Prerequisite link** | Builds on Quantum 102 Unit 4 noise concepts; goes deeper into error types |
+| **Prerequisite link** | Builds on Quantum 102 Unit 4's view of error-correction overhead as a hidden cost; this course explains where that overhead comes from |
 
 #### Concepts
 
 - Physical vs logical qubits
+- Brief review: entanglement and Bell states (assumed familiar, but set up notation)
 - Quantum noise taxonomy: bit-flip, phase-flip, depolarising, coherent errors
 - Decoherence and T1/T2 times
 - Gate errors, measurement errors, correlated errors
@@ -189,6 +190,12 @@ Learners vary circuit depth on a noisy qubit and plot **circuit depth vs probabi
 - Parity-check matrices (H matrix)
 - Why quantum is harder: measurement disturbs, no cloning
 
+#### Pauli Operators (Taught Here)
+
+- The Pauli operators I, X, Y, Z as matrices
+- The commutation rule: XZ = −ZX (and why it matters for error detection)
+- Pauli strings as tensor products (brief intro; full treatment in Unit 3)
+
 #### Bridge to Quantum
 
 - Quantum repetition code (bit-flip code)
@@ -220,6 +227,7 @@ Format: case-file puzzles, not worksheets.
 
 - Explain how parity checks detect errors without revealing data
 - Calculate code distance from a parity-check matrix
+- State the Pauli commutation rule and explain why X and Z errors behave differently
 - Implement a quantum repetition code and extract syndromes
 
 ---
@@ -231,7 +239,7 @@ Format: case-file puzzles, not worksheets.
 |---|---|
 | **Length** | 4 hours |
 | **Goal** | Master syndrome extraction—the core mechanic of all QEC |
-| **Prerequisite link** | Builds on Unit 1 syndrome concepts; required for Units 3-10 |
+| **Prerequisite link** | Builds on Unit 1 syndrome concepts and Pauli commutation; required for Units 3–9 |
 
 #### Concepts
 
@@ -291,10 +299,10 @@ Learners diagnose what most likely happened.
 
 | | |
 |---|---|
-| **Length** | 6 hours (combines original Units 3 and 4) |
+| **Length** | 6 hours |
 | **Goal** | Teach stabiliser formalism as a useful tool, not abstract maths |
-| **Prerequisite link** | Uses Quantum 102 Pauli algebra; goes much deeper |
-| **Boundary** | Teaches framework only; surface code application is Unit 5 |
+| **Prerequisite link** | Uses Pauli operators introduced in Unit 1; extends to the full stabiliser framework |
+| **Boundary** | Teaches framework only; surface code application is Unit 4 |
 
 #### Approach
 
@@ -306,9 +314,10 @@ Then introduce stabilisers as the tool.
 
 #### Concepts (Stabilisers)
 
-- Pauli operators I, X, Y, Z
+- Review: Pauli operators I, X, Y, Z and commutation (from Unit 1)
+- The Pauli group (products, phases, n-qubit extension)
 - Pauli strings and tensor products
-- Commutation and anticommutation
+- Commutation and anticommutation (full treatment)
 - Stabiliser generators
 - The codespace as the +1 eigenspace
 - Logical operators (commute with stabilisers, not in stabiliser group)
@@ -331,7 +340,7 @@ Focus on Steane code as the main example.
 - CSS construction from classical codes
 - X-type and Z-type stabilisers
 - The dual code condition (H_X · H_Z^T = 0)
-- Why CSS codes have nice transversal gates (preview for Unit 10)
+- Why CSS codes have nice transversal gates (preview for Unit 9)
 - Encoding circuits
 
 #### Interactive: Build-a-Code
@@ -373,14 +382,14 @@ Learners identify which are valid and explain the faults.
 
 ---
 
-### UNIT 5: Welcome to the Surface Code
+### UNIT 4: Welcome to the Surface Code
 **Operating a Real QEC Architecture**
 
 | | |
 |---|---|
 | **Length** | 6 hours |
 | **Goal** | This is the most important unit. Learners simulate and operate a surface code. |
-| **Prerequisite link** | Applies Unit 3 stabilisers; feeds Units 6-10 |
+| **Prerequisite link** | Applies Unit 3 stabilisers; feeds Units 5–9 |
 | **Tool** | Stim (required) |
 
 #### Why Surface Code?
@@ -442,15 +451,15 @@ Determine what code distance is needed. Estimate rounds and qubit count.
 
 ---
 
-### UNIT 6: Decoding
+### UNIT 5: Decoding
 **Turning Syndrome Clues Into Corrections**
 
 | | |
 |---|---|
 | **Length** | 6 hours |
 | **Goal** | Make decoding a major differentiator—this is where engineering matters |
-| **Tools** | Stim, PyMatching |
-| **Prerequisite link** | Requires Unit 5 surface code |
+| **Tools** | Stim, PyMatching, a union-find decoder we provide |
+| **Prerequisite link** | Requires Unit 4 surface code |
 
 #### Concepts
 
@@ -501,7 +510,7 @@ Measure logical error rate. Plot and analyse.
 
 #### Challenge: Decoder Showdown
 
-Compare MWPM (PyMatching) vs Union-Find (Stim's built-in):
+Compare MWPM (PyMatching) vs a union-find decoder we provide:
 - Accuracy at various error rates
 - Decoding time
 - Scaling with distance
@@ -519,7 +528,7 @@ Recommend which decoder for different scenarios:
 
 ---
 
-### UNIT 7: Find the Threshold
+### UNIT 6: Find the Threshold
 **When Error Correction Actually Works**
 
 | | |
@@ -527,7 +536,7 @@ Recommend which decoder for different scenarios:
 | **Length** | 4 hours |
 | **Goal** | Understand the threshold—the most important number in QEC |
 | **Tools** | Stim, Sinter |
-| **Prerequisite link** | Requires Units 5-6 |
+| **Prerequisite link** | Requires Units 4–5 |
 
 #### Concepts
 
@@ -570,14 +579,14 @@ Learners diagnose the root cause.
 
 ---
 
-### UNIT 8: Real QEC Is Messy
+### UNIT 7: Real QEC Is Messy
 **Noise Models and Hardware**
 
 | | |
 |---|---|
 | **Length** | 4 hours |
 | **Goal** | Show why the best QEC strategy depends on the physical hardware |
-| **Prerequisite link** | Builds on threshold understanding from Unit 7 |
+| **Prerequisite link** | Builds on threshold understanding from Unit 6 |
 
 #### Approach: Case Studies
 
@@ -628,14 +637,14 @@ Recommend a QEC strategy.
 
 ---
 
-### UNIT 9: Beyond the Surface Code
+### UNIT 8: Beyond the Surface Code
 **qLDPC Codes and the Path to Lower Overhead**
 
 | | |
 |---|---|
 | **Length** | 4 hours |
 | **Goal** | Introduce qLDPC codes as the next frontier |
-| **Prerequisite link** | Requires surface code understanding (Unit 5) |
+| **Prerequisite link** | Requires surface code understanding (Unit 4) |
 | **Boundary** | Teaches concepts and trade-offs, not full implementations |
 
 #### Why qLDPC?
@@ -647,10 +656,8 @@ Surface code overhead is high: ~1,000 physical qubits per logical qubit for usef
 - Low-density parity-check (LDPC) codes (classical)
 - Quantum LDPC: sparse stabilisers
 - The connectivity problem (not 2D nearest-neighbour)
-- Code families:
-  - Bivariate bicycle codes (IBM)
-  - Gross codes
-  - Tanner codes (asymptotically good)
+- Bivariate bicycle codes (including the [[144,12,12]] Gross code)
+- Tanner codes (asymptotically good)
 - Rate vs distance trade-offs
 - Decoding qLDPC: BP+OSD, sliding-window decoders
 - Overhead comparisons
@@ -659,8 +666,8 @@ Surface code overhead is high: ~1,000 physical qubits per logical qubit for usef
 
 | Code | n (physical) | k (logical) | d | Rate k/n | Connectivity |
 |------|--------------|-------------|---|----------|--------------|
-| Surface d=7 | 98 | 1 | 7 | 1% | 2D planar |
-| Gross [[144,12,12]] | 144 | 12 | 12 | 8% | Long-range |
+| Surface d=7 | 97 | 1 | 7 | 1% | 2D planar |
+| Bivariate bicycle [[144,12,12]] | 144 | 12 | 12 | 8% | Long-range |
 | Bivariate bicycle [[72,12,6]] | 72 | 12 | 6 | 17% | Long-range |
 
 #### Lab: qLDPC Structure
@@ -686,15 +693,15 @@ Using provided code specifications:
 
 ---
 
-### UNIT 10: Fault-Tolerant Logic
+### UNIT 9: Fault-Tolerant Logic
 **Lattice Surgery and Magic States**
 
 | | |
 |---|---|
 | **Length** | 5 hours |
 | **Goal** | Close the loop: how to compute fault-tolerantly |
-| **Prerequisite link** | Requires surface code (Unit 5), feeds Capstone |
-| **Boundary** | Teaches mechanics; algorithms course handles compilation |
+| **Prerequisite link** | Requires surface code (Unit 4), feeds Capstone |
+| **Boundary** | Teaches mechanics; a proposed Fault-Tolerant Algorithms course would handle compilation and resource estimation |
 
 #### The Problem
 
@@ -731,18 +738,18 @@ Using Stim or provided scaffolding:
 3. Measure the failure probability
 4. Compare to transversal CNOT (in codes that support it)
 
-#### Challenge: Cost a Computation
+#### Challenge: Count the Magic States
 
 Given a small circuit (e.g., 10 Clifford gates + 2 T gates):
-1. Count the required magic states
-2. Estimate distillation overhead
-3. Calculate total qubit-seconds
+1. Identify which gates require magic states
+2. Count the total magic states needed
+3. Estimate how many noisy magic states must be distilled to produce them
 
 #### Learning Outcomes
 
 - Explain why universal fault-tolerant computation requires magic states
 - Implement a logical gate via lattice surgery
-- Estimate the resource cost of a fault-tolerant computation
+- Count the magic states required for a given circuit
 
 ---
 
@@ -789,7 +796,6 @@ Design and implement a QEC system that meets the target.
 
 - Compare two codes (e.g., surface vs colour code)
 - Implement a custom decoder modification
-- Resource estimate for a specific algorithm
 
 #### Learning Outcomes
 
@@ -807,12 +813,12 @@ Design and implement a QEC system that meets the target.
 | 1 | Think Like an Error-Correction Engineer | 4 |
 | 2 | The Syndrome Is the Clue | 4 |
 | 3 | Stabilisers and CSS Codes | 6 |
-| 5 | Welcome to the Surface Code | 6 |
-| 6 | Decoding | 6 |
-| 7 | Find the Threshold | 4 |
-| 8 | Real QEC Is Messy | 4 |
-| 9 | Beyond the Surface Code | 4 |
-| 10 | Fault-Tolerant Logic | 5 |
+| 4 | Welcome to the Surface Code | 6 |
+| 5 | Decoding | 6 |
+| 6 | Find the Threshold | 4 |
+| 7 | Real QEC Is Messy | 4 |
+| 8 | Beyond the Surface Code | 4 |
+| 9 | Fault-Tolerant Logic | 5 |
 | — | Capstone | 4 |
 | | **Total** | **49** |
 
@@ -825,28 +831,9 @@ All notebooks run in Google Colab without local installation:
 - **Stim** (circuit simulation, syndrome extraction)
 - **PyMatching** (MWPM decoder)
 - **Sinter** (efficient Monte Carlo sampling)
-- **Crumble** (browser-based visualisation, for Units 2 and 5)
+- **Crumble** (browser-based visualisation, for Units 2 and 4)
 
 Setup cell: `!pip install -q stim pymatching sinter`
-
----
-
-## Differentiation from Existing Courses
-
-**vs Coursera "Hands-on QEC with Google Quantum AI" (Fowler)**
-
-| Topic | Coursera | This course |
-|-------|----------|-------------|
-| Surface code basics | ✓ | ✓ |
-| Stim/Crumble | ✓ | ✓ |
-| Deep decoding treatment | — | ✓ (full unit) |
-| Debugging broken systems | — | ✓ (recurring) |
-| Real hardware noise | — | ✓ (case studies) |
-| qLDPC codes | — | ✓ (full unit) |
-| Fault-tolerant logic | — | ✓ (full unit) |
-| Capstone project | — | ✓ |
-
-The Coursera baseline is treated as the floor. This course matches it on fundamentals, then goes further on decoding, debugging, hardware realism, qLDPC, and fault tolerance.
 
 ---
 

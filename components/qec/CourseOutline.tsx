@@ -21,9 +21,10 @@ const units: Unit[] = [
     title: "Welcome to the QEC Lab",
     subtitle: "Why Quantum Computers Fail",
     hours: 2,
-    goal: "Create an immediate reason to care about QEC by watching computation fail under noise.",
+    goal: "Create an immediate reason to care about QEC by watching computation fail under noise. Builds on Quantum 102 Unit 4's view of error-correction overhead as a hidden cost; this course explains where that overhead comes from.",
     concepts: [
       "Physical vs logical qubits",
+      "Brief review: entanglement and Bell states",
       "Quantum noise: bit-flip, phase-flip, depolarising",
       "Decoherence and T1/T2 times",
       "Gate errors, measurement errors, correlated errors",
@@ -42,13 +43,15 @@ const units: Unit[] = [
     title: "Think Like an Error-Correction Engineer",
     subtitle: "Learning Through Classical Error Correction",
     hours: 4,
-    goal: "Build intuition with classical codes before quantum complications.",
+    goal: "Build intuition with classical codes before quantum complications. Introduces Pauli operators and the commutation rule.",
     concepts: [
       "Redundancy and repetition codes",
       "Parity checks and syndrome extraction",
       "Hamming distance and code distance",
       "Error detection vs error correction",
       "Parity-check matrices",
+      "Pauli operators I, X, Y, Z as matrices",
+      "The commutation rule: XZ = −ZX",
       "Quantum repetition code (bit-flip, phase-flip)",
       "Logical states and logical operators",
     ],
@@ -57,6 +60,7 @@ const units: Unit[] = [
     outcomes: [
       "Explain how parity checks detect errors without revealing data",
       "Calculate code distance from a parity-check matrix",
+      "State the Pauli commutation rule and explain why X and Z errors behave differently",
       "Implement a quantum repetition code",
     ],
   },
@@ -88,10 +92,12 @@ const units: Unit[] = [
     title: "Stabilisers and CSS Codes",
     subtitle: "The Language of Modern QEC",
     hours: 6,
-    goal: "Teach stabiliser formalism as a useful tool, not abstract mathematics.",
+    goal: "Teach stabiliser formalism as a useful tool, not abstract mathematics. Extends Pauli operators from Unit 1 to the full stabiliser framework.",
     concepts: [
-      "Pauli operators and Pauli strings",
-      "Commutation and anticommutation",
+      "Review: Pauli operators and commutation (from Unit 1)",
+      "The Pauli group (products, phases, n-qubit extension)",
+      "Pauli strings and tensor products",
+      "Commutation and anticommutation (full treatment)",
       "Stabiliser generators and codespace",
       "Logical operators and the normaliser",
       "Code parameters [[n, k, d]]",
@@ -107,7 +113,7 @@ const units: Unit[] = [
     ],
   },
   {
-    id: "05",
+    id: "04",
     title: "Welcome to the Surface Code",
     subtitle: "Operating a Real QEC Architecture",
     hours: 6,
@@ -130,7 +136,7 @@ const units: Unit[] = [
     ],
   },
   {
-    id: "06",
+    id: "05",
     title: "Decoding",
     subtitle: "Turning Syndrome Clues Into Corrections",
     hours: 6,
@@ -144,7 +150,7 @@ const units: Unit[] = [
       "Decoder metrics: accuracy, latency, throughput, scalability",
     ],
     lab: "Build the QEC Pipeline — noise → circuit → syndrome → decoder → result.",
-    challenge: "Decoder Showdown — compare MWPM vs Union-Find across scenarios.",
+    challenge: "Decoder Showdown — compare MWPM (PyMatching) vs a union-find decoder we provide.",
     outcomes: [
       "Implement a complete decode-and-correct pipeline",
       "Benchmark decoder performance systematically",
@@ -152,7 +158,7 @@ const units: Unit[] = [
     ],
   },
   {
-    id: "07",
+    id: "06",
     title: "Find the Threshold",
     subtitle: "When Error Correction Actually Works",
     hours: 4,
@@ -174,7 +180,7 @@ const units: Unit[] = [
     ],
   },
   {
-    id: "08",
+    id: "07",
     title: "Real QEC Is Messy",
     subtitle: "Noise Models and Hardware",
     hours: 4,
@@ -196,7 +202,7 @@ const units: Unit[] = [
     ],
   },
   {
-    id: "09",
+    id: "08",
     title: "Beyond the Surface Code",
     subtitle: "qLDPC Codes and Lower Overhead",
     hours: 4,
@@ -204,10 +210,10 @@ const units: Unit[] = [
     concepts: [
       "Low-density parity-check (LDPC) codes",
       "The connectivity problem",
-      "Bivariate bicycle codes, Gross codes",
+      "Bivariate bicycle codes (incl. [[144,12,12]] Gross code)",
       "Rate vs distance trade-offs",
       "Decoding qLDPC: BP+OSD",
-      "Overhead comparisons with surface code",
+      "Overhead comparisons: surface d=7 (97 qubits) vs bivariate bicycle",
     ],
     lab: "qLDPC Structure — verify code parameters and visualise the Tanner graph.",
     challenge: "When Will qLDPC Dominate? — discussion of connectivity limitations.",
@@ -218,7 +224,7 @@ const units: Unit[] = [
     ],
   },
   {
-    id: "10",
+    id: "09",
     title: "Fault-Tolerant Logic",
     subtitle: "Lattice Surgery and Magic States",
     hours: 5,
@@ -232,11 +238,11 @@ const units: Unit[] = [
       "Magic state cultivation",
     ],
     lab: "Lattice Surgery Simulation — implement logical CNOT via merge-split.",
-    challenge: "Cost a Computation — estimate resources for a small fault-tolerant circuit.",
+    challenge: "Count the Magic States — for a small circuit, identify which gates need magic states and count them.",
     outcomes: [
       "Explain why universal computation requires magic states",
       "Implement logical gates via lattice surgery",
-      "Estimate resource costs",
+      "Count the magic states required for a given circuit",
     ],
   },
   {
@@ -337,7 +343,7 @@ export function CourseOutline() {
         <p className="ak-label">Course Structure</p>
         <h2 className="ak-serif mt-3 text-3xl text-ink sm:text-4xl">Full Outline</h2>
         <p className="mt-4 max-w-2xl text-muted">
-          11 units plus a capstone project. {totalHours} hours of lab-style learning,
+          10 units plus a capstone project. {totalHours} hours of lab-style learning,
           from classical intuition to below-threshold operation.
         </p>
       </header>
