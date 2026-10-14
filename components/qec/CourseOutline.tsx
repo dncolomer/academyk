@@ -176,7 +176,7 @@ function UnitCard({ unit, isExpanded, onToggle }: { unit: Unit; isExpanded: bool
               <div key={part.name}>
                 <div className="mb-1 flex items-center gap-2">
                   <p className="ak-label">{part.name}</p>
-                  {part.name === "Math prep" && (
+                  {part.name === "Math prep" && unit.id !== "01" && (
                     <span className="inline-flex items-center gap-1 rounded-full bg-purple-400/10 px-2 py-0.5 text-xs text-purple-400">
                       <svg className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8 5v14l11-7z" />
@@ -186,6 +186,25 @@ function UnitCard({ unit, isExpanded, onToggle }: { unit: Unit; isExpanded: bool
                   )}
                 </div>
                 <p className="text-sm text-muted">{part.description}</p>
+                {part.name === "Math prep" && unit.id === "01" && (
+                  <div className="mt-3">
+                    <video
+                      controls
+                      preload="none"
+                      poster="/qec/unit1-noise-warmup-poster.jpg"
+                      className="w-full max-w-lg rounded"
+                    >
+                      <source src="/qec/unit1-noise-warmup.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <p className="mt-2 text-sm text-muted">
+                      Warm-up 01 · noise in 30 seconds
+                    </p>
+                    <p className="mt-1 text-xs text-muted/70">
+                      Music: Clash Defiant by Kevin MacLeod (incompetech.com), CC BY 3.0
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
