@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { cn } from "@/lib/cn";
 import {
   runNoiseSimulation,
@@ -483,11 +483,6 @@ function CellComponent({
 }) {
   const [input, setInput] = useState("");
   const [isThinking, setIsThinking] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [cell.messages.length]);
 
   const handlePromptClick = (key: string) => {
     setIsThinking(true);
@@ -585,7 +580,6 @@ function CellComponent({
               </div>
             </div>
           ))}
-          <div ref={messagesEndRef} />
         </div>
       )}
 
