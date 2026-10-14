@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/cn";
-import { NotebookDemo } from "./NotebookDemo";
 
 type UnitPart = {
   name: string;
@@ -189,26 +189,48 @@ function UnitCard({ unit, isExpanded, onToggle }: { unit: Unit; isExpanded: bool
                 <p className="text-sm text-muted">{part.description}</p>
                 {part.name === "Math prep" && unit.id === "01" && (
                   <div className="mt-3">
-                    {/* Vertical video for mobile */}
-                    <video
-                      controls
-                      preload="none"
-                      poster="/qec/unit1-noise-warmup-vertical-poster.jpg"
-                      className="w-full max-h-[70vh] rounded object-contain sm:hidden"
-                    >
-                      <source src="/qec/unit1-noise-warmup-vertical.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                    {/* Horizontal video for desktop */}
-                    <video
-                      controls
-                      preload="none"
-                      poster="/qec/unit1-noise-warmup-poster.jpg"
-                      className="hidden w-full max-w-lg rounded sm:block"
-                    >
-                      <source src="/qec/unit1-noise-warmup.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    {/* Mobile: stacked videos */}
+                    <div className="space-y-4 sm:hidden">
+                      <video
+                        controls
+                        preload="none"
+                        poster="/qec/unit1-noise-warmup-poster.jpg"
+                        className="w-full rounded"
+                      >
+                        <source src="/qec/unit1-noise-warmup.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                      <video
+                        controls
+                        preload="none"
+                        poster="/qec/unit1-noise-warmup-vertical-poster.jpg"
+                        className="w-full max-h-[70vh] rounded object-contain"
+                      >
+                        <source src="/qec/unit1-noise-warmup-vertical.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    {/* Desktop: side by side */}
+                    <div className="hidden gap-4 sm:flex">
+                      <video
+                        controls
+                        preload="none"
+                        poster="/qec/unit1-noise-warmup-poster.jpg"
+                        className="w-full max-w-lg rounded"
+                      >
+                        <source src="/qec/unit1-noise-warmup.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                      <video
+                        controls
+                        preload="none"
+                        poster="/qec/unit1-noise-warmup-vertical-poster.jpg"
+                        className="h-auto max-h-[480px] w-auto rounded object-contain"
+                      >
+                        <source src="/qec/unit1-noise-warmup-vertical.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
                     <p className="mt-2 text-sm text-muted">
                       Warm-up 01 · noise in 30 seconds
                     </p>
@@ -219,13 +241,13 @@ function UnitCard({ unit, isExpanded, onToggle }: { unit: Unit; isExpanded: bool
                 )}
                 {part.name === "Prompting notebook" && unit.id === "01" && (
                   <div className="mt-4">
-                    <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-cyan-400/10 px-3 py-1 text-xs text-cyan-400">
+                    <Link
+                      href="/p/qec-a1ede1/notebook"
+                      className="inline-flex items-center gap-2 rounded-lg border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-400 transition-colors hover:border-cyan-400/50 hover:bg-cyan-400/20"
+                    >
                       <span>▶</span>
                       Try it: sample prompting notebook
-                    </p>
-                    <div className="rounded border border-line/50 bg-[#0a0a0f] p-4">
-                      <NotebookDemo />
-                    </div>
+                    </Link>
                   </div>
                 )}
               </div>
