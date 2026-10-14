@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { cn } from "@/lib/cn";
 
 type UnitPart = {
   name: string;
@@ -20,6 +21,7 @@ const units: Unit[] = [
     title: "Noise Models",
     subtitle: "What kinds of errors actually happen",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on probability basics and error rates; qubit states as arrows on the Bloch sphere; X, Z and Y as flips; what 'energy loss' (amplitude damping) does." },
       { name: "Formal", description: "Learners create simple noise (bit flips, phase flips, energy loss). They run circuits and count how often each error appears." },
       { name: "Prompting notebook", description: "Exploring which errors matter most and why certain processes dominate." },
       { name: "Unsys", description: "TBD" },
@@ -31,8 +33,9 @@ const units: Unit[] = [
     title: "Simple Repetition",
     subtitle: "Protecting a bit by copying it",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on binomial counting and majority vote; why errors at rate p combine into ~3p² failure; reading log-scale plots." },
       { name: "Formal", description: "Build a short repetition code, add noise, majority vote, plot how often the logical bit still fails." },
-      { name: "Prompting notebook", description: "When adding more copies stops helping and what limits the approach." },
+      { name: "Prompting notebook", description: "Exploring when adding more copies stops helping and what limits the approach." },
       { name: "Unsys", description: "TBD" },
       { name: "Project contribution", description: "First numbers for an unprotected qubit and a simply protected one." },
     ],
@@ -42,8 +45,9 @@ const units: Unit[] = [
     title: "Measuring Errors Without Destroying the State",
     subtitle: "Syndrome extraction",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on parity and XOR; the Z-Z check in pictures; measuring a question instead of the state; CNOT as a parity copier." },
       { name: "Formal", description: "Build small parity-check circuits, add errors, see whether the circuit reports them correctly." },
-      { name: "Prompting notebook", description: "How a check can reveal an error without destroying the protected information." },
+      { name: "Prompting notebook", description: "Exploring how a check can reveal an error without destroying the protected information." },
       { name: "Unsys", description: "TBD" },
       { name: "Project contribution", description: "A working way to extract syndromes for the lab system." },
     ],
@@ -53,8 +57,9 @@ const units: Unit[] = [
     title: "Encoding and Simple Recovery",
     subtitle: "Turning physical qubits into one logical qubit and trying to fix it",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on stabilisers as 'checks that should read +1'; X and Z anticommute (the one rule you need); logical vs physical qubits; the syndrome lookup table." },
       { name: "Formal", description: "Encode a small code, add noise, read the syndrome, apply a fix, check whether the logical information survived." },
-      { name: "Prompting notebook", description: "When a recovery step helps and when it makes the logical qubit worse." },
+      { name: "Prompting notebook", description: "Exploring when a recovery step helps and when it makes the logical qubit worse." },
       { name: "Unsys", description: "TBD" },
       { name: "Project contribution", description: "First full loop of encode → noise → syndrome → recover." },
     ],
@@ -64,8 +69,9 @@ const units: Unit[] = [
     title: "Running Correction Many Times",
     subtitle: "Why one round is not enough",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on repeated measurements over time; detection events as 'changes between rounds'; how small error rates compound across rounds." },
       { name: "Formal", description: "Run the correction cycle repeatedly; track logical error rate vs rounds and imperfect resets." },
-      { name: "Prompting notebook", description: "When extra rounds start to hurt and how timing or reset errors accumulate." },
+      { name: "Prompting notebook", description: "Exploring when extra rounds start to hurt and how timing or reset errors accumulate." },
       { name: "Unsys", description: "TBD" },
       { name: "Project contribution", description: "Multi-round runs and the ability to watch errors build up." },
     ],
@@ -75,8 +81,9 @@ const units: Unit[] = [
     title: "Surface Codes",
     subtitle: "A practical layout that uses nearby qubits",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on grids, neighbours and plaquettes; code distance d; why logical error falls like (p/p_th)^((d+1)/2); the threshold idea." },
       { name: "Formal", description: "Place qubits on a grid, define the checks, measure how logical error rate falls as the code gets larger." },
-      { name: "Prompting notebook", description: "Why local checks matter and how code size interacts with the noise." },
+      { name: "Prompting notebook", description: "Exploring why local checks matter and how code size interacts with the noise." },
       { name: "Unsys", description: "TBD" },
       { name: "Project contribution", description: "Surface-code layouts and distance-dependent results." },
     ],
@@ -86,8 +93,9 @@ const units: Unit[] = [
     title: "qLDPC Codes",
     subtitle: "Codes that protect more information with fewer extra qubits",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on check matrices (rows = checks, columns = qubits); code rate k/n; sparse vs local connections; Tanner graphs." },
       { name: "Formal", description: "Look at a small qLDPC example; compare rate and check structure with the surface code; run the same noise and measure logical error rate." },
-      { name: "Prompting notebook", description: "What is gained and what becomes harder when checks are no longer purely local." },
+      { name: "Prompting notebook", description: "Exploring what is gained and what becomes harder when checks are no longer purely local." },
       { name: "Unsys", description: "TBD" },
       { name: "Project contribution", description: "A second code family and its performance numbers under the same noise." },
     ],
@@ -97,8 +105,9 @@ const units: Unit[] = [
     title: "Decoders",
     subtitle: "Turning syndromes into corrections",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on syndromes as graph puzzles; shortest paths and matching; belief propagation as passing messages; runtime vs accuracy." },
       { name: "Formal", description: "Feed syndromes to simple matching, belief-propagation, and one stronger method; compare logical error rate and runtime on surface code and qLDPC example." },
-      { name: "Prompting notebook", description: "Why a decoder fails on certain patterns and what a small change might fix." },
+      { name: "Prompting notebook", description: "Exploring why a decoder fails on certain patterns and what a small change might fix." },
       { name: "Unsys", description: "TBD" },
       { name: "Project contribution", description: "Stronger decoder versions running on the lab system." },
     ],
@@ -108,8 +117,9 @@ const units: Unit[] = [
     title: "Measuring Performance Fairly",
     subtitle: "How to compare designs with numbers you can trust",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on sampling and error bars; binomial confidence intervals; how many shots before two curves really differ." },
       { name: "Formal", description: "Collect enough samples to estimate logical error rates with uncertainty; plots comparing surface code, qLDPC, decoders." },
-      { name: "Prompting notebook", description: "How many trials are needed before a difference is meaningful." },
+      { name: "Prompting notebook", description: "Exploring how many trials are needed before a difference is meaningful." },
       { name: "Unsys", description: "TBD" },
       { name: "Project contribution", description: "A clear benchmarking method applied to every version of the system." },
     ],
@@ -119,8 +129,9 @@ const units: Unit[] = [
     title: "Limits and Trade-offs",
     subtitle: "What happens when resources or hardware constraints appear",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on latency budgets and timing; leakage outside the qubit space; connectivity graphs and what a missing edge costs." },
       { name: "Formal", description: "Add one realistic limit (slower measurements, missing connections, or leakage); re-run benchmark; see how much performance drops." },
-      { name: "Prompting notebook", description: "Which constraint hurts most and why." },
+      { name: "Prompting notebook", description: "Exploring which constraint hurts most and why." },
       { name: "Unsys", description: "TBD" },
       { name: "Project contribution", description: "Performance numbers under constraint and a short diagnosis of the bottleneck." },
     ],
@@ -130,6 +141,7 @@ const units: Unit[] = [
     title: "Capstone",
     subtitle: "Final improvement and written diagnosis",
     parts: [
+      { name: "Math prep", description: "Short animated warm-ups on recap reel: the key formulas and plots of the course in 60 seconds each, to frame the final claim." },
       { name: "Formal", description: "Pick one or two changes, implement, re-measure the full system." },
       { name: "Prompting notebook", description: "Constructing a short explanation of why the final numbers look the way they do." },
       { name: "Unsys", description: "TBD" },
@@ -162,7 +174,17 @@ function UnitCard({ unit, isExpanded, onToggle }: { unit: Unit; isExpanded: bool
           <div className="space-y-4">
             {unit.parts.map((part) => (
               <div key={part.name}>
-                <p className="ak-label mb-1">{part.name}</p>
+                <div className="mb-1 flex items-center gap-2">
+                  <p className="ak-label">{part.name}</p>
+                  {part.name === "Math prep" && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-purple-400/10 px-2 py-0.5 text-xs text-purple-400">
+                      <svg className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                      20–60s animated warm-ups
+                    </span>
+                  )}
+                </div>
                 <p className="text-sm text-muted">{part.description}</p>
               </div>
             ))}
@@ -182,8 +204,8 @@ export function CourseOutline() {
         <p className="ak-label">Course Structure</p>
         <h2 className="ak-serif mt-3 text-3xl text-ink sm:text-4xl">Full Outline</h2>
         <p className="mt-4 max-w-2xl text-muted">
-          11 units including a capstone project. Each unit has four parts: Formal (code notebook), 
-          Prompting notebook (guiding questions), Unsys (TBD), and Project contribution.
+          11 units including a capstone project. Each unit has five parts: Math prep (animated micro-videos), 
+          Formal (code notebook), Prompting notebook (guiding questions), Unsys (TBD), and Project contribution.
         </p>
       </header>
 
@@ -217,7 +239,7 @@ export function CourseOutline() {
         </div>
         <div className="ak-card p-5">
           <p className="ak-label">Parts per Unit</p>
-          <p className="ak-serif mt-2 text-3xl text-cyan-400">4</p>
+          <p className="ak-serif mt-2 text-3xl text-cyan-400">5</p>
         </div>
         <div className="ak-card p-5">
           <p className="ak-label">Tools</p>
