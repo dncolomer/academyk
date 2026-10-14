@@ -188,11 +188,22 @@ function UnitCard({ unit, isExpanded, onToggle }: { unit: Unit; isExpanded: bool
                 <p className="text-sm text-muted">{part.description}</p>
                 {part.name === "Math prep" && unit.id === "01" && (
                   <div className="mt-3">
+                    {/* Vertical video for mobile */}
+                    <video
+                      controls
+                      preload="none"
+                      poster="/qec/unit1-noise-warmup-vertical-poster.jpg"
+                      className="w-full max-h-[70vh] rounded object-contain sm:hidden"
+                    >
+                      <source src="/qec/unit1-noise-warmup-vertical.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    {/* Horizontal video for desktop */}
                     <video
                       controls
                       preload="none"
                       poster="/qec/unit1-noise-warmup-poster.jpg"
-                      className="w-full max-w-lg rounded"
+                      className="hidden w-full max-w-lg rounded sm:block"
                     >
                       <source src="/qec/unit1-noise-warmup.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
@@ -201,7 +212,7 @@ function UnitCard({ unit, isExpanded, onToggle }: { unit: Unit; isExpanded: bool
                       Warm-up 01 · noise in 30 seconds
                     </p>
                     <p className="mt-1 text-xs text-muted/70">
-                      Music: Clash Defiant by Kevin MacLeod (incompetech.com), CC BY 3.0
+                      Music: &quot;Meditation Impromptu 02&quot; by Kevin MacLeod (incompetech.com), CC BY 3.0
                     </p>
                   </div>
                 )}
