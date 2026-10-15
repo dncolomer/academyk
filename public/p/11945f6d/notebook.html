@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WISER · Prompting Notebook · Unit 1</title><link rel="icon" href="/p/11945f6d/assets/img/logo-mark.svg"><link rel="stylesheet" href="/p/11945f6d/assets/css/brand.css"></head><body>
+<div class="edgebar"></div>
+<div class="wrap">
+<header class="top"><a class="wordmark" href="/p/11945f6d/">WISER</a><img class="mark" src="/p/11945f6d/assets/img/logo-mark.svg" alt="WISER logo"></header>
+<a class="back" href="/p/11945f6d/">← Back to course proposal</a>
+<div class="nbhead"><div><p class="label">Prompting notebook</p><h2>Unit 1: Noise Models</h2></div><div class="status"><i></i>Simulator ready</div></div>
+<div class="nb"><div class="nbbar"><span class="file">noise_models.ipynb</span><span>|</span><span>6 cells</span><span>|</span><span>Unit 1 of 11</span><span class="sp"></span><span class="ok">All numbers from simulator</span></div><div id="cells"></div></div>
+<p class="meta" style="text-align:center">Prompting notebook: explore questions, not code. All simulation numbers are deterministic.</p>
+<div class="tribar"><span></span><span></span><span></span></div>
+<footer class="foot" style="margin-top:0"><span class="l"><i class="sq"></i>WISER · Quantum Error Correction</span><span>thewiser.org</span></footer>
+<p class="credit" style="margin:-18px 0 24px">powered by Academy K</p>
+</div>
+<script src="/p/11945f6d/assets/js/nb-data.js"></script>
+<script>
+var cells=c(),ctx={};
+function esc(s){return String(s).replace(/[&<>"]/g,function(x){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[x]})}
+function inl(s){return s.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map(function(p){if(p.startsWith("**")&&p.endsWith("**")&&p.length>4)return"<strong>"+esc(p.slice(2,-2))+"</strong>";if(p.startsWith("`")&&p.endsWith("`")&&p.length>2)return"<code>"+esc(p.slice(1,-1))+"</code>";return esc(p)}).join("")}
+function md(t){var out=[],tbl=[],code=[],inC=false;
+ function sp(r){return r.replace(/\|([^|\s⟩]{1,3})⟩/g,"\u0001$1⟩").split("|").filter(function(x){return x.trim()!==""}).map(function(x){return x.trim().replace(/\u0001/g,"|")})}
+ function ft(){if(!tbl.length)return;var h=sp(tbl[0]);var rows=tbl.slice(2).map(function(r){return sp(r)});
+  out.push('<div class="tw"><table><thead><tr>'+h.map(function(x){return"<th>"+inl(x)+"</th>"}).join("")+'</tr></thead><tbody>'+rows.map(function(r){return"<tr>"+r.map(function(x){return"<td>"+inl(x)+"</td>"}).join("")+"</tr>"}).join("")+"</tbody></table></div>");tbl=[]}
+ t.split("\n").forEach(function(l){
+  if(l.startsWith("```")){if(inC){out.push("<pre><code>"+esc(code.join("\n"))+"</code></pre>");code=[]}inC=!inC;return}
+  if(inC){code.push(l);return}
+  if(l.startsWith("|")){tbl.push(l);return}ft();
+  if(l.startsWith("**")&&l.endsWith("**")&&l.length>4)out.push("<p><strong>"+esc(l.slice(2,-2))+"</strong></p>");
+  else if(l.startsWith("*")&&l.endsWith("*")&&!l.startsWith("**"))out.push('<p class="em">'+inl(l.slice(1,-1))+"</p>");
+  else if(l.startsWith("- "))out.push("<li>"+inl(l.slice(2))+"</li>");
+  else if(l.trim()!=="")out.push("<p>"+inl(l)+"</p>")});
+ ft();return out.join("")}
+var busy={};
+function render(){document.getElementById("cells").innerHTML=cells.map(function(cl){var b=busy[cl.id];
+ return '<div class="cell" id="'+cl.id+'"><div class="q"><span class="no">['+cl.number+']</span><p>'+esc(cl.question)+'</p></div><div class="ctl"><div class="prompts">'+cl.prompts.map(function(p){return'<button data-c="'+cl.id+'" data-k="'+p.key+'"'+(b?" disabled":"")+'>'+esc(p.label)+'</button>'}).join("")+'</div><form class="ask" data-c="'+cl.id+'"><input type="text" placeholder="Or type your own question..."'+(b?" disabled":"")+'><button type="submit"'+(b?" disabled":"")+'>Ask</button></form></div>'+
+ cl.messages.map(function(m,i){return'<div class="msg '+(m.role==="user"?"user":"bot")+'"><span class="tag">'+(m.role==="user"?"In":"Out")+'['+cl.number+'.'+(i+1)+']:</span><div class="c">'+(m.role==="user"?esc(m.content):md(m.content))+'</div></div>'}).join("")+
+ (b?'<div class="msg bot"><span class="tag">Out['+cl.number+'.'+(cl.messages.length+1)+']:</span><span class="dots"><i></i><i></i><i></i></span></div>':"")+'</div>'}).join("")}
+function cellBy(id){return cells.find(function(x){return x.id===id})}
+document.addEventListener("click",function(e){var b=e.target.closest(".prompts button");if(!b||b.disabled)return;var id=b.dataset.c,k=b.dataset.k;busy[id]=1;render();
+ setTimeout(function(){var cl=cellBy(id),p=cl.prompts.find(function(x){return x.key===k});var r=d(k,ctx,cl.number);cl.messages.push({role:"user",content:p.label},{role:"assistant",content:r.content});if(r.contextUpdate)Object.assign(ctx,r.contextUpdate);busy[id]=0;render()},300+200*Math.random())});
+document.addEventListener("submit",function(e){var f=e.target.closest("form.ask");if(!f)return;e.preventDefault();var id=f.dataset.c,v=f.querySelector("input").value.trim();if(!v||busy[id])return;busy[id]=1;render();
+ setTimeout(function(){var cl=cellBy(id);cl.messages.push({role:"user",content:v},{role:"assistant",content:freeText(v,ctx,cl.number)});busy[id]=0;render()},400+300*Math.random())});
+render();
+</script></body></html>
