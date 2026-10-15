@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WISER · Quantum Error Correction</title><link rel="icon" href="/p/11945f6d/assets/img/logo-mark.svg"><link rel="stylesheet" href="/p/11945f6d/assets/css/brand.css"></head><body>
+<div class="edgebar"></div>
+<div class="wrap">
+<header class="top"><a class="wordmark" href="/p/11945f6d/">WISER</a><img class="mark" src="/p/11945f6d/assets/img/logo-mark.svg" alt="WISER logo"></header>
+<section class="hero">
+<span class="pill">Course proposal</span>
+<h1>Quantum Error Correction: Diagnosis, Simulation, and Engineering</h1>
+<p class="sub">Learners work with imperfect systems. They inject errors, look at what goes wrong, and try to fix it. Through a running project, the Decoder Co-Design and Benchmarking Lab, they build and refine a working QEC system from noise models to final performance claims.</p>
+<p class="meta">WISER · Quantum Error Correction · 11 units · <a href="#outline">Full outline</a></p>
+</section>
+<div class="tribar"><span></span><span></span><span></span></div>
+<p class="label">Course structure</p><h2>Five parts in every unit</h2>
+<p class="lead">11 units including a capstone project. Each unit has five parts.</p>
+<div class="grid2">
+<div class="card"><div class="dot" style="background:#54A4DA"></div><div><b>Math prep</b><span class="t">Animated micro-videos</span></div></div>
+<div class="card"><div class="dot" style="background:#05A17E"></div><div><b>Formal</b><span class="t">Code notebook</span></div></div>
+<div class="card"><div class="dot" style="background:#3D00D9"></div><div><b>Prompting notebook</b><span class="t">Guiding questions</span></div></div>
+<div class="card"><div class="dot" style="background:#1F1C1D"></div><div><b>Unsys &amp; Project contribution</b><span class="t">Unsys (TBD) · a piece of the running lab</span></div></div>
+</div>
+<div class="tribar"><span></span><span></span><span></span></div>
+<p class="label">Running project</p><h2>Decoder Co-Design and Benchmarking Lab</h2>
+<div class="panel"><p style="margin:0">Learners maintain one evolving system throughout the course: a fixed noise model paired with a small stabilizer code. They instrument syndrome extraction, start with a basic decoder, and successively replace or strengthen it while measuring logical error rate against latency and overhead. At each stage they diagnose why a change improves or degrades performance under the given noise.</p></div>
+<div class="tribar"><span></span><span></span><span></span></div>
+<p class="label" id="outline">Full outline</p><h2>11 units</h2>
+<div class="units" id="units"></div>
+<div class="tribar"><span></span><span></span><span></span></div>
+<div class="stats"><div class="stat"><div class="l">Units</div><div class="n">11</div></div><div class="stat"><div class="l">Parts per unit</div><div class="n">5</div></div><div class="stat"><div class="l">Tools</div><div class="n" style="font-size:18px;padding-top:8px">Stim, PyMatching, Sinter, Google Colab</div></div></div>
+<footer class="foot"><span class="l"><i class="sq"></i>WISER · Quantum Error Correction</span><span>thewiser.org</span></footer>
+<p class="credit" style="margin:-18px 0 24px">Course material powered by Academy K</p>
+</div>
+<script src="/p/11945f6d/assets/js/units.js"></script>
+<script>
+var COL={"Math prep":["SEE","c-blue"],"Formal":["GROUNDS","c-green"],"Prompting notebook":["OPEN","c-purple"],"Unsys":["UNSYS","c-grey"],"Project contribution":["BUILDS","c-green"]};
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"})[c])}
+var html=UNITS.map(function(u,i){
+ var parts=u.parts.map(function(p){var c=COL[p.name]||["",""];var extra="";
+  if(u.id==="01"&&p.name==="Math prep")extra='<div class="videos"><div class="h"><video controls preload="metadata" playsinline poster="/p/11945f6d/assets/video/poster.jpg" src="/p/11945f6d/assets/video/unit1-noise-warmup.mp4"></video></div><div class="v"><video controls preload="metadata" playsinline poster="/p/11945f6d/assets/video/poster-vertical.jpg" src="/p/11945f6d/assets/video/unit1-noise-warmup-vertical.mp4"></video></div></div><div class="cap"><b>Warm-up 01 · noise in 30 seconds</b><br>Music: "Meditation Impromptu 02" by Kevin MacLeod (incompetech.com), <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></div>';
+  if(u.id==="01"&&p.name==="Prompting notebook")extra='<a class="cta" href="/p/11945f6d/notebook">▶ Try it: sample prompting notebook</a>';
+  return '<div class="callout '+c[1]+(extra&&p.name==="Math prep"?" wide":"")+'"><div class="k">'+esc(p.name)+'</div><p>'+esc(p.description)+'</p>'+extra+'</div>'}).join("");
+ return '<div class="unit'+(i===0?" open":"")+'"><button aria-expanded="'+(i===0)+'"><span class="num">'+u.id+'</span><span class="ttl"><b>'+esc(u.title)+'</b><span>'+esc(u.subtitle)+'</span></span><span class="chev">▼</span></button><div class="body">'+parts+'</div></div>'}).join("");
+var el=document.getElementById("units");el.innerHTML=html;
+el.querySelectorAll(".unit>button").forEach(function(b){b.onclick=function(){var o=b.parentNode.classList.toggle("open");b.setAttribute("aria-expanded",o)}});
+</script></body></html>
