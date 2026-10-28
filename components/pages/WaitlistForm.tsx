@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 import { Lamp } from "@/components/Lamp";
 import { site, mailtoHref, waitlistEndpoint } from "@/content/site";
+import { getUtmData } from "@/lib/utm";
 import { EMAIL_RE, LIMITS, WAITLIST_TRACKS, trackSlugToLabel } from "@/lib/waitlist";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -64,6 +65,7 @@ export function WaitlistForm() {
     setStatus("sending");
     setError("");
     try {
+      const utm = getUtmData();
       const res = await fetch(waitlistEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -72,6 +74,10 @@ export function WaitlistForm() {
           email: payload.email,
           tracks: payload.tracks,
           message: payload.message,
+          utm_source: utm.utm_source || "direct",
+          utm_medium: utm.utm_medium || "",
+          utm_campaign: utm.utm_campaign || "",
+          referrer: utm.referrer || "",
           _subject: `Academy K waitlist: ${payload.tracks}`,
           _replyto: payload.email,
           _captcha: "false",
