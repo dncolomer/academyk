@@ -20,7 +20,7 @@ export function ClosingCta() {
             The first cohort is in {offer.cohortStart}.
           </h2>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-muted">
-            {offer.weeks} weeks, self-paced, limited to {offer.seats} people per course.
+            {offer.weeks} weeks, personal Grok Bot tutor, Discord cohort, limited to {offer.seats} people per course.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <ReserveButton />

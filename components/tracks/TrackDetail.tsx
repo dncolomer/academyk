@@ -10,7 +10,8 @@ import { TrackGlyph } from "@/components/TrackGlyph";
 import { SectionIndex } from "@/components/tracks/SectionIndex";
 import { SyllabusTimeline } from "@/components/tracks/SyllabusTimeline";
 import { TrackFaq } from "@/components/tracks/TrackFaq";
-import { offer, priceLine, site } from "@/content/site";
+import { PriceLine } from "@/components/PriceDisplay";
+import { offer, site } from "@/content/site";
 import { tracks } from "@/content/tracks";
 import type { Track } from "@/content/types";
 
@@ -56,10 +57,10 @@ export function TrackDetail({ track }: { track: Track }) {
 
               <dl className="relative z-10 mt-8 grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-3 [&>*]:bg-bg">
                 <Fact label="Duration">{track.timeCommitment.duration}</Fact>
-                <Fact label="Pace">{track.timeCommitment.weekly}</Fact>
+                <Fact label="Tutor">Personal Grok Bot, 24/7</Fact>
                 <Fact label="Modules">{moduleCount}</Fact>
-                <Fact label="Live sessions">{offer.liveSessions}, optional</Fact>
-                <Fact label="Price">{priceLine}</Fact>
+                <Fact label="Live sessions">{offer.liveSessions} with head tutor</Fact>
+                <Fact label="Price"><PriceLine /></Fact>
                 <Fact label="Seats">Limited to {offer.seats}</Fact>
               </dl>
               <p className="relative z-10 mt-3 max-w-[40rem] text-sm leading-relaxed text-muted">{track.timeCommitment.note}</p>
@@ -111,8 +112,8 @@ export function TrackDetail({ track }: { track: Track }) {
               </ul>
               <dl className="mt-6 grid gap-px border border-line bg-line sm:grid-cols-3">
                 <Fact label="Duration">{track.timeCommitment.duration}</Fact>
-                <Fact label="Pace">{track.timeCommitment.weekly}</Fact>
-                <Fact label="Note">{track.timeCommitment.note}</Fact>
+                <Fact label="Format">{track.timeCommitment.weekly}</Fact>
+                <Fact label="When">{track.timeCommitment.note}</Fact>
               </dl>
             </section>
           </Reveal>

@@ -1,9 +1,11 @@
 import type { Track } from "./types";
 
 const sharedFormat = () => [
-  { label: "Self-paced", detail: "Four weeks. Work whenever suits you." },
-  { label: "Eight optional live sessions", detail: "A kickoff session and seven more with a human expert in the field. You can come to all of them, some, or none." },
-  { label: "Small cohort", detail: "Limited to 25 people per course." },
+  { label: "Personal tutor", detail: "Every student gets a dedicated Grok Bot tutor, available 24/7 for the 4 weeks. Included in the price, no separate account needed." },
+  { label: "Discord cohort", detail: "The cohort runs on Discord. You talk directly to your tutor and to the rest of the cohort." },
+  { label: "8 live sessions", detail: "With the human head tutor (Daniel Colomer) and the tutor bot together." },
+  { label: "Knowledge verification", detail: "Uncertain Systems verifies what each student actually learned." },
+  { label: "25 seats", detail: "Limited to 25 people per course." },
 ];
 
 export const tracks: Track[] = [
@@ -26,7 +28,7 @@ export const tracks: Track[] = [
       "Linear algebra: vectors, matrices, eigenvalues. There is a refresher if yours is rusty.",
       "Basic probability. You do not need any quantum mechanics.",
     ],
-    timeCommitment: { duration: "4 weeks", weekly: "Self-paced", note: "Starts in December and runs into the first week of January, with a break over the holidays." },
+    timeCommitment: { duration: "4 weeks", weekly: "Cohort-based", note: "First cohort starts early December 2026, ends the first week of January 2027, with a holiday break in between." },
     format: sharedFormat(),
     modules: [
       { week: 1, title: "Linear algebra and single qubits", summary: "Hilbert spaces, unitary and Hermitian operators, tensor products, state vectors, the Born rule and measurement.", proof: "A small Python library that builds multi-qubit states and operators, plus a single-qubit simulator that reproduces the predicted measurement statistics over many shots." },
@@ -48,7 +50,7 @@ export const tracks: Track[] = [
       { q: "Do I need quantum hardware?", a: "No. You write and run your own simulator. We talk about how real devices differ, but you do not need access to one." },
       { q: "Is this a physics course?", a: "No, it is a computing course. It uses only the physics needed to define the model." },
       { q: "Does it cover breaking encryption?", a: "It covers period finding and what factoring would need in qubits and gates. You can then judge the headlines yourself." },
-      { q: "When does it start?", a: "The first cohort starts in December and runs into the first week of January, with a break over the holidays. It is limited to 25 people." },
+      { q: "When does it start?", a: "The first cohort starts early December 2026, ends the first week of January 2027, with a holiday break in between. It is limited to 25 people." },
     ],
   },
   {
@@ -70,7 +72,7 @@ export const tracks: Track[] = [
       "Calculus and linear algebra at first-year university level. There is a refresher.",
       "Basic probability and statistics.",
     ],
-    timeCommitment: { duration: "4 weeks", weekly: "Self-paced", note: "Starts in December and runs into the first week of January, with a break over the holidays." },
+    timeCommitment: { duration: "4 weeks", weekly: "Cohort-based", note: "First cohort starts early December 2026, ends the first week of January 2027, with a holiday break in between." },
     format: sharedFormat(),
     modules: [
       { week: 1, title: "Learning from data and backpropagation", summary: "Models, loss functions, gradient descent, generalisation, layers, activations and automatic differentiation.", proof: "A small autodiff engine and a network trained with it, checked against numerical gradients, with a held-out evaluation report." },
@@ -92,7 +94,7 @@ export const tracks: Track[] = [
       { q: "Is this about using AI tools?", a: "No. It is about how the systems are built, trained, evaluated and constrained. Tool use gets one module." },
       { q: "Do I need a GPU?", a: "Not for most modules. Where a bigger run helps, we will point you to a small, cheap setup." },
       { q: "Does the track take a position on superintelligence?", a: "It lays out the main arguments and the open problems, and asks you to build your own view from them." },
-      { q: "When does it start?", a: "The first cohort starts in December and runs into the first week of January, with a break over the holidays. It is limited to 25 people." },
+      { q: "When does it start?", a: "The first cohort starts early December 2026, ends the first week of January 2027, with a holiday break in between. It is limited to 25 people." },
     ],
   },
   {
@@ -114,7 +116,7 @@ export const tracks: Track[] = [
       "Probability and linear algebra at first-year university level.",
       "Introductory physics helps. Statistical mechanics is taught from the beginning.",
     ],
-    timeCommitment: { duration: "4 weeks", weekly: "Self-paced", note: "Starts in December and runs into the first week of January, with a break over the holidays." },
+    timeCommitment: { duration: "4 weeks", weekly: "Cohort-based", note: "First cohort starts early December 2026, ends the first week of January 2027, with a holiday break in between." },
     format: sharedFormat(),
     modules: [
       { week: 1, title: "Entropy, information and heat", summary: "Statistical mechanics essentials: microstates, entropy, free energy and the Boltzmann distribution.", proof: "A simulation of a small system that recovers its Boltzmann distribution and entropy numerically." },
@@ -136,7 +138,7 @@ export const tracks: Track[] = [
       { q: "Is thermodynamic computing a product?", a: "Here it is a field of study: the physics of computation, and hardware that uses randomness directly. The track is not tied to any vendor." },
       { q: "Do I need a physics degree?", a: "No. The first module teaches the statistical mechanics you need." },
       { q: "How does it relate to the AI / SI track?", a: "They share ideas about sampling and energy-based models. You can take either one alone." },
-      { q: "When does it start?", a: "The first cohort starts in December and runs into the first week of January, with a break over the holidays. It is limited to 25 people." },
+      { q: "When does it start?", a: "The first cohort starts early December 2026, ends the first week of January 2027, with a holiday break in between. It is limited to 25 people." },
     ],
   },
 ];

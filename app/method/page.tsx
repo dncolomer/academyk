@@ -6,7 +6,7 @@ import { SectionBlock } from "@/components/pages/SectionBlock";
 import { pageMetadata } from "@/components/pages/metadata";
 import { offer } from "@/content/site";
 
-const description = `Each course is ${offer.weeks} weeks and self-paced, with ${offer.liveSessions} optional live sessions with a human expert. ${offer.seats} seats per course. The first cohort starts in ${offer.cohortStart}.`;
+const description = `Each course is ${offer.weeks} weeks with a personal Grok Bot tutor, ${offer.liveSessions} live sessions with the head tutor, and a cohort on Discord. ${offer.seats} seats per course. First cohort starts ${offer.cohortStart}.`;
 
 export const metadata = pageMetadata({
   title: "How it works",
@@ -15,17 +15,23 @@ export const metadata = pageMetadata({
 });
 
 const facts = [
-  { label: "Length", value: `${offer.weeks} weeks`, detail: "Self-paced." },
+  { label: "Length", value: `${offer.weeks} weeks`, detail: `Starts ${offer.cohortStart}, ends ${offer.cohortEnd}, ${offer.holidayNote}.` },
+  {
+    label: "Personal tutor",
+    value: "Grok Bot, 24/7",
+    detail: "Every student gets a dedicated Grok Bot tutor for the 4 weeks. Included in the price, no separate account needed.",
+  },
   {
     label: "Live sessions",
-    value: `${offer.liveSessions}, optional`,
-    detail: "A kickoff and seven more, with a human expert in the field.",
+    value: `${offer.liveSessions} sessions`,
+    detail: `With the human head tutor (${offer.headTutor}) and the tutor bot together.`,
   },
+  { label: "Cohort", value: "Discord", detail: "You talk directly to your tutor and to the rest of the cohort." },
   { label: "Seats", value: `${offer.seats} per course`, detail: "In the first cohort." },
   {
-    label: "Start",
-    value: offer.cohortStart,
-    detail: `Runs into ${offer.cohortEnd}, ${offer.holidayNote}.`,
+    label: "Verification",
+    value: "Uncertain Systems",
+    detail: "Verifies what each student actually learned.",
   },
 ];
 
@@ -37,9 +43,9 @@ export default function MethodPage() {
         index="03"
         label="Method"
         title="How it works"
-        lede={`Self-paced, ${offer.weeks} weeks, with optional live sessions.`}
+        lede={`${offer.weeks} weeks, personal Grok Bot tutor, Discord cohort, ${offer.liveSessions} live sessions.`}
       >
-        <ul className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {facts.map((fact) => (
             <li key={fact.label} className="min-w-0 bg-bg px-5 py-6 sm:px-6">
               <p className="ak-label flex items-start gap-2 text-ink">

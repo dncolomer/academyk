@@ -10,6 +10,6 @@ export default function MethodOpenGraphImage() {
     label: "ACADEMY K · 03 / METHOD",
     title: "How it works",
     chips: offerChips,
-    subtitle: "Self-paced, four weeks, with optional live sessions.",
+    subtitle: "Four weeks, personal Grok Bot tutor, Discord cohort, 8 live sessions.",
   });
 }

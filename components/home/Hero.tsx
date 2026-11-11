@@ -10,10 +10,11 @@ import { tracks } from "@/content/tracks";
 
 const tickerItems = [
   ...tracks.map((track) => `Track ${track.index} ${track.title}`),
-  `${offer.weeks} weeks, self-paced`,
-  `${offer.liveSessions} optional live sessions`,
-  `${offer.foundingPrice} founding`,
-  "Uncertain Systems",
+  `${offer.weeks} weeks`,
+  "Personal Grok Bot tutor",
+  `${offer.liveSessions} live sessions`,
+  "Discord cohort",
+  `${offer.foundingPrice} founding (until 11 Nov)`,
 ];
 
 export function Hero() {

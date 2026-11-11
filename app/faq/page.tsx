@@ -44,15 +44,19 @@ export default function FaqPage() {
             },
             {
               q: "Is it live?",
-              a: `The site is open and you can join the waitlist. The first cohort starts in ${offer.cohortStart}. An exact calendar date is not set yet.`,
+              a: `The site is open and you can join the waitlist. The first cohort starts ${offer.cohortStart}.`,
             },
             {
-              q: "What does self-paced with optional live sessions mean?",
-              a: `You work through the course whenever suits you, over ${offer.weeks} weeks. The ${offer.liveSessions} live sessions (a kickoff and seven more) are optional.`,
+              q: "How does the tutor work?",
+              a: `Every student gets a personal, dedicated Grok Bot tutor, available 24/7 for the ${offer.weeks} weeks. It is included in the price; you do not need your own account. The cohort runs on Discord, where you talk directly to your tutor and to the rest of the cohort.`,
             },
             {
-              q: "Who are the tutors?",
-              a: "A human expert in the field runs the live sessions. We have not announced names yet.",
+              q: "Who runs the live sessions?",
+              a: `${offer.headTutor} is the human head tutor. The ${offer.liveSessions} live sessions are with the head tutor and the tutor bot together.`,
+            },
+            {
+              q: "What is Uncertain Systems?",
+              a: "Uncertain Systems is the knowledge verification backbone. It verifies what each student actually learned.",
             },
             {
               q: "How many people are in a cohort?",
@@ -60,11 +64,11 @@ export default function FaqPage() {
             },
             {
               q: "When does it start?",
-              a: `The first cohort starts in ${offer.cohortStart} and runs into ${offer.cohortEnd}, ${offer.holidayNote}.`,
+              a: `The first cohort starts ${offer.cohortStart} and runs into ${offer.cohortEnd}, ${offer.holidayNote}.`,
             },
             {
               q: "What does it cost?",
-              a: `${offer.foundingPrice} per course for the first cohort (founding price). ${offer.laterPrice} per course for later cohorts. Prices are in USD. Two tracks together are 10% off (${offer.twoTrackFounding} in the first cohort, ${offer.twoTrackLater} later) and all three are 15% off (${offer.threeTrackFounding} and ${offer.threeTrackLater}). Nothing is paid on this site.`,
+              a: `${offer.foundingPrice} per course (founding price, until 11 Nov 2026), then ${offer.laterPrice} per course. Prices are in USD. Two tracks together are 10% off (${offer.twoTrackFounding} founding, ${offer.twoTrackLater} later) and all three are 15% off (${offer.threeTrackFounding} and ${offer.threeTrackLater}). Nothing is paid on this site.`,
             },
             {
               q: "Where do the proceeds go?",

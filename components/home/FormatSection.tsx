@@ -1,35 +1,61 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Container } from "@/components/Container";
 import { Lamp } from "@/components/Lamp";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
-import { offer, priceLine } from "@/content/site";
+import { offer } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { isFoundingPriceActive, foundingPriceEndsLabel } from "@/lib/pricing";
 
-const cells = [
-  {
-    label: "Self-paced",
-    value: `${offer.weeks} weeks`,
-    detail: "Work whenever suits you.",
-  },
-  {
-    label: "Live sessions",
-    value: `${offer.liveSessions}, optional`,
-    detail: "With a human expert in the field. Come to some, all or none.",
-  },
-  {
-    label: "Seats",
-    value: `${offer.seats} per course`,
-    detail: `The first cohort starts in ${offer.cohortStart}.`,
-  },
-  {
-    label: "Price",
-    value: priceLine,
-    detail: "USD, per course. The founding price is the first cohort. Two tracks are 10% off, three are 15% off. Nothing to pay on this site.",
-    long: true,
-  },
-];
+function usePricing() {
+  const [isFoundingPrice, setIsFoundingPrice] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setIsFoundingPrice(isFoundingPriceActive());
+  }, []);
+
+  return { isFoundingPrice, mounted };
+}
 
 export function FormatSection() {
+  const { isFoundingPrice, mounted } = usePricing();
+
+  const priceValue = isFoundingPrice
+    ? `${offer.foundingPrice} founding, ${offer.laterPrice} later`
+    : offer.laterPrice;
+
+  const priceDetail = isFoundingPrice
+    ? `USD, per course. Founding price until ${foundingPriceEndsLabel()}. Two tracks are 10% off, three are 15% off. Nothing to pay on this site.`
+    : "USD, per course. Two tracks are 10% off, three are 15% off. Nothing to pay on this site.";
+
+  const cells = [
+    {
+      label: "Personal tutor",
+      value: "Grok Bot, 24/7",
+      detail: "Every student gets a dedicated Grok Bot tutor for the 4 weeks. Included in the price, no separate account needed.",
+    },
+    {
+      label: "Live sessions",
+      value: `${offer.liveSessions} sessions`,
+      detail: `With the human head tutor (${offer.headTutor}) and the tutor bot together.`,
+    },
+    {
+      label: "Cohort",
+      value: "Discord",
+      detail: "You talk directly to your tutor and to the rest of the cohort.",
+    },
+    {
+      label: "Price",
+      value: mounted ? priceValue : `${offer.foundingPrice} founding, ${offer.laterPrice} later`,
+      detail: mounted ? priceDetail : `USD, per course. Founding price until ${foundingPriceEndsLabel()}. Two tracks are 10% off, three are 15% off. Nothing to pay on this site.`,
+      long: true,
+    },
+  ];
+
   return (
     <Container as="section" className="border-t border-line py-20 lg:py-28">
       <Reveal>
@@ -57,6 +83,22 @@ export function FormatSection() {
             </li>
           ))}
         </ul>
+      </Reveal>
+      <Reveal delayMs={100}>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="border border-line p-4">
+            <p className="ak-label text-ink">Seats</p>
+            <p className="mt-2 text-sm text-muted">{offer.seats} per course</p>
+          </div>
+          <div className="border border-line p-4">
+            <p className="ak-label text-ink">First cohort</p>
+            <p className="mt-2 text-sm text-muted">Starts {offer.cohortStart}, ends {offer.cohortEnd}, {offer.holidayNote}.</p>
+          </div>
+          <div className="border border-line p-4">
+            <p className="ak-label text-ink">Verification</p>
+            <p className="mt-2 text-sm text-muted">Uncertain Systems verifies what each student actually learned.</p>
+          </div>
+        </div>
       </Reveal>
     </Container>
   );
