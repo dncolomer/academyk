@@ -11,7 +11,7 @@ import { offer, priceLine } from "@/content/site";
 import { tracks } from "@/content/tracks";
 
 const title = "Tracks";
-const description = `Quantum computing, AI / SI, and thermodynamic computing. ${offer.weeks} weeks, self-paced. Founding price ${offer.foundingPrice} per course.`;
+const description = `Quantum computing, AI / SI, and thermodynamic computing. ${offer.weeks} weeks, personal Grok Bot tutor, Discord cohort. Founding price ${offer.foundingPrice} per course (until 11 Nov 2026).`;
 
 export const metadata = pageMetadata({
   title,
@@ -37,7 +37,7 @@ export default function TracksPage() {
             index="02"
             label="Tracks"
             title="Three tracks"
-            lede="Quantum computing, AI / SI, and thermodynamic computing. Each course is four weeks and self-paced."
+            lede="Quantum computing, AI / SI, and thermodynamic computing. Each course is four weeks with a personal Grok Bot tutor."
           />
         </Reveal>
       </Container>

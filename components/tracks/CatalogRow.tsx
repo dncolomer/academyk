@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { PriceLine } from "@/components/PriceDisplay";
 import { TrackGlyph } from "@/components/TrackGlyph";
-import { priceLine } from "@/content/site";
 import type { Track } from "@/content/types";
 
 export function CatalogRow({ track }: { track: Track }) {
@@ -32,7 +32,7 @@ export function CatalogRow({ track }: { track: Track }) {
         <span aria-hidden="true">/</span>
         <span className="break-words">{track.timeCommitment.weekly}</span>
         <span aria-hidden="true">/</span>
-        <span className="break-words">{priceLine}</span>
+        <span className="break-words"><PriceLine /></span>
       </p>
 
       <ul className="mt-4 flex flex-wrap gap-2">

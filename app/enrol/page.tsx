@@ -8,7 +8,7 @@ import { pageMetadata } from "@/components/pages/metadata";
 import { offer, priceLine } from "@/content/site";
 import { tracks } from "@/content/tracks";
 
-const description = `How Academy K enrolment works. Join the waitlist for free. A payment link arrives by email in November. ${priceLine} per course, USD. The first cohort starts in ${offer.cohortStart}.`;
+const description = `How Academy K enrolment works. Join the waitlist for free. A payment link arrives by email in November. ${priceLine} per course, USD. First cohort starts ${offer.cohortStart}.`;
 
 export const metadata = pageMetadata({
   title: "How enrolment works",
@@ -25,12 +25,12 @@ const steps = [
   {
     index: "02",
     title: "Confirm your seat in November",
-    body: `In November you get an email with a payment link. The first cohort is ${offer.foundingPrice} per course (founding price). Later cohorts are ${offer.laterPrice} per course. Prices are in USD. The payment link covers the tracks you chose on the waitlist form. Seats are confirmed in the order payments come in. Nothing is paid on this site.`,
+    body: `In November you get an email with a payment link. Founding price is ${offer.foundingPrice} per course (until 11 Nov 2026), then ${offer.laterPrice} per course. Prices are in USD. The payment link covers the tracks you chose on the waitlist form. Seats are confirmed in the order payments come in. Nothing is paid on this site.`,
   },
   {
     index: "03",
     title: "Start in December",
-    body: `A ${offer.weeks}-week self-paced course starts in ${offer.cohortStart} and runs into ${offer.cohortEnd}, ${offer.holidayNote}. There are ${offer.liveSessions} optional live sessions with a human expert in the field: a kickoff and seven more.`,
+    body: `The ${offer.weeks}-week course starts ${offer.cohortStart} and runs into ${offer.cohortEnd}, ${offer.holidayNote}. You get a personal Grok Bot tutor available 24/7, and the cohort runs on Discord where you talk to your tutor and to other students. There are ${offer.liveSessions} live sessions with the human head tutor (${offer.headTutor}) and the tutor bot.`,
   },
 ];
 
@@ -60,16 +60,16 @@ export default function EnrolPage() {
       <SectionBlock index="01" label="Price" title="Founding price">
         <div className="grid gap-px border border-line bg-line sm:grid-cols-2">
           <div className="min-w-0 bg-bg p-5 sm:p-6">
-            <p className="ak-label">First cohort</p>
+            <p className="ak-label">Until 11 Nov 2026</p>
             <p className="ak-serif mt-4 text-4xl leading-none text-ink sm:text-5xl">{offer.foundingPrice}</p>
             <p className="mt-3 text-sm leading-relaxed text-muted">
               Founding price, per course, USD. Limited to {offer.seats} people per course.
             </p>
           </div>
           <div className="min-w-0 bg-bg p-5 sm:p-6">
-            <p className="ak-label">Later cohorts</p>
+            <p className="ak-label">After 11 Nov 2026</p>
             <p className="ak-serif mt-4 text-4xl leading-none text-ink sm:text-5xl">{offer.laterPrice}</p>
-            <p className="mt-3 text-sm leading-relaxed text-muted">Per course, USD, after the first cohort.</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted">Per course, USD.</p>
           </div>
         </div>
         <div className="mt-6 overflow-x-auto">
@@ -78,8 +78,8 @@ export default function EnrolPage() {
             <thead>
               <tr className="border-b border-line">
                 <th className="ak-label px-4 py-3 font-normal">Tracks</th>
-                <th className="ak-label px-4 py-3 font-normal">First cohort</th>
-                <th className="ak-label px-4 py-3 font-normal">Later cohorts</th>
+                <th className="ak-label px-4 py-3 font-normal">Until 11 Nov</th>
+                <th className="ak-label px-4 py-3 font-normal">After 11 Nov</th>
               </tr>
             </thead>
             <tbody className="text-ink">

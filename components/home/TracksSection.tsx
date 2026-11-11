@@ -13,7 +13,7 @@ export function TracksSection() {
           index="01"
           label="Tracks"
           title="Three tracks"
-          lede="Quantum computing, AI / SI and thermodynamic computing. Four weeks each, self-paced."
+          lede="Quantum computing, AI / SI and thermodynamic computing. Four weeks each, with a personal Grok Bot tutor."
         />
       </Reveal>
       <ul className="mt-12 grid gap-4">

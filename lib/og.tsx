@@ -29,9 +29,10 @@ async function fonts() {
 
 /** Offer chips used on cards where the offer is relevant. */
 export const offerChips = [
-  `${offer.weeks} weeks, self-paced`,
-  `${offer.liveSessions} optional live sessions`,
-  `${offer.cohortStart} cohort, ${offer.seats} seats`,
+  `${offer.weeks} weeks`,
+  "Personal Grok Bot tutor",
+  `${offer.liveSessions} live sessions`,
+  `${offer.seats} seats per course`,
 ];
 
 type OgCardProps = {
