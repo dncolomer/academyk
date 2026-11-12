@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
 import { MobileNav } from "@/components/MobileNav";
 import { Sidebar } from "@/components/Sidebar";
+import { UtmCapture } from "@/components/UtmCapture";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="font-sans antialiased">
+        <UtmCapture />
         <div className="ak-grid-bg pointer-events-none fixed inset-0 z-0" aria-hidden />
         <Sidebar />
         <MobileNav />
