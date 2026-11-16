@@ -59,7 +59,7 @@ export function TrackDetail({ track }: { track: Track }) {
                 <Fact label="Duration">{track.timeCommitment.duration}</Fact>
                 <Fact label="Tutor">Personal Grok Bot, 24/7</Fact>
                 <Fact label="Modules">{moduleCount}</Fact>
-                <Fact label="Live sessions">{offer.liveSessions} with head tutor</Fact>
+                <Fact label="Live call">{offer.liveCall}</Fact>
                 <Fact label="Price"><PriceLine /></Fact>
                 <Fact label="Seats">Limited to {offer.seats}</Fact>
               </dl>
