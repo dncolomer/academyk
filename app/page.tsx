@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ClosingCta } from "@/components/home/ClosingCta";
+import { CohortSection } from "@/components/home/CohortSection";
 import { FormatSection } from "@/components/home/FormatSection";
 import { Hero } from "@/components/home/Hero";
 import { KardashevSection } from "@/components/home/KardashevSection";
@@ -34,6 +35,7 @@ export default function HomePage() {
     <div className="overflow-x-clip">
       <Hero />
       <TracksSection />
+      <CohortSection />
       <KardashevSection />
       <FormatSection />
       <ClosingCta />
