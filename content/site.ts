@@ -2,7 +2,7 @@ export const site = {
   name: "Academy K",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://academy-k.com",
   description:
-    "Three 4-week tracks: Quantum Computing, AI / SI, Thermodynamic Computing. Personal Grok Bot tutor, cohort on Discord, 8 live sessions with the head tutor. 25 seats per course.",
+    "Three 4-week tracks: Quantum Computing, AI / SI, Thermodynamic Computing. Personal Grok Bot tutor, cohort on Discord, one live call a week with the head tutor. 25 seats per course.",
   contact: "daniel@uncertain.systems",
   observatoryUrl: "https://observatoryk.vercel.app",
   platformUrl: "https://uncertain.systems",
@@ -19,7 +19,7 @@ export const mailtoHref = (subject = "Academy K waitlist") =>
 /** Commercial facts for the first cohort. Edit here and every page follows. */
 export const offer = {
   weeks: 4,
-  liveSessions: 8,
+  liveCall: "One live call a week",
   seats: 25,
   foundingPrice: "$24.99",
   laterPrice: "$49.99",

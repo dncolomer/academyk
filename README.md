@@ -23,7 +23,7 @@ Exactly three:
 | `/tracks/quantum-computing` | Track page |
 | `/tracks/ai-si` | Track page |
 | `/tracks/thermodynamic-computing` | Track page |
-| `/method` | Short page: length, live sessions, seats, start |
+| `/method` | Short page: length, live call, seats, start |
 | `/enrol` | How enrolment works: waitlist, November payment link, December cohort |
 | `/about` | About, links to Observatory-K and the platform |
 | `/faq` | General FAQ |
@@ -48,7 +48,7 @@ All course content is typed data in [`content/`](content):
 
 - `content/tracks.ts`: the three tracks (hook, audience, prerequisites, time, format, modules, outcomes, FAQ).
 - `content/types.ts`: the `Track` and `Module` types. Each module has a `week` (1 to 4), a `title`, a one-line `summary` and a `proof` (the proof-of-work deliverable).
-- `content/site.ts`: site name, URL, contact address, outbound links, and `offer` (weeks, live sessions, seats, founding and later prices, two- and three-track bundle prices, cohort window). Pages read commercial facts from `offer`.
+- `content/site.ts`: site name, URL, contact address, outbound links, and `offer` (weeks, live call, seats, founding and later prices, two- and three-track bundle prices, cohort window). Pages read commercial facts from `offer`.
 
 Edit a module or add one to the `modules` array and every page, the catalog table and the module counts update. The current tracks have eight modules each, two per week. Pages never hard-code course text.
 
@@ -58,7 +58,7 @@ There is no payment and no Stripe on this site. `/enrol` explains the flow:
 
 1. Join `/waitlist` (free, no commitment). A track slug in the query string preselects the course.
 2. Around November, about four weeks before the December start, everyone on the waitlist gets an email with a payment link. That link is not generated here.
-3. First cohort: $24.99 per course (founding price), limited to 25 people per course, self-paced over four weeks from December into the first week of January, with a holiday break, plus eight optional live sessions. Later cohorts are $49.99 per course. Seats are confirmed in the order payments come in.
+3. First cohort: $24.99 per course (founding price), limited to 25 people per course, self-paced over four weeks from December into the first week of January, with a holiday break, plus one live call a week with the head tutor. Later cohorts are $49.99 per course. Seats are confirmed in the order payments come in.
 
 Those figures live in `content/site.ts` as `offer`. Change them there.
 

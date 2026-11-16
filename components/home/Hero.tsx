@@ -12,7 +12,7 @@ const tickerItems = [
   ...tracks.map((track) => `Track ${track.index} ${track.title}`),
   `${offer.weeks} weeks`,
   "Personal Grok Bot tutor",
-  `${offer.liveSessions} live sessions`,
+  offer.liveCall,
   "Discord cohort",
   `${offer.foundingPrice} founding (until 11 Nov)`,
 ];

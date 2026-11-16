@@ -1,7 +1,7 @@
 import { getTrack, tracks } from "@/content/tracks";
 import { offerChips, ogContentType, ogImage, ogSize } from "@/lib/og";
 
-export const alt = "Academy K course page: four weeks, personal Grok Bot tutor, Discord cohort, 8 live sessions";
+export const alt = "Academy K course page: four weeks, personal Grok Bot tutor, Discord cohort, one live call a week";
 export const size = ogSize;
 export const contentType = ogContentType;
 

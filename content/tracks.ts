@@ -3,7 +3,7 @@ import type { Track } from "./types";
 const sharedFormat = () => [
   { label: "Personal tutor", detail: "Every student gets a dedicated Grok Bot tutor, available 24/7 for the 4 weeks. Included in the price, no separate account needed." },
   { label: "Discord cohort", detail: "The cohort runs on Discord. You talk directly to your tutor and to the rest of the cohort." },
-  { label: "8 live sessions", detail: "With the human head tutor (Daniel Colomer) and the tutor bot together." },
+  { label: "One live call a week", detail: "With the head tutor (Daniel Colomer), the tutor and the whole group." },
   { label: "Knowledge verification", detail: "Uncertain Systems verifies what each student actually learned." },
   { label: "25 seats", detail: "Limited to 25 people per course." },
 ];

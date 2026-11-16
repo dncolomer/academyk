@@ -6,7 +6,7 @@ import { SectionBlock } from "@/components/pages/SectionBlock";
 import { pageMetadata } from "@/components/pages/metadata";
 import { offer } from "@/content/site";
 
-const description = `Each course is ${offer.weeks} weeks with a personal Grok Bot tutor, ${offer.liveSessions} live sessions with the head tutor, and a cohort on Discord. ${offer.seats} seats per course. First cohort starts ${offer.cohortStart}.`;
+const description = `Each course is ${offer.weeks} weeks with a personal Grok Bot tutor, one live call a week with the head tutor, and a cohort on Discord. ${offer.seats} seats per course. First cohort starts ${offer.cohortStart}.`;
 
 export const metadata = pageMetadata({
   title: "How it works",
@@ -22,9 +22,9 @@ const facts = [
     detail: "Every student gets a dedicated Grok Bot tutor for the 4 weeks. Included in the price, no separate account needed.",
   },
   {
-    label: "Live sessions",
-    value: `${offer.liveSessions} sessions`,
-    detail: `With the human head tutor (${offer.headTutor}) and the tutor bot together.`,
+    label: "Live call",
+    value: offer.liveCall,
+    detail: `With the head tutor (${offer.headTutor}), the tutor and the whole group.`,
   },
   { label: "Cohort", value: "Discord", detail: "You talk directly to your tutor and to the rest of the cohort." },
   { label: "Seats", value: `${offer.seats} per course`, detail: "In the first cohort." },
@@ -43,7 +43,7 @@ export default function MethodPage() {
         index="03"
         label="Method"
         title="How it works"
-        lede={`${offer.weeks} weeks, personal Grok Bot tutor, Discord cohort, ${offer.liveSessions} live sessions.`}
+        lede={`${offer.weeks} weeks, personal Grok Bot tutor, Discord cohort, one live call a week.`}
       >
         <ul className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {facts.map((fact) => (

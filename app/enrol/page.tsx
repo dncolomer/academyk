@@ -30,7 +30,7 @@ const steps = [
   {
     index: "03",
     title: "Start in December",
-    body: `The ${offer.weeks}-week course starts ${offer.cohortStart} and runs into ${offer.cohortEnd}, ${offer.holidayNote}. You get a personal Grok Bot tutor available 24/7, and the cohort runs on Discord where you talk to your tutor and to other students. There are ${offer.liveSessions} live sessions with the human head tutor (${offer.headTutor}) and the tutor bot.`,
+    body: `The ${offer.weeks}-week course starts ${offer.cohortStart} and runs into ${offer.cohortEnd}, ${offer.holidayNote}. You get a personal Grok Bot tutor available 24/7, and the cohort runs on Discord where you talk to your tutor and to other students. There is one live call a week with the head tutor (${offer.headTutor}), the tutor and the whole group.`,
   },
 ];
 

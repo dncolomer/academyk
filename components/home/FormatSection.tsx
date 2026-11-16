@@ -39,9 +39,9 @@ export function FormatSection() {
       detail: "Every student gets a dedicated Grok Bot tutor for the 4 weeks. Included in the price, no separate account needed.",
     },
     {
-      label: "Live sessions",
-      value: `${offer.liveSessions} sessions`,
-      detail: `With the human head tutor (${offer.headTutor}) and the tutor bot together.`,
+      label: "Live call",
+      value: offer.liveCall,
+      detail: `With the head tutor (${offer.headTutor}), the tutor and the whole group.`,
     },
     {
       label: "Cohort",

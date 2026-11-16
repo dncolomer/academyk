@@ -31,7 +31,7 @@ async function fonts() {
 export const offerChips = [
   `${offer.weeks} weeks`,
   "Personal Grok Bot tutor",
-  `${offer.liveSessions} live sessions`,
+  offer.liveCall,
   `${offer.seats} seats per course`,
 ];
 

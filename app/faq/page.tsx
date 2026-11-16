@@ -51,8 +51,8 @@ export default function FaqPage() {
               a: `Every student gets a personal, dedicated Grok Bot tutor, available 24/7 for the ${offer.weeks} weeks. It is included in the price; you do not need your own account. The cohort runs on Discord, where you talk directly to your tutor and to the rest of the cohort.`,
             },
             {
-              q: "Who runs the live sessions?",
-              a: `${offer.headTutor} is the human head tutor. The ${offer.liveSessions} live sessions are with the head tutor and the tutor bot together.`,
+              q: "Who runs the live call?",
+              a: `There is one live call a week with the head tutor (${offer.headTutor}), the tutor and the whole group.`,
             },
             {
               q: "What is Uncertain Systems?",
