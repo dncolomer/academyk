@@ -167,6 +167,20 @@ export function TrackDetail({ track }: { track: Track }) {
           </Reveal>
 
           <Reveal>
+            <section id="problems" className="mt-20 scroll-mt-24 sm:mt-24">
+              <SectionHeader index="08" label="Practice" title="Practice problems" />
+              <p className="mt-4 max-w-[36rem] text-sm leading-relaxed text-muted">
+                50 problems for this track, grounded in real interview questions. Test your understanding before and after the course.
+              </p>
+              <div className="mt-6">
+                <LinkButton href={`/problems/${track.slug}`}>
+                  View {track.short} problems
+                </LinkButton>
+              </div>
+            </section>
+          </Reveal>
+
+          <Reveal>
             <section className="mt-20 border border-line p-6 sm:mt-24 sm:p-10" aria-labelledby="enrol-heading">
               <p className="ak-label">
                 {track.index} / {track.short}
