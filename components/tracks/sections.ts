@@ -6,6 +6,7 @@ export const trackToc = [
   { id: "format", index: "05", label: "Format" },
   { id: "outcomes", index: "06", label: "Outcomes" },
   { id: "faq", index: "07", label: "FAQ" },
+  { id: "problems", index: "08", label: "Practice" },
 ] as const;
 
 export type TrackSectionId = (typeof trackToc)[number]["id"];
