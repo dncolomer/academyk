@@ -2264,6 +2264,403 @@ Measurement collapses to any $n$-bit string with uniform probability $1/2^n$.
 
 Companies like ID Quantique and Quantinuum sell certified quantum random number generators.`,
   },
+  {
+    slug: "unitary-properties",
+    title: "Properties of Unitary Matrices",
+    difficulty: "warm-up",
+    type: "derivation",
+    topics: ["unitary", "linear algebra", "quantum gates"],
+    moduleRef: "Linear algebra and single qubits",
+    statement: `A unitary matrix $U$ satisfies $U^\\dagger U = I$.
+
+1. Show that unitary operations preserve the norm of vectors.
+2. Prove that the eigenvalues of a unitary matrix have modulus 1.
+3. Show that the product of two unitary matrices is unitary.`,
+    solution: `**1. Norm preservation:**
+
+For any vector $|\\psi\\rangle$:
+$$\\|U|\\psi\\rangle\\|^2 = \\langle\\psi|U^\\dagger U|\\psi\\rangle = \\langle\\psi|I|\\psi\\rangle = \\langle\\psi|\\psi\\rangle = \\|\\psi\\|^2$$
+
+The norm is preserved under unitary transformation. ✓
+
+**2. Eigenvalue modulus:**
+
+Let $U|\\lambda\\rangle = \\lambda|\\lambda\\rangle$ where $|\\lambda\\rangle$ is a normalized eigenvector.
+
+$$\\|U|\\lambda\\rangle\\| = |\\lambda| \\cdot \\||\\lambda\\rangle\\| = |\\lambda|$$
+
+But by norm preservation: $\\|U|\\lambda\\rangle\\| = \\||\\lambda\\rangle\\| = 1$.
+
+Therefore $|\\lambda| = 1$. All eigenvalues lie on the unit circle. ✓
+
+**3. Product of unitaries:**
+
+Let $U$ and $V$ be unitary. For $W = UV$:
+
+$$(UV)^\\dagger(UV) = V^\\dagger U^\\dagger U V = V^\\dagger I V = V^\\dagger V = I$$
+
+The product is unitary. ✓
+
+This is why quantum circuits (sequences of gates) preserve normalization.`,
+  },
+  {
+    slug: "commutator-uncertainty",
+    title: "Commutators and the Uncertainty Principle",
+    difficulty: "interview",
+    type: "derivation",
+    topics: ["commutators", "uncertainty", "observables"],
+    moduleRef: "Linear algebra and single qubits",
+    statement: `The commutator of two operators is $[A, B] = AB - BA$.
+
+1. Show that $[X, Z] = 2iY$ for Pauli matrices.
+2. If $[A, B] \\neq 0$, what does this imply about simultaneous eigenstates?
+3. State the Robertson uncertainty relation and explain its significance.`,
+    solution: `**1. Computing $[X, Z]$:**
+
+$$X = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}, \\quad Z = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$$
+
+$$XZ = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}, \\quad ZX = \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$$
+
+$$[X, Z] = XZ - ZX = \\begin{pmatrix} 0 & -2 \\\\ 2 & 0 \\end{pmatrix} = 2i\\begin{pmatrix} 0 & i \\\\ -i & 0 \\end{pmatrix} = 2iY$$ ✓
+
+**2. Non-commuting operators:**
+
+If $[A, B] \\neq 0$, there is no basis of simultaneous eigenstates of both $A$ and $B$.
+
+**Proof:** Suppose $|\\psi\\rangle$ is an eigenstate of both: $A|\\psi\\rangle = a|\\psi\\rangle$ and $B|\\psi\\rangle = b|\\psi\\rangle$.
+
+Then: $[A,B]|\\psi\\rangle = AB|\\psi\\rangle - BA|\\psi\\rangle = ab|\\psi\\rangle - ba|\\psi\\rangle = 0$
+
+If this holds for all states in a basis, then $[A,B] = 0$. Contradiction.
+
+**3. Robertson uncertainty relation:**
+
+$$\\Delta A \\cdot \\Delta B \\geq \\frac{1}{2}|\\langle[A,B]\\rangle|$$
+
+where $\\Delta A = \\sqrt{\\langle A^2\\rangle - \\langle A\\rangle^2}$ is the standard deviation.
+
+**Significance:** Non-commuting observables cannot both have definite values. The more precisely you know one, the less precisely you can know the other.
+
+For position and momentum: $[x, p] = i\\hbar \\implies \\Delta x \\cdot \\Delta p \\geq \\hbar/2$.`,
+  },
+  {
+    slug: "partial-trace",
+    title: "Partial Trace and Reduced Density Matrices",
+    difficulty: "interview",
+    type: "derivation",
+    topics: ["partial trace", "density matrix", "entanglement"],
+    moduleRef: "Noise and quantum error correction",
+    statement: `The partial trace over subsystem B of a bipartite state $\\rho_{AB}$ gives the reduced state of A:
+
+$$\\rho_A = \\text{Tr}_B(\\rho_{AB}) = \\sum_j (I_A \\otimes \\langle j|_B) \\rho_{AB} (I_A \\otimes |j\\rangle_B)$$
+
+1. Compute the partial trace of $|\\psi\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$ over B.
+2. What is the purity $\\text{Tr}(\\rho_A^2)$ of the reduced state?
+3. How does purity relate to entanglement?`,
+    solution: `**1. Partial trace computation:**
+
+$$|\\psi\\rangle\\langle\\psi| = \\frac{1}{2}(|00\\rangle + |11\\rangle)(\\langle 00| + \\langle 11|)$$
+$$= \\frac{1}{2}(|00\\rangle\\langle 00| + |00\\rangle\\langle 11| + |11\\rangle\\langle 00| + |11\\rangle\\langle 11|)$$
+
+Partial trace over B:
+$$\\rho_A = \\sum_{j=0,1} \\langle j|_B \\rho_{AB} |j\\rangle_B$$
+
+$$= \\langle 0|_B \\rho_{AB} |0\\rangle_B + \\langle 1|_B \\rho_{AB} |1\\rangle_B$$
+
+For $\\langle 0|_B$: picks out terms where B is in $|0\\rangle$:
+$$\\langle 0|_B: \\frac{1}{2}|0\\rangle_A\\langle 0|_A$$
+
+For $\\langle 1|_B$: picks out terms where B is in $|1\\rangle$:
+$$\\langle 1|_B: \\frac{1}{2}|1\\rangle_A\\langle 1|_A$$
+
+$$\\rho_A = \\frac{1}{2}(|0\\rangle\\langle 0| + |1\\rangle\\langle 1|) = \\frac{I}{2}$$
+
+**2. Purity:**
+
+$$\\text{Tr}(\\rho_A^2) = \\text{Tr}\\left(\\frac{I}{4}\\right) = \\frac{1}{2}$$
+
+**3. Purity and entanglement:**
+
+For a pure bipartite state $|\\psi\\rangle_{AB}$:
+- If separable: $\\rho_A$ is pure, $\\text{Tr}(\\rho_A^2) = 1$
+- If entangled: $\\rho_A$ is mixed, $\\text{Tr}(\\rho_A^2) < 1$
+- Maximally entangled: $\\rho_A = I/d$, $\\text{Tr}(\\rho_A^2) = 1/d$
+
+The Bell state has purity $1/2$ (minimum for 2D), indicating maximal entanglement.
+
+**Entanglement entropy:** $S(\\rho_A) = -\\text{Tr}(\\rho_A \\log \\rho_A) = 1$ bit for the Bell state.`,
+  },
+  {
+    slug: "quantum-channel-composition",
+    title: "Composing Quantum Channels",
+    difficulty: "interview",
+    type: "derivation",
+    topics: ["quantum channels", "Kraus operators", "composition"],
+    moduleRef: "Noise and quantum error correction",
+    statement: `Quantum channels are completely positive trace-preserving (CPTP) maps.
+
+If channel $\\mathcal{E}_1$ has Kraus operators $\\{E_i\\}$ and $\\mathcal{E}_2$ has $\\{F_j\\}$:
+
+1. What are the Kraus operators for the composed channel $\\mathcal{E}_2 \\circ \\mathcal{E}_1$?
+2. Show that CPTP maps are closed under composition.
+3. For two depolarizing channels with parameters $p_1$ and $p_2$, what is the effective parameter?`,
+    solution: `**1. Composed Kraus operators:**
+
+$$\\mathcal{E}_1(\\rho) = \\sum_i E_i \\rho E_i^\\dagger$$
+$$\\mathcal{E}_2(\\sigma) = \\sum_j F_j \\sigma F_j^\\dagger$$
+
+Composition:
+$$(\\mathcal{E}_2 \\circ \\mathcal{E}_1)(\\rho) = \\mathcal{E}_2\\left(\\sum_i E_i \\rho E_i^\\dagger\\right) = \\sum_{i,j} F_j E_i \\rho E_i^\\dagger F_j^\\dagger$$
+
+$$= \\sum_{i,j} (F_j E_i) \\rho (F_j E_i)^\\dagger$$
+
+**Kraus operators for composition:** $\\{K_{ij} = F_j E_i\\}_{i,j}$
+
+**2. CPTP closure:**
+
+**Complete positivity:** Each $K_{ij} = F_j E_i$ is an operator, so the map is CP.
+
+**Trace preservation:** 
+$$\\sum_{i,j} K_{ij}^\\dagger K_{ij} = \\sum_{i,j} E_i^\\dagger F_j^\\dagger F_j E_i = \\sum_i E_i^\\dagger \\left(\\sum_j F_j^\\dagger F_j\\right) E_i$$
+$$= \\sum_i E_i^\\dagger I E_i = \\sum_i E_i^\\dagger E_i = I$$ ✓
+
+**3. Composed depolarizing channels:**
+
+Depolarizing channel: $\\mathcal{E}_p(\\rho) = (1-p)\\rho + p\\frac{I}{2}$
+
+After two channels:
+$$\\mathcal{E}_{p_2}(\\mathcal{E}_{p_1}(\\rho)) = (1-p_2)\\left[(1-p_1)\\rho + p_1\\frac{I}{2}\\right] + p_2\\frac{I}{2}$$
+
+$$= (1-p_1)(1-p_2)\\rho + \\left[p_1(1-p_2) + p_2\\right]\\frac{I}{2}$$
+
+Effective parameter: $p_{\\text{eff}} = 1 - (1-p_1)(1-p_2) = p_1 + p_2 - p_1 p_2$
+
+For small $p_1, p_2$: $p_{\\text{eff}} \\approx p_1 + p_2$ (errors add).`,
+  },
+  {
+    slug: "bernstein-vazirani",
+    title: "Bernstein-Vazirani Algorithm",
+    difficulty: "interview",
+    type: "derivation",
+    topics: ["quantum algorithms", "oracles", "linear algebra"],
+    moduleRef: "Early algorithms",
+    statement: `The Bernstein-Vazirani algorithm finds a hidden string $s$ where $f(x) = s \\cdot x \\pmod 2$.
+
+1. How many queries does a classical algorithm need?
+2. Describe the quantum algorithm that uses only 1 query.
+3. Why does the algorithm output $s$ exactly?`,
+    solution: `**1. Classical query complexity:**
+
+To find $s = s_1 s_2 \\ldots s_n$, we need each bit $s_i$.
+
+Query $f(e_i)$ where $e_i = 00\\ldots1\\ldots0$ (1 in position $i$):
+$$f(e_i) = s \\cdot e_i = s_i$$
+
+Need $n$ queries to determine all $n$ bits. This is optimal classically.
+
+**2. Quantum algorithm:**
+
+**Circuit:**
+1. Prepare $|0\\rangle^{\\otimes n}|1\\rangle$
+2. Apply $H^{\\otimes n}$ to first register and $H$ to ancilla
+3. Apply oracle $U_f$
+4. Apply $H^{\\otimes n}$ to first register
+5. Measure first register
+
+**State evolution:**
+
+After step 2:
+$$\\frac{1}{\\sqrt{2^n}}\\sum_x |x\\rangle \\otimes \\frac{|0\\rangle - |1\\rangle}{\\sqrt{2}} = \\frac{1}{\\sqrt{2^n}}\\sum_x |x\\rangle|-\\rangle$$
+
+After oracle (phase kickback):
+$$\\frac{1}{\\sqrt{2^n}}\\sum_x (-1)^{f(x)}|x\\rangle|-\\rangle = \\frac{1}{\\sqrt{2^n}}\\sum_x (-1)^{s \\cdot x}|x\\rangle|-\\rangle$$
+
+After final Hadamards (using $H^{\\otimes n}|x\\rangle = \\frac{1}{\\sqrt{2^n}}\\sum_y (-1)^{x \\cdot y}|y\\rangle$):
+$$\\frac{1}{2^n}\\sum_x \\sum_y (-1)^{s \\cdot x + x \\cdot y}|y\\rangle = \\frac{1}{2^n}\\sum_y \\left(\\sum_x (-1)^{x \\cdot (s \\oplus y)}\\right)|y\\rangle$$
+
+**3. Why output is $s$:**
+
+The sum $\\sum_x (-1)^{x \\cdot z}$ equals:
+- $2^n$ if $z = 0$ (all terms are $+1$)
+- $0$ if $z \\neq 0$ (half $+1$, half $-1$)
+
+So the coefficient of $|y\\rangle$ is $2^n$ only when $s \\oplus y = 0$, i.e., $y = s$.
+
+**Final state:** $|s\\rangle$
+
+Measurement gives $s$ with probability 1. Single query! ✓`,
+  },
+  {
+    slug: "amplitude-estimation",
+    title: "Quantum Amplitude Estimation",
+    difficulty: "hard",
+    type: "conceptual",
+    topics: ["amplitude estimation", "phase estimation", "speedup"],
+    moduleRef: "Search and amplitude amplification",
+    statement: `Amplitude estimation determines the amplitude $a = \\sin^2(\\theta)$ of a marked state using phase estimation.
+
+1. How is Grover's iteration $G$ used as the unitary for phase estimation?
+2. What is the relationship between $\\theta$ and the success amplitude?
+3. What is the quantum speedup for estimating $a$ to precision $\\epsilon$?`,
+    solution: `**1. Grover iteration for phase estimation:**
+
+Grover's operator $G = (2|s\\rangle\\langle s| - I)O$ where $O$ is the oracle.
+
+The two-dimensional subspace spanned by $|s\\rangle$ and $|w\\rangle$ (marked states) has eigenstates:
+$$|\\theta_+\\rangle, |\\theta_-\\rangle$$ with eigenvalues $e^{\\pm 2i\\theta}$
+
+where $\\sin\\theta = \\sqrt{a}$ ($a$ = fraction of marked states).
+
+**Phase estimation on $G$:**
+- Prepare $|s\\rangle$ (which is a superposition of eigenstates)
+- Run phase estimation
+- Extract $\\theta$ from the measured phase
+
+**2. Relationship:**
+
+The success amplitude after $k$ Grover iterations is:
+$$|\\langle w|G^k|s\\rangle|^2 = \\sin^2((2k+1)\\theta)$$
+
+The eigenvalue angle $2\\theta$ encodes $a$:
+$$a = \\sin^2(\\theta)$$
+
+Phase estimation gives $\\theta$ (or $2\\theta$) to precision $\\delta$, from which we compute $a$.
+
+**3. Quantum speedup:**
+
+**Classical:** To estimate $a$ to additive error $\\epsilon$, need $O(1/\\epsilon^2)$ samples (by Chernoff bound).
+
+**Quantum amplitude estimation:**
+- Phase estimation with $m$ qubits gives $\\theta$ to precision $O(1/2^m)$
+- Need $O(2^m)$ applications of $G$
+- For $a \\pm \\epsilon$ precision: need $\\theta$ to $O(\\epsilon)$ precision
+- Requires $O(1/\\epsilon)$ applications of $G$
+
+**Speedup:** Quadratic improvement from $O(1/\\epsilon^2)$ to $O(1/\\epsilon)$.
+
+This is the foundation for quantum speedups in Monte Carlo methods, integration, and machine learning tasks involving probability estimation.`,
+  },
+  {
+    slug: "quantum-walk",
+    title: "Quantum Walk on a Graph",
+    difficulty: "hard",
+    type: "conceptual",
+    topics: ["quantum walk", "graph algorithms", "speedup"],
+    moduleRef: "Search and amplitude amplification",
+    statement: `A discrete-time quantum walk on a graph uses a coin operator and shift operator.
+
+1. Define the coin and shift operators for a walk on a line.
+2. How does quantum walk spreading differ from classical random walk?
+3. What algorithmic speedups can quantum walks provide?`,
+    solution: `**1. Operators for walk on a line:**
+
+**Hilbert space:** $\\mathcal{H} = \\mathcal{H}_{\\text{position}} \\otimes \\mathcal{H}_{\\text{coin}}$
+
+Position states: $|x\\rangle$ for $x \\in \\mathbb{Z}$
+Coin states: $|L\\rangle, |R\\rangle$ (left/right)
+
+**Coin operator (Hadamard):**
+$$C = H = \\frac{1}{\\sqrt{2}}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$$
+
+Applied to coin space only.
+
+**Shift operator:**
+$$S = \\sum_x |x-1\\rangle\\langle x| \\otimes |L\\rangle\\langle L| + |x+1\\rangle\\langle x| \\otimes |R\\rangle\\langle R|$$
+
+Move left if coin is $|L\\rangle$, right if $|R\\rangle$.
+
+**One step:** $U = S \\cdot (I \\otimes C)$
+
+**2. Spreading behavior:**
+
+**Classical random walk:**
+- Position after $t$ steps: mean 0, standard deviation $\\sigma \\sim \\sqrt{t}$
+- Diffusive spreading
+
+**Quantum walk:**
+- Position spread: $\\sigma \\sim t$ (ballistic)
+- Interference creates asymmetric probability distribution
+- Peaks at edges, not center
+- Quadratically faster spreading!
+
+**Key difference:** Quantum interference between paths. Classical walk has only positive probabilities; quantum has complex amplitudes that interfere.
+
+**3. Algorithmic speedups:**
+
+**Element distinctness:** Given list of $n$ elements, are any two equal?
+- Classical: $O(n)$
+- Quantum walk: $O(n^{2/3})$
+
+**Graph connectivity/property testing:** Quantum walks can traverse graphs faster.
+
+**Spatial search:** Finding marked vertex in graph.
+- Complete graph: Grover-like $O(\\sqrt{n})$
+- 2D grid: $O(\\sqrt{n \\log n})$ vs classical $O(n)$
+
+**NAND tree evaluation:** $O(\\sqrt{n})$ vs classical $O(n)$ for certain read-once formulas.
+
+**General principle:** Quantum walks provide polynomial speedups for many graph problems, though not exponential speedups for general search.`,
+  },
+  {
+    slug: "steane-code",
+    title: "The Steane Code [[7,1,3]]",
+    difficulty: "hard",
+    type: "derivation",
+    topics: ["Steane code", "CSS codes", "fault tolerance"],
+    moduleRef: "Noise and quantum error correction",
+    statement: `The Steane code is a [[7,1,3]] CSS code based on the classical Hamming code.
+
+1. What are the stabilizer generators of the Steane code?
+2. How does it correct arbitrary single-qubit errors?
+3. Why is it called a CSS code?`,
+    solution: `**1. Stabilizer generators:**
+
+The Steane code has 6 stabilizer generators (7 - 1 = 6):
+
+**X-type (from Hamming parity checks):**
+$$g_1^X = X_1X_3X_5X_7$$
+$$g_2^X = X_2X_3X_6X_7$$
+$$g_3^X = X_4X_5X_6X_7$$
+
+**Z-type (same pattern):**
+$$g_1^Z = Z_1Z_3Z_5Z_7$$
+$$g_2^Z = Z_2Z_3Z_6Z_7$$
+$$g_3^Z = Z_4Z_5Z_6Z_7$$
+
+**Logical operators:**
+$$\\bar{X} = X_1X_2X_3X_4X_5X_6X_7$$
+$$\\bar{Z} = Z_1Z_2Z_3Z_4Z_5Z_6Z_7$$
+
+**2. Error correction:**
+
+**X error on qubit $i$:** Anticommutes with Z stabilizers.
+Syndrome from $g_j^Z$ measurements identifies position (Hamming decoding).
+
+**Z error on qubit $i$:** Anticommutes with X stabilizers.
+Syndrome from $g_j^X$ measurements identifies position.
+
+**Y error = XZ:** Both syndromes are nontrivial; same position identified.
+
+**Distance 3:** Can detect up to 2 errors, correct 1 error of any type.
+
+**3. CSS structure:**
+
+**CSS = Calderbank-Shor-Steane codes.**
+
+A CSS code is built from two classical codes $C_1 \\supseteq C_2^\\perp$:
+- X stabilizers from $C_1^\\perp$
+- Z stabilizers from $C_2^\\perp$
+
+For Steane code: $C_1 = C_2 = $ Hamming [7,4,3] code.
+
+**Why this structure matters:**
+- X and Z errors can be decoded independently
+- Transversal CNOT between two Steane-encoded qubits
+- Transversal Hadamard (swaps X and Z stabilizers)
+- Part of the Clifford group is transversal
+
+**Limitation:** Transversal T gate is not possible (Eastin-Knill theorem). Magic state distillation needed for universality.`,
+  },
 ];
 
 export default quantumComputingProblems;
