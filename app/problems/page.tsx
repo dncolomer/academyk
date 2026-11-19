@@ -32,7 +32,7 @@ export default function ProblemsHubPage() {
         </Reveal>
 
         <Reveal>
-          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {tracks.map((track) => {
               const trackProblems = allProblems.find((tp) => tp.trackSlug === track.slug);
               const count = trackProblems?.problems.length ?? 0;
@@ -45,10 +45,10 @@ export default function ProblemsHubPage() {
               );
 
               return (
-                <li key={track.slug}>
+                <li key={track.slug} className="flex">
                   <Link
                     href={`/problems/${track.slug}`}
-                    className="ak-card group flex flex-col p-6"
+                    className="ak-card group flex h-full w-full flex-col p-6"
                   >
                     <div className="flex items-start justify-between">
                       <TrackGlyph
@@ -58,29 +58,31 @@ export default function ProblemsHubPage() {
                       />
                       <span className="ak-label">{track.index}</span>
                     </div>
-                    <h2 className="ak-serif mt-6 text-2xl leading-tight text-ink">
+                    <h2 className="ak-serif mt-6 min-h-[3.5rem] text-2xl leading-tight text-ink sm:min-h-[4rem]">
                       {track.title}
                     </h2>
                     <p className="mt-2 text-sm text-muted">{count} problems</p>
-                    {difficulties && (
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {difficulties["warm-up"] && (
-                          <span className="ak-difficulty-tag" data-difficulty="warm-up">
-                            {difficulties["warm-up"]} warm-up
-                          </span>
-                        )}
-                        {difficulties["interview"] && (
-                          <span className="ak-difficulty-tag" data-difficulty="interview">
-                            {difficulties["interview"]} interview
-                          </span>
-                        )}
-                        {difficulties["hard"] && (
-                          <span className="ak-difficulty-tag" data-difficulty="hard">
-                            {difficulties["hard"]} hard
-                          </span>
-                        )}
-                      </div>
-                    )}
+                    <div className="mt-auto pt-4">
+                      {difficulties && (
+                        <div className="flex flex-wrap gap-2">
+                          {difficulties["warm-up"] && (
+                            <span className="ak-difficulty-tag" data-difficulty="warm-up">
+                              {difficulties["warm-up"]} warm-up
+                            </span>
+                          )}
+                          {difficulties["interview"] && (
+                            <span className="ak-difficulty-tag" data-difficulty="interview">
+                              {difficulties["interview"]} interview
+                            </span>
+                          )}
+                          {difficulties["hard"] && (
+                            <span className="ak-difficulty-tag" data-difficulty="hard">
+                              {difficulties["hard"]} hard
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </Link>
                 </li>
               );
